@@ -36,7 +36,7 @@ public class PessoaBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Pessoa pessoa) {
-        return dao.remover(factory, pessoa);
+        return dao.remover(factory, Pessoa.class, pessoa);
     }
 
     public Pessoa getPorId(EntityManagerFactory factory,  Pessoa pessoa) {

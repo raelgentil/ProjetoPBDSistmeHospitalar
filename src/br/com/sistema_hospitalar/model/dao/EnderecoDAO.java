@@ -38,7 +38,7 @@ public class EnderecoDAO {
         return enderecoVos;
     }
 
-    public List<Endereco> buscarPordescricao(EntityManagerFactory factory, String descricao) {
+    public List<Endereco> buscarPorDescricao(EntityManagerFactory factory, String descricao) {
         EntityManager em = null;
         List<Endereco> enderecoVos = null;
         try {

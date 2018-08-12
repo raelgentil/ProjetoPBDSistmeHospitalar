@@ -34,7 +34,6 @@ public class PacienteBEANS {
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Paciente paciente) {
         if (paciente.getId() == null) {
-            System.err.println("Vou tentar salvar");
                 return dao.salvarOuAtualizar(factory, paciente);
             
         } else {
@@ -43,7 +42,7 @@ public class PacienteBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Paciente paciente) {
-        return dao.remover(factory, paciente);
+        return dao.remover(factory, Paciente.class, paciente);
     }
 
     public Paciente getPorId(EntityManagerFactory factory, Paciente paciente) {

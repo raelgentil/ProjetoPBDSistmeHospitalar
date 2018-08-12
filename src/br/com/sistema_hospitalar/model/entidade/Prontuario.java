@@ -50,19 +50,19 @@ public class Prontuario implements Serializable, IEntidadeBase {
     @Temporal(TemporalType.DATE)
     private Calendar dataPrevistaRetorno;
 
-    @Column(name = "cids", length = 50)
+    @Column(name = "cids", length = 100)
     private String cids;
     
     @Transient
     private List<CategoriaCID> cidss;
 
-    @Column(name = "cod_medico_paciente", unique = true)
+    @Column(name = "cod_medico_paciente", unique = true, length = 20)
     private String codMedicoPaciente;
 
     @Column(name = "observacoes")
     private String observacoes;
 
-    @Column(name = "prescricao")
+    @Column(name = "prescricao", length = 100)
     private String prescricao;
 
     @ManyToOne
@@ -77,7 +77,7 @@ public class Prontuario implements Serializable, IEntidadeBase {
     }
 
     
-    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente) {
+    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
         this.id = id;
         this.numero = numero;
         this.dataAbertura = dataAbertura;
@@ -88,8 +88,10 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.observacoes = observacoes;
         this.prescricao = prescricao;
         this.paciente = paciente;
+        this.medico = medico;
+        gerarCodigoMedicoPaciente();
     }
-    public Prontuario(Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente) {
+    public Prontuario(Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
         //old
         this.dataAbertura = dataAbertura;
         this.dataRetorno = dataRetorno;
@@ -100,7 +102,7 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.prescricao = prescricao;
         this.paciente = paciente;
         this.medico = medico;
-        this.dataAtendimento = dataAtendimento;
+        gerarCodigoMedicoPaciente();
     }
     public Prontuario(Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno,Calendar dataAtendimento, List<CategoriaCID> cidss, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
 
@@ -115,7 +117,7 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.dataAtendimento = dataAtendimento;
         gerarCodigoMedicoPaciente();
     }
-    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, String cids, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente) {
+    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, String cids, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
         this.id = id;
         this.numero = numero;
         this.dataAbertura = dataAbertura;
@@ -127,7 +129,7 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.prescricao = prescricao;
         this.paciente = paciente;
         this.medico = medico;
-        this.dataAtendimento = dataAtendimento;
+        gerarCodigoMedicoPaciente();
     }
     private void gerarCodigoMedicoPaciente() {
         codMedicoPaciente = (medico.getApelido()+paciente.getId());

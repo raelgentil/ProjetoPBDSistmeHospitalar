@@ -44,7 +44,7 @@ public class EspecializacaoBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Especializacao especializacao) {
-        return dao.remover(factory, especializacao);
+        return dao.remover(factory, Especializacao.class, especializacao);
     }
 
     public Especializacao getPorId(EntityManagerFactory factory, Especializacao especializacao) {

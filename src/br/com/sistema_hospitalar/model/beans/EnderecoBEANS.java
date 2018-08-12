@@ -29,7 +29,7 @@ public class EnderecoBEANS{
     
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Endereco endereco) {
         if (endereco.getId() == null) {
-            List<Endereco> enderecos = daoE.buscarPordescricao(factory, endereco.getDescricao());
+            List<Endereco> enderecos = daoE.buscarPorDescricao(factory, endereco.getDescricao());
             boolean igual = false;
             for (Endereco endereco1 : enderecos) {
                 if (endereco.getBairro().equals(endereco1.getBairro()) && endereco.getNumero().equals(endereco1.getNumero())) {
@@ -46,7 +46,7 @@ public class EnderecoBEANS{
     }
 
     public boolean remover(EntityManagerFactory factory, Endereco endereco) {
-        return dao.remover(factory, endereco);
+        return dao.remover(factory, Endereco.class, endereco);
 
     }
 
@@ -61,7 +61,7 @@ public class EnderecoBEANS{
 
 
     public List<Endereco> buscarPordescricao(EntityManagerFactory factory, String descricao) {
-        return daoE.buscarPordescricao(factory, descricao);
+        return daoE.buscarPorDescricao(factory, descricao);
     }
 
     public Endereco getMunicipio(EntityManagerFactory factory, Endereco endereco) {

@@ -102,6 +102,13 @@ public class Lote implements Serializable,IEntidadeBase{
         return insumo;
     }
 
+    @Override
+    public String toString() {
+        return "Lote{" + "id=" + id + ", codigo=" + codigo + ", quantidadeInsumo=" + quantidadeInsumo + ", dataValidade=" + dataValidade + ", dataFabricacao=" + dataFabricacao + ", generico=" + generico + ", insumo=" + insumo + '}';
+    }
+
+    
+
     
     
     

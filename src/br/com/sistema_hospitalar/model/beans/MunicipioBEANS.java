@@ -28,7 +28,7 @@ public class MunicipioBEANS {
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Municipio municipio) {
         if (municipio.getId() == null) {
-            if (buscarPorNome(factory, municipio.getDescricao()).isEmpty()) {
+            if (buscarPorDescricao(factory, municipio.getDescricao()).isEmpty()) {
                 return dao.salvarOuAtualizar(factory, municipio);
             }
         } else {
@@ -38,7 +38,7 @@ public class MunicipioBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Municipio municipio) {
-        return dao.remover(factory, municipio);
+        return dao.remover(factory, Municipio.class, municipio);
 
     }
 
@@ -47,8 +47,8 @@ public class MunicipioBEANS {
         return dao.getPorId(factory, Municipio.class, municipio.getId());
     }
 
-    public List<Municipio> buscarPorNome(EntityManagerFactory factory, String descricao) {
-        return daoM.listarPorNome(factory, descricao);
+    public List<Municipio> buscarPorDescricao(EntityManagerFactory factory, String descricao) {
+        return daoM.buscarPorDescricao(factory, descricao);
     }
 
 //    @Override

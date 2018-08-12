@@ -43,7 +43,6 @@ public class Insumo implements Serializable, IEntidadeBase {
 
     public Insumo(String descricao, int quantidadeMinima, double valor) {
         this.descricao = descricao;
-        this.quantidadeTotal = quantidadeTotal;
         this.quantidadeMinima = quantidadeMinima;
         this.valor = valor;
     }
@@ -74,6 +73,11 @@ public class Insumo implements Serializable, IEntidadeBase {
 
     public double getValor() {
         return valor;
+    }
+
+    @Override
+    public String toString() {
+        return "Insumo{" + "id=" + id + ", descricao=" + descricao + ", quantidadeTotal=" + quantidadeTotal + ", quantidadeMinima=" + quantidadeMinima + ", valor=" + valor + '}';
     }
     
     

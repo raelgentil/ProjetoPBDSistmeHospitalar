@@ -56,7 +56,7 @@ public class Pessoa implements Serializable, IEntidadeBase{
     @JoinColumn(name = "endereco_id", referencedColumnName = "id", nullable = false)
     private Endereco endereco;
 
-    public Pessoa() {
+    private Pessoa() {
     }
 
     public Pessoa(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco) {

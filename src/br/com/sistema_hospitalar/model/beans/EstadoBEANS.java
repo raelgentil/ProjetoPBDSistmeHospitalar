@@ -41,7 +41,7 @@ public class EstadoBEANS {
 
     public boolean remover(EntityManagerFactory factory, Estado estado) {
 
-        return dao.remover(factory, estado);
+        return dao.remover(factory, Estado.class, estado);
 
     }
 
@@ -56,7 +56,7 @@ public class EstadoBEANS {
     }
 
     public List<Estado> buscarPorNome(EntityManagerFactory factory, String descricao) {
-        return daoE.buscarPorNome(factory, descricao);
+        return daoE.buscarPorDescricao(factory, descricao);
     }
 
 }

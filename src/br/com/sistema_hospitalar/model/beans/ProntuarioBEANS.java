@@ -33,7 +33,6 @@ public class ProntuarioBEANS {
     }
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Prontuario prontuario) {
-       // prontuario = atualizarCIDs(prontuario);
         if (prontuario.getId() == null) {
             return dao.salvarOuAtualizar(factory, prontuario);
         } else {
@@ -42,7 +41,7 @@ public class ProntuarioBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Prontuario prontuario) {
-        return dao.remover(factory, prontuario);
+        return dao.remover(factory, Prontuario.class, prontuario);
     }
 
     public Prontuario getPorId(EntityManagerFactory factory, Prontuario prontuario) {
@@ -70,12 +69,12 @@ public class ProntuarioBEANS {
         String[] ids = prontuario.getCids().split(";");
         List<CategoriaCID> categorias = new ArrayList<>();
         for (int i = 0; i < ids.length; i++) {
-            categorias.add(daoC.getPorId(factory, CategoriaCID.class, new CategoriaCID(Long.parseLong(ids[i]), null, null, null).getId()));
+            categorias.add(daoC.getPorId(factory, CategoriaCID.class, Long.parseLong(ids[i])));
 
         }
         return new Prontuario(prontuario.getId(), prontuario.getNumero(), prontuario.getDataAbertura(), prontuario.getDataRetorno(),
                 prontuario.getDataRetorno(), categorias, prontuario.getCodMedicoPaciente(), prontuario.getObservacoes(),
-                prontuario.getPrescricao(), prontuario.getPaciente());
+                prontuario.getPrescricao(), prontuario.getPaciente(), prontuario.getMedico());
     }
     
     private Prontuario atualizarCIDs(Prontuario prontuario){
@@ -85,7 +84,7 @@ public class ProntuarioBEANS {
         }
         return new Prontuario(prontuario.getId(), prontuario.getNumero(), prontuario.getDataAbertura(), prontuario.getDataRetorno(),
                 prontuario.getDataRetorno(), cids, prontuario.getCodMedicoPaciente(), prontuario.getObservacoes(),
-                prontuario.getPrescricao(), prontuario.getPaciente());
+                prontuario.getPrescricao(), prontuario.getPaciente(), prontuario.getMedico());
     }
 
 }

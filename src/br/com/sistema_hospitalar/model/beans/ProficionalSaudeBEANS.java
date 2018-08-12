@@ -41,7 +41,7 @@ public class ProficionalSaudeBEANS {
                         profissionalSaude.getEndereco(), login, profissionalSaude.getSenha(), profissionalSaude.getSalario(), profissionalSaude.getCargaHorariaMinimaMensal(),
                         profissionalSaude.getHoraextra(), profissionalSaude.isAtivo(), profissionalSaude.getApelido(), converterEspecializacoes(profissionalSaude.getEspecializacoess()), profissionalSaude.getPacientesMarcados()));
             } else {
-                System.err.println("Erro Paciente ja existe");
+                System.err.println("Erro Atendente ja existe");
             }
         } else {
             return dao.salvarOuAtualizar(factory, profissionalSaude);
@@ -50,7 +50,7 @@ public class ProficionalSaudeBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, ProfissionalSaude profissionalSaude) {
-        return dao.remover(factory, profissionalSaude);
+        return dao.remover(factory, ProfissionalSaude.class, profissionalSaude);
     }
 
     public ProfissionalSaude getPorId(EntityManagerFactory factory, ProfissionalSaude profissionalSaude) {

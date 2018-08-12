@@ -40,15 +40,15 @@ public class LoteDAO {
         return lote;
     }
     
-    public Lote buscarPorInsumo(EntityManagerFactory factory, Insumo insumo){
+    public List<Lote> buscarPorInsumo(EntityManagerFactory factory, Insumo insumo){
         EntityManager em = null;
-       Lote lote = null;
+       List<Lote> lotes = null;
         try {
             
             em = factory.createEntityManager();
             TypedQuery<Lote> q = em.createQuery("select l from Lote l where l.insumo.id = :insumo_id", Lote.class);
             q.setParameter("insumo_id",insumo.getId());
-            lote = q.getSingleResult();
+            lotes = q.getResultList();
 
         } catch (Exception e) {
             System.out.println("br.com.sistema_hospitalar.model.dao.LoteDAO.buscarInsumo()");
@@ -57,7 +57,7 @@ public class LoteDAO {
         } finally {
             em.close();
         }
-        return lote;
+        return lotes;
     }
     
 }

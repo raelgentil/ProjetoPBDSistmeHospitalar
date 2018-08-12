@@ -5,13 +5,13 @@
  */
 package br.com.sistema_hospitalar.model.beans;
 
+import br.com.sistema_hospitalar.model.dao.DAO;
 import br.com.sistema_hospitalar.model.dao.FuncionarioDAO;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
-import br.com.sistema_hospitalar.model.entidade.Usuario;
 import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -23,33 +23,11 @@ import javax.persistence.EntityManagerFactory;
 public class FuncionarioBEANS {
 
     FuncionarioDAO daoF;
+    DAO<Funcionario> dao;
 
     public FuncionarioBEANS() {
         daoF = new FuncionarioDAO();
-    }
-
-    public Usuario buscarUsuario(EntityManagerFactory factory, Usuario usuario) {
-        Funcionario f;
-        f = daoF.buscarUsuario(factory, usuario);
-        String tipo = null;
-
-        if (f instanceof Administrador) {
-//            Administrador administrador = ;
-            if (((Administrador) f).isSuperUsuario()) {
-                tipo = "SuperUsuario";
-            } else {
-                tipo = "Adm";
-            }
-        }
-        if (f instanceof Atendente) {
-            tipo = "Atendente";
-        }
-        if (f instanceof ProfissionalSaude) {
-            tipo = "ProfissionalSaude";
-        }
-
-        return new Usuario(f.getId(), f.getLogin(), f.getSenha(), tipo);
-
+        dao = new DAO<>();
     }
 
     public Funcionario buscarUsuario(EntityManagerFactory factory, String login, String senha) {

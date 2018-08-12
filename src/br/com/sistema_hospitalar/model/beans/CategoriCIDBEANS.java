@@ -5,7 +5,9 @@
  */
 package br.com.sistema_hospitalar.model.beans;
 
-import br.com.sistema_hospitalar.model.dao.*;
+import br.com.sistema_hospitalar.model.dao.CategoriCIDDAO;
+import br.com.sistema_hospitalar.model.dao.DAO;
+import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import java.util.List;
@@ -20,8 +22,10 @@ import javax.persistence.TypedQuery;
 public class CategoriCIDBEANS {
     
     CategoriCIDDAO categoriCIDDAO;
+    DAO<CategoriaCID> dao;
     public CategoriCIDBEANS() {
         categoriCIDDAO = new CategoriCIDDAO();
+        dao = new DAO<>();
     }
     
     public List<CategoriaCID> bucarPorCodigo(EntityManagerFactory factory, String codigo) {
@@ -38,7 +42,7 @@ public class CategoriCIDBEANS {
             categoriaCIDs = q.getResultList();
 
         } catch (Exception e) {
-            System.out.println("br.com.sistema_hospitalar.model.dao.EnderecoDAO.listarPordescricao()");
+            System.out.println("br.com.sistema_hospitalar.model.beans.CategoriCIDBEANS.bucarPorCodigo()");
             System.out.println("erro CategoriaCIDDAO: " + e.getMessage());
             e.printStackTrace();
 
@@ -72,5 +76,8 @@ public class CategoriCIDBEANS {
         return categoriaCIDs;
     }
     
-    
+    public CategoriaCID getPorId(EntityManagerFactory factory, CategoriaCID categoriaCID) {
+
+        return dao.getPorId(factory, CategoriaCID.class, categoriaCID.getId());
+    }
 }

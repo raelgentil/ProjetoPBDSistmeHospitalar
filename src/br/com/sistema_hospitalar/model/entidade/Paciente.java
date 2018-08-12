@@ -70,7 +70,7 @@ public class Paciente extends Pessoa implements Serializable {
         
     }
 
-    public Paciente(String tipoSanguinio, boolean fatorRh, String limitacoes, String alergias, Calendar dataDeFalecimento, boolean doadorDeOrgaos, List<Pessoa> dependentes, String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco) {
+    public Paciente(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String tipoSanguinio, boolean fatorRh, String limitacoes, String alergias, Calendar dataDeFalecimento, boolean doadorDeOrgaos, List<Pessoa> dependentes) {
         super(nome, cpf, email, telefones, sexo, dataDeNascimento, endereco);
         this.tipoSanguinio = tipoSanguinio;
         this.fatorRh = fatorRh;

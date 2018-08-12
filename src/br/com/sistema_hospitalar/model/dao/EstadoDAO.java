@@ -42,7 +42,7 @@ public class EstadoDAO {
         return estadoVo;
     }
 
-    public List<Estado> buscarPorNome(EntityManagerFactory factory, String descricao) {
+    public List<Estado> buscarPorDescricao(EntityManagerFactory factory, String descricao) {
         EntityManager em = null;
         List<Estado> estadoVos = null;
         try {

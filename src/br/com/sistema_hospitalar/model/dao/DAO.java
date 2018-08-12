@@ -35,12 +35,14 @@ public class DAO<Entidade extends IEntidadeBase> {
     }
     
 
-    public boolean remover(EntityManagerFactory factory, Entidade entidade) {
+    public boolean remover(EntityManagerFactory factory, Class<Entidade> classeTipo,Entidade entidade) {
         EntityManager em = null;
         try {
             em = factory.createEntityManager();
             em.getTransaction().begin();
-            em.remove(entidade);
+            Object o = em.find(classeTipo, entidade.getId());
+
+            em.remove(o);
             em.getTransaction().commit();
             return true;
         } catch (Exception e) {

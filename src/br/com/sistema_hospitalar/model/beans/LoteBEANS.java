@@ -44,17 +44,20 @@ public class LoteBEANS {
             
         }
         if (salvou) {
-            Insumo insumo = insumoBEANS.getPorId(factory, lote.getInsumo());
-            insumo = new Insumo(insumo.getId(), insumo.getDescricao(), 
-                    ((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo())- quantidadeAntigadeInsumo), 
-                    insumo.getQuantidadeMinima(), insumo.getValor());
-            insumoBEANS.salvarOuAtualizar(factory, insumo);
+            atualizarInsumo(factory, lote, quantidadeAntigadeInsumo);
         }
         return salvou;
     }
 
     public boolean remover(EntityManagerFactory factory, Lote lote) {
-        return dao.remover(factory, lote);
+        if (dao.remover(factory, Lote.class, lote)) {
+            atualizarInsumo(factory, lote, lote.getQuantidadeInsumo()*2);
+            return true;
+        }else{
+            return false;
+        }
+      
+        
     }
 
     public Lote buscarPorId(EntityManagerFactory factory,  Lote lote) {
@@ -65,10 +68,18 @@ public class LoteBEANS {
        return daoL.buscarPorCodigo(factory, codigo);
     }
     
-    public Lote buscarPorInsumo(EntityManagerFactory factory, Insumo insumo){
+    public List<Lote> buscarPorInsumo(EntityManagerFactory factory, Insumo insumo){
        return daoL.buscarPorInsumo(factory, insumo);
     }
     
+    private void atualizarInsumo(EntityManagerFactory factory, Lote  lote, int quantidadeAntigadeInsumo){
+        
+        Insumo insumo = insumoBEANS.getPorId(factory, lote.getInsumo());
+            insumo = new Insumo(insumo.getId(), insumo.getDescricao(), 
+                    ((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo())- quantidadeAntigadeInsumo), 
+                    insumo.getQuantidadeMinima(), insumo.getValor());
+            insumoBEANS.salvarOuAtualizar(factory, insumo);
+    }
     
             
     

@@ -14,7 +14,7 @@ import javax.persistence.EntityManagerFactory;
  * @author rafaelgentil
  */
 public interface IMunicipioDAO {
-     public List<Municipio> listarPorNome(EntityManagerFactory factory, String descricao);
+     public List<Municipio> buscarPorDescricao(EntityManagerFactory factory, String descricao);
      
      public Municipio getEstado(Municipio mv, EntityManagerFactory factory);
     

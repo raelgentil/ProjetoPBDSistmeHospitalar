@@ -10,13 +10,13 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 import org.hibernate.Hibernate;
 
-public class MunicipioDAO extends DAO<IEntidadeBase> implements IMunicipioDAO{
+public class MunicipioDAO{
 
 
     public MunicipioDAO() {
     }
 
-    public List<Municipio> listarPorNome(EntityManagerFactory factory, String descricao) {
+    public List<Municipio> buscarPorDescricao(EntityManagerFactory factory, String descricao) {
         EntityManager em = null;
         List<Municipio> municipioVos = null;
         try {
@@ -59,24 +59,7 @@ public class MunicipioDAO extends DAO<IEntidadeBase> implements IMunicipioDAO{
 //        return mv;
 //    }
 //    
-    public Municipio getEstado(Municipio mv, EntityManagerFactory factory) {
-        EntityManager em = null;
-       
-        try {
-            em = factory.createEntityManager();
-            em.getTransaction().begin();
-            mv = em.find(Municipio.class, mv.getId());
-            Hibernate.initialize(mv.getEstado());
-        } catch (Exception e) {
-            System.out.println("br.com.sistema_hospitalar.model.dao.MunicipioDAO.getEstado()");
-            System.out.println("erro MunicipioDAO: " + e.getMessage());
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
 
-        return mv;
-    }
 
 
 }

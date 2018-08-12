@@ -5,6 +5,7 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
+import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,14 +25,13 @@ import br.com.sistema_hospitalar.model.entidade.interfaces.IMunicipio;
  */
 @Entity
 @Table(name = "municipio")
-public class Municipio implements Serializable, IMunicipio{
+public class Municipio implements Serializable, IEntidadeBase{
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "cep", nullable = false)
-    private int cep;
+
     @Column(name = "descricao", nullable = false, length = 255)
     private String descricao;
     
@@ -44,15 +44,13 @@ public class Municipio implements Serializable, IMunicipio{
     }
     
     
-       public Municipio(int cep, String descricao, Estado estado) {
-        this.cep = cep;
+       public Municipio(String descricao, Estado estado) {
         this.descricao = descricao;
         this.estado = estado;
     }
 
-    public Municipio(Long id, int cep, String descricao, Estado estado) {
+    public Municipio(Long id, String descricao, Estado estado) {
         this.id = id;
-        this.cep = cep;
         this.descricao = descricao;
         this.estado = estado;
     }
@@ -63,7 +61,7 @@ public class Municipio implements Serializable, IMunicipio{
 
     @Override
     public String toString() {
-        return "Municipio{" + "id=" + getId() + ", cep=" + getCep() + ", descricao=" + getDescricao() + ", estado=" + getEstado() + '}';
+        return "Municipio{" + "id=" + getId() + ", cep="  + ", descricao=" + getDescricao() + ", estado=" + getEstado() + '}';
     }
 
     /**
@@ -73,12 +71,6 @@ public class Municipio implements Serializable, IMunicipio{
         return id;
     }
 
-    /**
-     * @return the cep
-     */
-    public int getCep() {
-        return cep;
-    }
 
     /**
      * @return the descricao

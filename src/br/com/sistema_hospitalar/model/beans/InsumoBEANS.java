@@ -37,7 +37,7 @@ public class InsumoBEANS {
     }
 
     public boolean remover(EntityManagerFactory factory, Insumo insumo) {
-        return dao.remover(factory, insumo);
+        return dao.remover(factory, Insumo.class, insumo);
     }
 
     public Insumo getPorId(EntityManagerFactory factory,  Insumo insumo) {

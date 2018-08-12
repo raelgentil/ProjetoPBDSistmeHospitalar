@@ -89,4 +89,5 @@ public abstract class Funcionario extends Pessoa implements Serializable {
     }
     
     
+    
 }
