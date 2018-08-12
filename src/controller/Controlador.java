@@ -35,16 +35,15 @@ public class Controlador extends Application{
         principal = new Scene(principalPane);
         
         stage.setScene(login);
-        stage.show();
         janela = stage;
-        
+        stage.show();
         
               
     }
     public static void trocarTela(String nomeTela){
         switch(nomeTela){
             case "login":{ janela.setScene(login); break; }
-            case "principal":{ janela.setScene(principal);break; }
+            case "principal":{ janela.setScene(principal); janela.setMaximized(true); break; }
             
         }
         
