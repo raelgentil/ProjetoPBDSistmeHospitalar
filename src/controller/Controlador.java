@@ -18,10 +18,10 @@ public class Controlador extends Application{
     private static Pane ANTERIOR,principalPane,inicioSUPane, gerenciarFuncPane;
     
     
-//    public static void main(String[] args){
-//        launch(args);    
-//       
-//    }
+    public static void main(String[] args){
+        launch(args);    
+       
+    }
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -55,8 +55,8 @@ public class Controlador extends Application{
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
         }
     }
-    public static void voltar(){
-        
+    public static void irHome(){
+        HomeController.get().alterarPane(inicioSUPane);
     }
 //    public Pane getPane(Tela tela){//NÃO usado
 //        switch(tela){

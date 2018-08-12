@@ -6,6 +6,7 @@
 package controller;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,45 +24,50 @@ import javafx.scene.layout.StackPane;
 public class HomeController implements Initializable {
     
     private static HomeController controller = null;
-    private Pane anterior;
+    private ArrayList<Pane> paineis;
     @FXML
     private StackPane pane;
-     @FXML
+    @FXML
     private Label nomeUsuario;
-
+    
     @FXML
     private ImageView usuario;
-
+    
     @FXML
     private ImageView sairSessao;
-
+    
     @FXML
     private ImageView home;
-
+    
     @FXML
     private ImageView voltar;
-
+    
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
+        paineis = new ArrayList<>();
         voltar.setOnMouseClicked((MouseEvent e)->{
-           voltar();
+            voltar();
+        });
+        home.setOnMouseClicked((MouseEvent e)->{
+            Controlador.irHome();
         });
         
-    
     }
     public void alterarPane(Pane p){
-        anterior = (Pane) pane;
+        paineis.add(p);
         pane.getChildren().setAll(p);
     }
-    private void voltar(){
-        if(anterior != null){
-        Pane aux = pane;
-        pane.getChildren().setAll(anterior);
-        anterior = aux;
-        }
+    private void voltar(){        
+        if(paineis.size() > 0){
+            int lastIndex = paineis.size()-1;
+            pane.getChildren().setAll( paineis.get(lastIndex));
+            paineis.remove(lastIndex);
+            System.out.println("voltei  Tamanho: "+ paineis.size());
+        }else
+            System.out.println("Não volto  Tamanho: "+ paineis.size());
     }
     public static HomeController get(){
         return controller;
