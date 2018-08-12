@@ -15,7 +15,7 @@ public class Controlador extends Application{
     
     private static Stage janela;
     private static Scene login,principal;
-    private static Pane ANTERIOR,principalPane,inicioSUPane, gerenciarFuncPane;
+    private static Pane ANTERIOR,principalPane,inicioSUPane, gerenciarFuncPane, visualizar;
     
     
     public static void main(String[] args){
@@ -29,6 +29,7 @@ public class Controlador extends Application{
         inicioSUPane = FXMLLoader.load(getClass().getResource("/view/inicioSuperUser.fxml"));
         principalPane = FXMLLoader.load(getClass().getResource("/view/home.fxml"));
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/view/gerenciarFuncionarios.fxml"));
+        visualizar = FXMLLoader.load(getClass().getResource("/view/visualizar.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -53,6 +54,7 @@ public class Controlador extends Application{
         switch(pane){
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
+            case visualizar:{HomeController.get().alterarPane(visualizar);break;}
         }
     }
     public static void irHome(){
