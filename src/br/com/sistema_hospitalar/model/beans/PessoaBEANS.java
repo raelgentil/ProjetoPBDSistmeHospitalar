@@ -39,9 +39,9 @@ public class PessoaBEANS {
         return dao.remover(factory, Pessoa.class, pessoa);
     }
 
-    public Pessoa getPorId(EntityManagerFactory factory,  Pessoa pessoa) {
+    public Pessoa getPorId(EntityManagerFactory factory,  Long id) {
         
-       return dao.getPorId(factory, Pessoa.class, pessoa.getId());
+       return dao.getPorId(factory, Pessoa.class, id);
     }
     
      public List<Pessoa> buscarPorNome(EntityManagerFactory factory, String nome) {

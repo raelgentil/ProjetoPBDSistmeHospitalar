@@ -45,9 +45,9 @@ public class PacienteBEANS {
         return dao.remover(factory, Paciente.class, paciente);
     }
 
-    public Paciente getPorId(EntityManagerFactory factory, Paciente paciente) {
+    public Paciente getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Paciente.class, paciente.getId());
+        return dao.getPorId(factory, Paciente.class, id);
     }
 
     public List<Paciente> buscarPorNome(EntityManagerFactory factory, String nome) {

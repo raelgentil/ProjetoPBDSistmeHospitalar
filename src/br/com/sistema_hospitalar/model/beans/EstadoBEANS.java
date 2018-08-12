@@ -8,7 +8,7 @@ package br.com.sistema_hospitalar.model.beans;
 import br.com.sistema_hospitalar.model.dao.DAO;
 import br.com.sistema_hospitalar.model.dao.EstadoDAO;
 import br.com.sistema_hospitalar.model.entidade.Estado;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -45,9 +45,9 @@ public class EstadoBEANS {
 
     }
 
-    public Estado getPorId(EntityManagerFactory factory, Estado estado) {
+    public Estado getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Estado.class, estado.getId());
+        return dao.getPorId(factory, Estado.class, id);
     }
 
     public Estado buscarPorUf(EntityManagerFactory factory, String uf) {

@@ -1,6 +1,5 @@
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,122 +72,114 @@ public class Prontuario implements Serializable, IEntidadeBase {
     @JoinColumn(name = "medico_id", referencedColumnName = "id", nullable = true)
     private ProfissionalSaude medico;
 
-    private Prontuario() {
-    }
-
-    
-    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
-        this.id = id;
-        this.numero = numero;
-        this.dataAbertura = dataAbertura;
-        this.dataRetorno = dataRetorno;
-        this.dataPrevistaRetorno = dataPrevistaRetorno;
-        this.cidss = cidss;
-        this.codMedicoPaciente = codMedicoPaciente;
-        this.observacoes = observacoes;
-        this.prescricao = prescricao;
-        this.paciente = paciente;
-        this.medico = medico;
-        gerarCodigoMedicoPaciente();
-    }
-    public Prontuario(Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
-        //old
-        this.dataAbertura = dataAbertura;
-        this.dataRetorno = dataRetorno;
-        this.dataPrevistaRetorno = dataPrevistaRetorno;
-        this.cidss = cidss;
-        this.codMedicoPaciente = codMedicoPaciente;
-        this.observacoes = observacoes;
-        this.prescricao = prescricao;
-        this.paciente = paciente;
-        this.medico = medico;
-        gerarCodigoMedicoPaciente();
-    }
-    public Prontuario(Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno,Calendar dataAtendimento, List<CategoriaCID> cidss, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
-
-        this.dataAbertura = dataAbertura;
-        this.dataRetorno = dataRetorno;
-        this.dataPrevistaRetorno = dataPrevistaRetorno;
-        this.cidss = cidss;
-        this.observacoes = observacoes;
-        this.prescricao = prescricao;
-        this.paciente = paciente;
-        this.medico = medico;
-        this.dataAtendimento = dataAtendimento;
-        gerarCodigoMedicoPaciente();
-    }
-    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataRetorno, Calendar dataPrevistaRetorno, String cids, String codMedicoPaciente, String observacoes, String prescricao, Paciente paciente, ProfissionalSaude medico) {
-        this.id = id;
-        this.numero = numero;
-        this.dataAbertura = dataAbertura;
-        this.dataRetorno = dataRetorno;
-        this.dataPrevistaRetorno = dataPrevistaRetorno;
-        this.cids = cids;
-        this.codMedicoPaciente = codMedicoPaciente;
-        this.observacoes = observacoes;
-        this.prescricao = prescricao;
-        this.paciente = paciente;
-        this.medico = medico;
-        gerarCodigoMedicoPaciente();
-    }
-    private void gerarCodigoMedicoPaciente() {
-        codMedicoPaciente = (medico.getApelido()+paciente.getId());
+    public Prontuario() {
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getNumero() {
         return numero;
+    }
+
+    public void setNumero(Long numero) {
+        this.numero = numero;
     }
 
     public Calendar getDataAbertura() {
         return dataAbertura;
     }
 
+    public void setDataAbertura(Calendar dataAbertura) {
+        this.dataAbertura = dataAbertura;
+    }
+
     public Calendar getDataAtendimento() {
         return dataAtendimento;
     }
 
-    public ProfissionalSaude getMedico() {
-        return medico;
+    public void setDataAtendimento(Calendar dataAtendimento) {
+        this.dataAtendimento = dataAtendimento;
     }
 
     public Calendar getDataRetorno() {
         return dataRetorno;
     }
 
+    public void setDataRetorno(Calendar dataRetorno) {
+        this.dataRetorno = dataRetorno;
+    }
+
     public Calendar getDataPrevistaRetorno() {
         return dataPrevistaRetorno;
+    }
+
+    public void setDataPrevistaRetorno(Calendar dataPrevistaRetorno) {
+        this.dataPrevistaRetorno = dataPrevistaRetorno;
     }
 
     public String getCids() {
         return cids;
     }
 
+    public void setCids(String cids) {
+        this.cids = cids;
+    }
+
+    public List<CategoriaCID> getCidss() {
+        return cidss;
+    }
+
+    public void setCidss(List<CategoriaCID> cidss) {
+        this.cidss = cidss;
+    }
+
     public String getCodMedicoPaciente() {
         return codMedicoPaciente;
+    }
+
+    public void setCodMedicoPaciente(String codMedicoPaciente) {
+        this.codMedicoPaciente = codMedicoPaciente;
     }
 
     public String getObservacoes() {
         return observacoes;
     }
 
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
+    }
+
     public String getPrescricao() {
         return prescricao;
+    }
+
+    public void setPrescricao(String prescricao) {
+        this.prescricao = prescricao;
     }
 
     public Paciente getPaciente() {
         return paciente;
     }
 
-    public List<CategoriaCID> getCidss() {
-        return this.cidss;
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    public ProfissionalSaude getMedico() {
+        return medico;
+    }
+
+    public void setMedico(ProfissionalSaude medico) {
+        this.medico = medico;
     }
 
     
-
     
     
 }

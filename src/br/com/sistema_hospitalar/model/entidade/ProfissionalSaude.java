@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.List;
@@ -45,66 +44,49 @@ public class ProfissionalSaude extends Funcionario implements Serializable {
     @Transient
     private List<Consulta> consultas;
 
-    private ProfissionalSaude() {
-        super(null, null, null, null, null, null, null, null, 0, 0, 0);
-    }
-
-    public ProfissionalSaude(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String login, double salario, double cargaHorariaMinimaMensal, double horaextra, String apelido, List<Especializacao> especializacoes) {
-        super(nome, cpf, email, telefones, sexo, dataDeNascimento, endereco, login, salario, cargaHorariaMinimaMensal, horaextra);
-        this.apelido = apelido;
-        this.especializacoess = especializacoes;
-    }
-
-    public ProfissionalSaude(Long id, String nome, String cpf, String email, String tefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String login, String senha, double salario, double cargaHorariaMinimaMensal, double horaextra, boolean ativo, String apelido, String especializacoes, String pacientesMarcados) {
-        super(id, nome, cpf, email, tefones, sexo, dataDeNascimento, endereco, login, senha, salario, cargaHorariaMinimaMensal, horaextra, ativo);
-        this.apelido = apelido;
-        this.especializacoes = especializacoes;
-        this.pacientesMarcados = pacientesMarcados;
-    }
-
-    public ProfissionalSaude(Long id, String nome, String cpf, String email, String tefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String login, String senha, double salario, double cargaHorariaMinimaMensal, double horaextra, boolean ativo, String apelido, List<Especializacao> especializacoess, String pacientesMarcados) {
-        super(id, nome, cpf, email, tefones, sexo, dataDeNascimento, endereco, login, senha, salario, cargaHorariaMinimaMensal, horaextra, ativo);
-        this.apelido = apelido;
-        this.especializacoess = especializacoess;
-        this.pacientesMarcados = pacientesMarcados;
-    }
-    
-    @Override
-    public String toString() {
-        return "ProfissionalSaude{" + "id=" + getId()+ "apelido=" + apelido + ", especializacoes=" + especializacoes + ", especializacoess=" + especializacoess + ", pacientesMarcados=" + pacientesMarcados + ", consultas=" + consultas + '}';
+    public ProfissionalSaude() {
     }
 
     public String getApelido() {
         return apelido;
     }
 
+    public void setApelido(String apelido) {
+        this.apelido = apelido;
+    }
+
     public String getEspecializacoes() {
         return especializacoes;
+    }
+
+    public void setEspecializacoes(String especializacoes) {
+        this.especializacoes = especializacoes;
     }
 
     public List<Especializacao> getEspecializacoess() {
         return especializacoess;
     }
 
+    public void setEspecializacoess(List<Especializacao> especializacoess) {
+        this.especializacoess = especializacoess;
+    }
+
     public String getPacientesMarcados() {
         return pacientesMarcados;
+    }
+
+    public void setPacientesMarcados(String pacientesMarcados) {
+        this.pacientesMarcados = pacientesMarcados;
     }
 
     public List<Consulta> getConsultas() {
         return consultas;
     }
 
-    
-    
-    
-    
-    
-    
+    public void setConsultas(List<Consulta> consultas) {
+        this.consultas = consultas;
+    }
 
     
-
-    
-   
-
     
 }

@@ -38,10 +38,8 @@ public class AdministradorBEANS {
                 String login = beansF.criarLogin(factory, administrador);
                 
             if (login !=null && !daoA.buscarSuperUsuario(factory)) {
-                return dao.salvarOuAtualizar(factory, new Administrador(administrador.isSuperUsuario(), administrador.getId(), administrador.getNome(), administrador.getCpf(),
-                        administrador.getEmail(), administrador.getTelefones(), administrador.getSexo(), administrador.getDataDeNascimento(),
-                        administrador.getEndereco(), login, administrador.getSenha(), administrador.getSalario(), administrador.getCargaHorariaMinimaMensal(),
-                        administrador.getHoraextra(), administrador.isAtivo()));
+                administrador.setLogin(login);
+                return dao.salvarOuAtualizar(factory, administrador);
             } else {
                 return false;
             }
@@ -55,8 +53,8 @@ public class AdministradorBEANS {
         return dao.remover(factory, Administrador.class, administrador);
     }
 
-    public Administrador getPorId(EntityManagerFactory factory, Administrador administrador) {
-        return dao.getPorId(factory, Administrador.class, administrador.getId());
+    public Administrador getPorId(EntityManagerFactory factory,  Long id) {
+        return dao.getPorId(factory, Administrador.class, id);
     }
 
     public List<Administrador> buscarPorNome(EntityManagerFactory factory, String nome) {

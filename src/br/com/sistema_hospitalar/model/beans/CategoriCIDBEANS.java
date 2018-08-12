@@ -29,55 +29,15 @@ public class CategoriCIDBEANS {
     }
     
     public List<CategoriaCID> bucarPorCodigo(EntityManagerFactory factory, String codigo) {
-        EntityManager em = null;
-        List<CategoriaCID> categoriaCIDs = null;
-        try {
-
-            em = factory.createEntityManager();
-
-            TypedQuery<CategoriaCID> q = em.createQuery("select c from CategoriaCID c where c.codigo like :codigo", CategoriaCID.class);
-
-            q.setParameter("codigo", "%" + codigo + "%");
-
-            categoriaCIDs = q.getResultList();
-
-        } catch (Exception e) {
-            System.out.println("br.com.sistema_hospitalar.model.beans.CategoriCIDBEANS.bucarPorCodigo()");
-            System.out.println("erro CategoriaCIDDAO: " + e.getMessage());
-            e.printStackTrace();
-
-        } finally {
-            em.close();
-        }
-        return categoriaCIDs;
+        return categoriCIDDAO.bucarPorCodigo(factory, codigo);
     }
     
     public List<CategoriaCID> bucarPorDescricao(EntityManagerFactory factory, String descricao) {
-        EntityManager em = null;
-        List<CategoriaCID> categoriaCIDs = null;
-        try {
-
-            em = factory.createEntityManager();
-
-            TypedQuery<CategoriaCID> q = em.createQuery("select c from CategoriaCID c where c.descricao like :descricao", CategoriaCID.class);
-
-            q.setParameter("descricao", "%" + descricao + "%");
-
-            categoriaCIDs = q.getResultList();
-
-        } catch (Exception e) {
-            System.out.println("br.com.sistema_hospitalar.model.dao.EnderecoDAO.listarPordescricao()");
-            System.out.println("erro CategoriaCIDDAO: " + e.getMessage());
-            e.printStackTrace();
-
-        } finally {
-            em.close();
-        }
-        return categoriaCIDs;
+        return categoriCIDDAO.bucarPorDescricao(factory, descricao);
     }
     
-    public CategoriaCID getPorId(EntityManagerFactory factory, CategoriaCID categoriaCID) {
+    public CategoriaCID getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, CategoriaCID.class, categoriaCID.getId());
+        return dao.getPorId(factory, CategoriaCID.class, id);
     }
 }

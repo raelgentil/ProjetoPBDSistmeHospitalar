@@ -1,7 +1,5 @@
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEstado;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
@@ -36,51 +34,35 @@ public class Estado implements Serializable , IEntidadeBase{
     @Column(name = "descricao", length = 20)
     private String descricao;
 
-    private Estado() {
+    public Estado() {
     }
 
-
-    
-    public Estado(String uf, String descricao) {
-        this.uf = uf;
-        this.descricao = descricao;
-    }
-
-    public Estado(Long id, String uf, String descricao) {
-        this.id = id;
-        this.uf = uf;
-        this.descricao = descricao;
-    }
-    
-    
-    
-
-    /**
-     * @return the id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @return the uf
-     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getUf() {
         return uf;
     }
 
-    /**
-     * @return the descricao
-     */
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
     public String getDescricao() {
         return descricao;
     }
 
-    @Override
-    public String toString() {
-        return "Estado{" + "id=" + id + ", uf=" + uf + ", descricao=" + descricao + '}';
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
+    
+    
    
 
     

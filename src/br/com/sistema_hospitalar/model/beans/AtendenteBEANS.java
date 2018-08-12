@@ -36,10 +36,8 @@ public class AtendenteBEANS {
                 String login = beansF.criarLogin(factory, atendente);
                 
             if (login !=null) {
-                return dao.salvarOuAtualizar(factory, new Atendente(atendente.getId(), atendente.getNome(), atendente.getCpf(),
-                        atendente.getEmail(), atendente.getTelefones(), atendente.getSexo(), atendente.getDataDeNascimento(),
-                        atendente.getEndereco(), login, atendente.getSenha(), atendente.getSalario(), atendente.getCargaHorariaMinimaMensal(),
-                        atendente.getHoraextra(), atendente.isAtivo()));
+                atendente.setLogin(login);
+                return dao.salvarOuAtualizar(factory, atendente);
             } else {
                 System.err.println("Erro Atendente ja existe");
             }
@@ -53,9 +51,9 @@ public class AtendenteBEANS {
         return dao.remover(factory, Atendente.class, atendente);
     }
 
-    public Atendente getPorId(EntityManagerFactory factory, Atendente atendente) {
+    public Atendente getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Atendente.class, atendente.getId());
+        return dao.getPorId(factory, Atendente.class, id);
     }
 
     public List<Atendente> buscarPorNome(EntityManagerFactory factory, String nome) {

@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import java.util.Calendar;
 import javax.persistence.Column;
@@ -52,67 +51,67 @@ public class Lote implements Serializable,IEntidadeBase{
     @JoinColumn(name = "insumo_id", referencedColumnName = "id", nullable = false)
     private Insumo insumo;
 
-    private Lote() {
-    }
-
-    public Lote(Long codigo, int quantidadeInsumo, Calendar dataValidade, Calendar dataFabricacao, boolean generico, Insumo insumo) {
-        this.codigo = codigo;
-        this.quantidadeInsumo = quantidadeInsumo;
-        this.dataValidade = dataValidade;
-        this.dataFabricacao = dataFabricacao;
-        this.generico = generico;
-        this.insumo = insumo;
-    }
-
-    public Lote(Long id, Long codigo, int quantidadeInsumo, Calendar dataValidade, Calendar dataFabricacao, boolean generico, Insumo insumo) {
-        this.id = id;
-        this.codigo = codigo;
-        this.quantidadeInsumo = quantidadeInsumo;
-        this.dataValidade = dataValidade;
-        this.dataFabricacao = dataFabricacao;
-        this.generico = generico;
-        this.insumo = insumo;
+    public Lote() {
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
     }
 
     public int getQuantidadeInsumo() {
         return quantidadeInsumo;
     }
 
+    public void setQuantidadeInsumo(int quantidadeInsumo) {
+        this.quantidadeInsumo = quantidadeInsumo;
+    }
+
     public Calendar getDataValidade() {
         return dataValidade;
+    }
+
+    public void setDataValidade(Calendar dataValidade) {
+        this.dataValidade = dataValidade;
     }
 
     public Calendar getDataFabricacao() {
         return dataFabricacao;
     }
 
+    public void setDataFabricacao(Calendar dataFabricacao) {
+        this.dataFabricacao = dataFabricacao;
+    }
+
     public boolean isGenerico() {
         return generico;
+    }
+
+    public void setGenerico(boolean generico) {
+        this.generico = generico;
     }
 
     public Insumo getInsumo() {
         return insumo;
     }
 
-    @Override
-    public String toString() {
-        return "Lote{" + "id=" + id + ", codigo=" + codigo + ", quantidadeInsumo=" + quantidadeInsumo + ", dataValidade=" + dataValidade + ", dataFabricacao=" + dataFabricacao + ", generico=" + generico + ", insumo=" + insumo + '}';
+    public void setInsumo(Insumo insumo) {
+        this.insumo = insumo;
     }
 
     
-
     
-    
-    
-
     
     
 }

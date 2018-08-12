@@ -36,10 +36,9 @@ public class ProficionalSaudeBEANS {
                 String login = beansF.criarLogin(factory, profissionalSaude);
                 
             if (login !=null) {
-                return dao.salvarOuAtualizar(factory, new ProfissionalSaude(profissionalSaude.getId(), profissionalSaude.getNome(), profissionalSaude.getCpf(),
-                        profissionalSaude.getEmail(), profissionalSaude.getTelefones(), profissionalSaude.getSexo(), profissionalSaude.getDataDeNascimento(),
-                        profissionalSaude.getEndereco(), login, profissionalSaude.getSenha(), profissionalSaude.getSalario(), profissionalSaude.getCargaHorariaMinimaMensal(),
-                        profissionalSaude.getHoraextra(), profissionalSaude.isAtivo(), profissionalSaude.getApelido(), converterEspecializacoes(profissionalSaude.getEspecializacoess()), profissionalSaude.getPacientesMarcados()));
+                profissionalSaude.setLogin(login);
+                profissionalSaude.setEspecializacoes(converterEspecializacoes(profissionalSaude.getEspecializacoess()));
+                return dao.salvarOuAtualizar(factory, profissionalSaude);
             } else {
                 System.err.println("Erro Atendente ja existe");
             }
@@ -61,20 +60,16 @@ public class ProficionalSaudeBEANS {
     public List<ProfissionalSaude> buscarPorNome(EntityManagerFactory factory, String nome) {
         List<ProfissionalSaude> profissionalSaudes = daoP.buscarPorNome(factory, nome);
         for (ProfissionalSaude profissionalSaude : profissionalSaudes) {
-           profissionalSaude = new ProfissionalSaude(profissionalSaude.getId(), profissionalSaude.getNome(), profissionalSaude.getCpf(),
-                        profissionalSaude.getEmail(), profissionalSaude.getTelefones(), profissionalSaude.getSexo(), profissionalSaude.getDataDeNascimento(),
-                        profissionalSaude.getEndereco(), profissionalSaude.getLogin(), profissionalSaude.getSenha(), profissionalSaude.getSalario(), profissionalSaude.getCargaHorariaMinimaMensal(),
-                        profissionalSaude.getHoraextra(), profissionalSaude.isAtivo(), profissionalSaude.getApelido(), carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()), profissionalSaude.getPacientesMarcados());
+            profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
+           
         }
         return profissionalSaudes;
     }
 
     public ProfissionalSaude buscarPorCpf(EntityManagerFactory factory, String cpf) {
         ProfissionalSaude profissionalSaude = (ProfissionalSaude) daoP.buscarPorCpf(factory, cpf);
-        profissionalSaude = new ProfissionalSaude(profissionalSaude.getId(), profissionalSaude.getNome(), profissionalSaude.getCpf(),
-                        profissionalSaude.getEmail(), profissionalSaude.getTelefones(), profissionalSaude.getSexo(), profissionalSaude.getDataDeNascimento(),
-                        profissionalSaude.getEndereco(), profissionalSaude.getLogin(), profissionalSaude.getSenha(), profissionalSaude.getSalario(), profissionalSaude.getCargaHorariaMinimaMensal(),
-                        profissionalSaude.getHoraextra(), profissionalSaude.isAtivo(), profissionalSaude.getApelido(), carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()), profissionalSaude.getPacientesMarcados());
+        profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
+        
         return profissionalSaude;
     }
     
@@ -88,14 +83,12 @@ public class ProficionalSaudeBEANS {
     
     private List<Especializacao> carregarEspecializacoes(EntityManagerFactory factory, String especializacoes){
         List<Especializacao> especializacoess = new ArrayList<>();
-        try{
         String [] especializacoesPrimeiraQuebra = especializacoes.split(";");
         for (int i = 0; i < especializacoesPrimeiraQuebra.length; i++) {
             String [] especializacoesSegundaQuebra = especializacoesPrimeiraQuebra[i].split("/");
             Especializacao especializacao = beansE.buscarPorConselho(factory, especializacoesSegundaQuebra[0]).get(0);
-            especializacoess.add(new Especializacao(especializacao.getId(), especializacao.getNome(), especializacao.getValor(), especializacao.getConselho(), especializacoesSegundaQuebra[1]));
+            especializacao.setCodigo(especializacoesSegundaQuebra[1]);
         }
-        }catch(Exception e){}
         
         return especializacoess;
     }

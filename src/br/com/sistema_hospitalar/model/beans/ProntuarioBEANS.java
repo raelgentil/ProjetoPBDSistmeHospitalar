@@ -33,7 +33,9 @@ public class ProntuarioBEANS {
     }
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Prontuario prontuario) {
+        prontuario.setCids(atualizarCIDs(prontuario.getCidss()));
         if (prontuario.getId() == null) {
+            
             return dao.salvarOuAtualizar(factory, prontuario);
         } else {
             return dao.salvarOuAtualizar(factory, prontuario);
@@ -44,9 +46,10 @@ public class ProntuarioBEANS {
         return dao.remover(factory, Prontuario.class, prontuario);
     }
 
-    public Prontuario getPorId(EntityManagerFactory factory, Prontuario prontuario) {
-        prontuario = dao.getPorId(factory, Prontuario.class, prontuario.getId());
-        return buscarCIDs(factory, prontuario);
+    public Prontuario getPorId(EntityManagerFactory factory, Long id) {
+        Prontuario prontuario = dao.getPorId(factory, Prontuario.class, id);
+        prontuario.setCidss(buscarCIDs(factory, prontuario.getCids()));
+        return prontuario;
     }
 
     public String buscarCodMedicoPaciente(EntityManagerFactory factory, Long idPaciente, String codMedicoPaciente) {
@@ -56,7 +59,7 @@ public class ProntuarioBEANS {
     public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory, Long idPaciente, String codMedicoPaciente) {
         List<Prontuario> prontuarios = daoP.buscarPorCodMedicoPacient(factory, idPaciente, codMedicoPaciente);
         for (Prontuario prontuario : prontuarios) {
-            prontuario = buscarCIDs(factory, prontuario);
+            prontuario.setCidss(buscarCIDs(factory, prontuario.getCids()));
         }
         return prontuarios;
     }
@@ -65,26 +68,21 @@ public class ProntuarioBEANS {
         return daoP.ultimoRegistroDeUmMedico(factory, codMedicoPaciente);
     }
 
-    private Prontuario buscarCIDs(EntityManagerFactory factory, Prontuario prontuario) {
-        String[] ids = prontuario.getCids().split(";");
+    private List<CategoriaCID> buscarCIDs(EntityManagerFactory factory, String cids) {
+        String[] ids = cids.split(";");
         List<CategoriaCID> categorias = new ArrayList<>();
         for (int i = 0; i < ids.length; i++) {
             categorias.add(daoC.getPorId(factory, CategoriaCID.class, Long.parseLong(ids[i])));
-
         }
-        return new Prontuario(prontuario.getId(), prontuario.getNumero(), prontuario.getDataAbertura(), prontuario.getDataRetorno(),
-                prontuario.getDataRetorno(), categorias, prontuario.getCodMedicoPaciente(), prontuario.getObservacoes(),
-                prontuario.getPrescricao(), prontuario.getPaciente(), prontuario.getMedico());
+        return categorias;
     }
     
-    private Prontuario atualizarCIDs(Prontuario prontuario){
+    private String atualizarCIDs(List<CategoriaCID> categorias){
         String cids= "";
-        for (CategoriaCID cID : prontuario.getCidss()) {
+        for (CategoriaCID cID : categorias) {
             cids += cID.getId() + ";";
         }
-        return new Prontuario(prontuario.getId(), prontuario.getNumero(), prontuario.getDataAbertura(), prontuario.getDataRetorno(),
-                prontuario.getDataRetorno(), cids, prontuario.getCodMedicoPaciente(), prontuario.getObservacoes(),
-                prontuario.getPrescricao(), prontuario.getPaciente(), prontuario.getMedico());
+        return cids;
     }
 
 }

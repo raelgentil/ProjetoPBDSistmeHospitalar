@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,58 +30,50 @@ public class Especializacao implements IEntidadeBase{ //implements Serializable 
     @Transient
     private String codigo;
 
-    private Especializacao() {
+    public Especializacao() {
     }
 
-    
-    public Especializacao(String nome, double valor, String conselho) {
-        this.nome = nome;
-        this.valor = valor;
-        this.conselho = conselho;
-    }
-
-    public Especializacao(Long id, String nome, double valor, String conselho) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.conselho = conselho;
-    }
-
-    
-    public Especializacao(Long id, String nome, double valor, String conselho, String codigo) {
-        this.id = id;
-        this.nome = nome;
-        this.valor = valor;
-        this.conselho = conselho;
-        this.codigo = codigo;
-    }
-
-    
-    
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public double getValor() {
         return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public String getConselho() {
         return conselho;
     }
 
+    public void setConselho(String conselho) {
+        this.conselho = conselho;
+    }
+
     public String getCodigo() {
         return codigo;
     }
 
-    @Override
-    public String toString() {
-        return "Especializacao{" + "id=" + id + ", nome=" + nome + ", valor=" + valor + ", conselho=" + conselho + ", codigo=" + codigo + '}';
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
+
+    
 
     
     

@@ -47,9 +47,9 @@ public class EspecializacaoBEANS {
         return dao.remover(factory, Especializacao.class, especializacao);
     }
 
-    public Especializacao getPorId(EntityManagerFactory factory, Especializacao especializacao) {
+    public Especializacao getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Especializacao.class, especializacao.getId());
+        return dao.getPorId(factory, Especializacao.class, id);
     }
     
     public List<Especializacao> buscarPorNome(EntityManagerFactory factory, String nome) {

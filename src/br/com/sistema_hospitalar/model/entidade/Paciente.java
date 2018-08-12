@@ -50,88 +50,68 @@ public class Paciente extends Pessoa implements Serializable {
             = {
                 @JoinColumn(name = "dependente_id")})
     private List<Pessoa> dependentes;
-    
-//    @OneToMany(fetch = FetchType.EAGER, mappedBy = "paciente")
-//    private List<Prontuario> prontuarios;
-    
-    private Paciente() {
-        super(null, null, null, null, null, null, null);
-    }
-    
-    public Paciente(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String tipoSanguinio, boolean fatorRh, String limitacoes, String alergias, Calendar dataDeFalecimento, boolean doadorDeOrgaos) {
-        super(nome, cpf, email, telefones, sexo, dataDeNascimento, endereco);
-        this.tipoSanguinio = tipoSanguinio;
-        this.fatorRh = fatorRh;
-        this.limitacoes = limitacoes;
-        this.alergias = alergias;
-        this.dataDeFalecimento = dataDeFalecimento;
-        this.doadorDeOrgaos = doadorDeOrgaos;
-//        this.prontuarios = prontuarios;
-        
+
+    public Paciente() {
     }
 
-    public Paciente(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String tipoSanguinio, boolean fatorRh, String limitacoes, String alergias, Calendar dataDeFalecimento, boolean doadorDeOrgaos, List<Pessoa> dependentes) {
-        super(nome, cpf, email, telefones, sexo, dataDeNascimento, endereco);
-        this.tipoSanguinio = tipoSanguinio;
-        this.fatorRh = fatorRh;
-        this.limitacoes = limitacoes;
-        this.alergias = alergias;
-        this.dataDeFalecimento = dataDeFalecimento;
-        this.doadorDeOrgaos = doadorDeOrgaos;
-        this.dependentes = dependentes;
-    }
-    
-    public Paciente(Long id,String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco, String tipoSanguinio, boolean fatorRh, String limitacoes, String alergias, Calendar dataDeFalecimento, boolean doadorDeOrgaos, List<Pessoa> dependentes) {
-        super(id, nome, cpf, email, telefones, sexo, dataDeNascimento, endereco);
-        this.tipoSanguinio = tipoSanguinio;
-        this.fatorRh = fatorRh;
-        this.limitacoes = limitacoes;
-        this.alergias = alergias;
-        this.dataDeFalecimento = dataDeFalecimento;
-        this.doadorDeOrgaos = doadorDeOrgaos;
-        this.dependentes = dependentes;
-    }
-    
     public String getTipoSanguinio() {
         return tipoSanguinio;
+    }
+
+    public void setTipoSanguinio(String tipoSanguinio) {
+        this.tipoSanguinio = tipoSanguinio;
     }
 
     public boolean isFatorRh() {
         return fatorRh;
     }
 
+    public void setFatorRh(boolean fatorRh) {
+        this.fatorRh = fatorRh;
+    }
+
     public String getLimitacoes() {
         return limitacoes;
+    }
+
+    public void setLimitacoes(String limitacoes) {
+        this.limitacoes = limitacoes;
     }
 
     public String getAlergias() {
         return alergias;
     }
 
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+
     public Calendar getDataDeFalecimento() {
         return dataDeFalecimento;
     }
 
-    public boolean getDoadorDeOrgaos() {
-        return doadorDeOrgaos;
-    }
-
-    @Override
-    public String toString() {
-        return "Paciente{" + "tipoSanguinio=" + tipoSanguinio + ", fatorRh=" + fatorRh + ", limitacoes=" + limitacoes + ", alergias=" + alergias + ", dataDeFalecimento=" + dataDeFalecimento + ", doadorDeOrgaos=" + doadorDeOrgaos + '}';
+    public void setDataDeFalecimento(Calendar dataDeFalecimento) {
+        this.dataDeFalecimento = dataDeFalecimento;
     }
 
     public boolean isDoadorDeOrgaos() {
         return doadorDeOrgaos;
     }
 
+    public void setDoadorDeOrgaos(boolean doadorDeOrgaos) {
+        this.doadorDeOrgaos = doadorDeOrgaos;
+    }
+
     public List<Pessoa> getDependentes() {
         return dependentes;
     }
 
+    public void setDependentes(List<Pessoa> dependentes) {
+        this.dependentes = dependentes;
+    }
+
     
-
-
+    
     
 
     

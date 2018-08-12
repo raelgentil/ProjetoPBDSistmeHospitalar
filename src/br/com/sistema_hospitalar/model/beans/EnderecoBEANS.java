@@ -50,9 +50,9 @@ public class EnderecoBEANS{
 
     }
 
-    public Endereco getPorId(EntityManagerFactory factory, Endereco endereco) {
+    public Endereco getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Endereco.class, endereco.getId());
+        return dao.getPorId(factory, Endereco.class, id);
     }
 
     public List<Endereco> buscarPorBairro(EntityManagerFactory factory, String bairro) {

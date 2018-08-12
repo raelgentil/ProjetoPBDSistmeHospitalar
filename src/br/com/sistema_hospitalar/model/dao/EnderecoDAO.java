@@ -1,8 +1,7 @@
 package br.com.sistema_hospitalar.model.dao;
 
-import br.com.sistema_hospitalar.model.dao.interfaces.IEnderecoDAO;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

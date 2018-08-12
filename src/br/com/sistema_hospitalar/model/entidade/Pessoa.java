@@ -17,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.util.Calendar;
 
 /**
@@ -56,88 +55,74 @@ public class Pessoa implements Serializable, IEntidadeBase{
     @JoinColumn(name = "endereco_id", referencedColumnName = "id", nullable = false)
     private Endereco endereco;
 
-    private Pessoa() {
+    public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String email, String telefones, String sexo, Calendar dataDeNascimento, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefones = telefones;
-        this.sexo = sexo;
-        this.dataDeNascimento = dataDeNascimento;
-        this.endereco = endereco;
-    }
-
-    public Pessoa(Long id, String nome, String cpf, String email, String tefones, String sexo, Calendar dataDeNascimento, Endereco endereco) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
-        this.telefones = tefones;
-        this.sexo = sexo;
-        this.dataDeNascimento = dataDeNascimento;
-        this.endereco = endereco;
-        
-    }
-
-    /**
-     * @return the id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @return the nome
-     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @return the cpf
-     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getCpf() {
         return cpf;
     }
 
-    /**
-     * @return the email
-     */
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getEmail() {
         return email;
     }
 
-    /**
-     * @return the telefones
-     */
-    public String getTelefones() {    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefones() {
         return telefones;
     }
 
-    /**
-     * @return the sexo
-     */
+    public void setTelefones(String telefones) {
+        this.telefones = telefones;
+    }
+
     public String getSexo() {
         return sexo;
     }
 
-    /**
-     * @return the dataDeNascimento
-     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public Calendar getDataDeNascimento() {
         return dataDeNascimento;
     }
 
-    @Override
-    public String toString() {
-        return "Pessoa{" + "id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", email=" + email + ", tefones=" + telefones + ", sexo=" + sexo + ", dataDeNascimento=" + dataDeNascimento + ", endereco=" + endereco + '}';
+    public void setDataDeNascimento(Calendar dataDeNascimento) {
+        this.dataDeNascimento = dataDeNascimento;
     }
 
     public Endereco getEndereco() {
         return endereco;
     }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    
 
     
 

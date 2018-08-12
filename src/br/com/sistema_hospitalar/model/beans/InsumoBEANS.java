@@ -40,9 +40,9 @@ public class InsumoBEANS {
         return dao.remover(factory, Insumo.class, insumo);
     }
 
-    public Insumo getPorId(EntityManagerFactory factory,  Insumo insumo) {
+    public Insumo getPorId(EntityManagerFactory factory, Long id) {
         
-       return dao.getPorId(factory, Insumo.class, insumo.getId());
+       return dao.getPorId(factory, Insumo.class, id);
     }
     public List<Insumo> buscarDescricao(EntityManagerFactory factory, String descricao){
         return daoI.buscarDescricao(factory, descricao);

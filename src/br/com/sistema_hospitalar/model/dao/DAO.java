@@ -3,7 +3,7 @@ package br.com.sistema_hospitalar.model.dao;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
 
 public class DAO<Entidade extends IEntidadeBase> {
 

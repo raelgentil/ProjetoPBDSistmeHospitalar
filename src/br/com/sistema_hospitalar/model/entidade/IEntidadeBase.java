@@ -1,4 +1,4 @@
-package br.com.sistema_hospitalar.model.entidade.interfaces;
+package br.com.sistema_hospitalar.model.entidade;
 
 public interface IEntidadeBase {
   

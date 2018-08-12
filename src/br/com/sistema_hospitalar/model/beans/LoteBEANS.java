@@ -39,7 +39,7 @@ public class LoteBEANS {
         if (lote.getId() ==null) {
                 salvou = dao.salvarOuAtualizar(factory, lote);
         }else{
-           quantidadeAntigadeInsumo =  buscarPorId(factory, lote).getQuantidadeInsumo();
+           quantidadeAntigadeInsumo =  buscarPorId(factory, lote.getId()).getQuantidadeInsumo();
             salvou = dao.salvarOuAtualizar(factory, lote);
             
         }
@@ -60,9 +60,9 @@ public class LoteBEANS {
         
     }
 
-    public Lote buscarPorId(EntityManagerFactory factory,  Lote lote) {
+    public Lote buscarPorId(EntityManagerFactory factory,  Long id) {
         
-       return dao.getPorId(factory, Lote.class, lote.getId());
+       return dao.getPorId(factory, Lote.class, id);
     }
     public Lote buscarPorCodigo(EntityManagerFactory factory, Long codigo){
        return daoL.buscarPorCodigo(factory, codigo);
@@ -74,10 +74,8 @@ public class LoteBEANS {
     
     private void atualizarInsumo(EntityManagerFactory factory, Lote  lote, int quantidadeAntigadeInsumo){
         
-        Insumo insumo = insumoBEANS.getPorId(factory, lote.getInsumo());
-            insumo = new Insumo(insumo.getId(), insumo.getDescricao(), 
-                    ((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo())- quantidadeAntigadeInsumo), 
-                    insumo.getQuantidadeMinima(), insumo.getValor());
+        Insumo insumo = insumoBEANS.getPorId(factory, lote.getInsumo().getId());
+            insumo.setQuantidadeTotal(((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo())- quantidadeAntigadeInsumo));
             insumoBEANS.salvarOuAtualizar(factory, insumo);
     }
     

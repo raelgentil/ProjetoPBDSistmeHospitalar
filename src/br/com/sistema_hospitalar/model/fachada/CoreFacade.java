@@ -33,7 +33,7 @@ import br.com.sistema_hospitalar.model.entidade.Paciente;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
 import com.sun.glass.ui.View;
 import java.util.Calendar;
 import java.util.List;
@@ -90,8 +90,8 @@ public class CoreFacade {
        return estadoBEANS.remover(factory, estado);
     }
 
-    public Estado getPorIdEstado(Estado estado) {
-       return estadoBEANS.getPorId(factory, estado);
+    public Estado getPorIdEstado(Long id) {
+       return estadoBEANS.getPorId(factory, id);
     }
     
     public Estado encontrarPorUfEstado(String uf) {
@@ -119,8 +119,8 @@ public class CoreFacade {
         
     }
 
-    public Municipio getPorIdMunicipio(Municipio municipio) {
-       return municipioBEANS.getPorId(factory, municipio);
+    public Municipio getPorIdMunicipio(Long id) {
+       return municipioBEANS.getPorId(factory, id);
     }
     
     /**
@@ -139,8 +139,8 @@ public class CoreFacade {
 
     }
 
-    public Endereco getPorIdEndereco(Endereco endereco) {
-        return enderecoBEANS.getPorId(factory, endereco);
+    public Endereco getPorIdEndereco(Long id) {
+        return enderecoBEANS.getPorId(factory, id);
     }
 
     public List<Endereco> buscarPorBairroEndereco(String bairro) {
@@ -171,9 +171,9 @@ public class CoreFacade {
         return pessoaBEANS.remover(factory, pessoa);
     }
 
-    public Pessoa getPorIdPessoa(Pessoa pessoa) {
+    public Pessoa getPorIdPessoa(Long id) {
         
-       return pessoaBEANS.getPorId(factory, pessoa);
+       return pessoaBEANS.getPorId(factory, id);
     }
     
     public List<Pessoa> buscarPorNomePessoa(String nome) {
@@ -198,8 +198,8 @@ public class CoreFacade {
         return pacienteBEANS.remover(factory, paciente);
     }
 
-    public Paciente getPorIdPaciente(Paciente paciente) {
-       return pacienteBEANS.getPorId(factory, paciente);
+    public Paciente getPorIdPaciente(Long id) {
+       return pacienteBEANS.getPorId(factory, id);
     }
     
      public List<Paciente> buscarPorNomePaciente(String nome) {
@@ -254,8 +254,8 @@ public class CoreFacade {
         return prontuarioBEANS.remover(factory, prontuario);
     }
 
-    public Prontuario getPorIdProntuario(Prontuario prontuario) {
-        return prontuarioBEANS.getPorId(factory, prontuario);
+    public Prontuario getPorIdProntuario(Long id) {
+        return prontuarioBEANS.getPorId(factory, id);
     }
 
     public String buscarCodMedicoPacienteProntuario(Long idPaciente, String codMedicoPaciente) {
@@ -299,8 +299,8 @@ public class CoreFacade {
         return especializacaoBEANS.remover(factory, especializacao);
     }
 
-    public Especializacao getPorIdEspecializacao(Especializacao especializacao) {
-        return especializacaoBEANS.getPorId(factory, especializacao);
+    public Especializacao getPorIdEspecializacao(Long id) {
+        return especializacaoBEANS.getPorId(factory, id);
     }
     
     public List<Especializacao> buscarPorNomeEspecializacao(String nome) {
@@ -354,8 +354,8 @@ public class CoreFacade {
         return atendenteBEANS.remover(factory, atendente);
     }
 
-    public Atendente getPorIdAtendente(Atendente atendente) {
-        return atendenteBEANS.getPorId(factory, atendente);
+    public Atendente getPorIdAtendente(Long id) {
+        return atendenteBEANS.getPorId(factory, id);
     }
 
     public List<Atendente> buscarPorNomeAtendente(String nome) {
@@ -387,8 +387,8 @@ public class CoreFacade {
         return administradorBEANS.remover(factory, administrador);
     }
 
-    public Administrador getPorIdAdministrador(Administrador administrador) {
-        return administradorBEANS.getPorId(factory, administrador);
+    public Administrador getPorIdAdministrador(Long id) {
+        return administradorBEANS.getPorId(factory, id);
     }
 
     public List<Administrador> buscarPorNomeAdministrador(String nome) {
@@ -420,8 +420,8 @@ public class CoreFacade {
         return insumoBEANS.remover(factory, insumo);
     }
 
-    public Insumo getPorIdInsumo( Insumo insumo) {
-        return insumoBEANS.getPorId(factory, insumo);
+    public Insumo getPorIdInsumo(Long id) {
+        return insumoBEANS.getPorId(factory, id);
     }
     public List<Insumo> buscarDescricaoInsumo(String descricao){
         return insumoBEANS.buscarDescricao(factory, descricao);
@@ -442,9 +442,9 @@ public class CoreFacade {
         return loteBEANS.remover(factory, lote);
     }
 
-    public Lote getPorIdLote(Lote lote) {
+    public Lote getPorIdLote(Long id) {
         
-       return loteBEANS.buscarPorId(factory, lote);
+       return loteBEANS.buscarPorId(factory, id);
     }
     
     public Lote buscarPorCodigoLote(Long codigo){
@@ -470,8 +470,8 @@ public class CoreFacade {
         return categoriCIDBEANS.bucarPorDescricao(factory, descricao);
     }
     
-    public CategoriaCID getPorIdCategoriaCID(CategoriaCID categoriaCID) {
-        return categoriCIDBEANS.getPorId(factory, categoriaCID);
+    public CategoriaCID getPorIdCategoriaCID(Long id) {
+        return categoriCIDBEANS.getPorId(factory, id);
     }
     
     

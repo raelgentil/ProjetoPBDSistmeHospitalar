@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -38,47 +37,51 @@ public class Insumo implements Serializable, IEntidadeBase {
     @Column(name = "valor")
     private double valor;
 
-    private Insumo() {
-    }
-
-    public Insumo(String descricao, int quantidadeMinima, double valor) {
-        this.descricao = descricao;
-        this.quantidadeMinima = quantidadeMinima;
-        this.valor = valor;
-    }
-
-    public Insumo(Long id, String descricao, int quantidadeTotal, int quantidadeMinima, double valor) {
-        this.id = id;
-        this.descricao = descricao;
-        this.quantidadeTotal = quantidadeTotal;
-        this.quantidadeMinima = quantidadeMinima;
-        this.valor = valor;
+    public Insumo() {
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public int getQuantidadeTotal() {
         return quantidadeTotal;
     }
 
+    public void setQuantidadeTotal(int quantidadeTotal) {
+        this.quantidadeTotal = quantidadeTotal;
+    }
+
     public int getQuantidadeMinima() {
         return quantidadeMinima;
+    }
+
+    public void setQuantidadeMinima(int quantidadeMinima) {
+        this.quantidadeMinima = quantidadeMinima;
     }
 
     public double getValor() {
         return valor;
     }
 
-    @Override
-    public String toString() {
-        return "Insumo{" + "id=" + id + ", descricao=" + descricao + ", quantidadeTotal=" + quantidadeTotal + ", quantidadeMinima=" + quantidadeMinima + ", valor=" + valor + '}';
+    public void setValor(double valor) {
+        this.valor = valor;
     }
+
+    
+
     
     
     

@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,45 +45,45 @@ public class CategoriaCID implements Serializable, IEntidadeBase  {
                 @JoinColumn(name = "subcategoria_id")})
     private List<CategoriaCID> subCategorias;
 
-    private CategoriaCID() {
+    public CategoriaCID() {
     }
 
-    public CategoriaCID(String codigo, String descricao) {
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.subCategorias = new ArrayList<>();
-    }
-
-    public CategoriaCID(Long id, String codigo, String descricao, List<CategoriaCID> subCategorias) {
-        this.id = id;
-        this.codigo = codigo;
-        this.descricao = descricao;
-        this.subCategorias = subCategorias;
-    }
-
+    
+    
+    
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public List<CategoriaCID> getSubCategorias() {
         return subCategorias;
     }
 
-    public void addSubCategoria(CategoriaCID subCategoria) {
-        subCategorias.add(subCategoria);
+    public void setSubCategorias(List<CategoriaCID> subCategorias) {
+        this.subCategorias = subCategorias;
     }
 
-    @Override
-    public String toString() {
-        return "\nCIDCategoria{" + "id=" + id + ", codigo=" + codigo + ", descricao=" + descricao + '}' + "\n";
-    }
+    
 
-    public String getCodigo() {
-        return codigo;
-    }
     
 }

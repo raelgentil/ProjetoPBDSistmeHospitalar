@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEndereco;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,7 +18,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Transient;
@@ -31,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @Table(name = "endereco")
-public class Endereco implements Serializable, IEndereco{
+public class Endereco implements Serializable, IEntidadeBase{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,83 +50,67 @@ public class Endereco implements Serializable, IEndereco{
     @JoinColumn(name = "municipio_id", referencedColumnName = "id", nullable = false)
     private Municipio municipio;
 
-    private Endereco() {
+    public Endereco() {
     }
 
-    
-
-    public Endereco(int cep, String descricao, String numero, String bairro, String complemento, Municipio municipio) {
-        this.cep = cep;
-        this.descricao = descricao;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.complemento = complemento;
-        this.municipio = municipio;
-    }
-
-    public Endereco(Long id, int cep, String descricao, String numero, String bairro, String complemento, Municipio municipio) {
-        this.id = id;
-        this.cep = cep;
-        this.descricao = descricao;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.complemento = complemento;
-        this.municipio = municipio;
-    }
-
-    @Override
-    public String toString() {
-        return "Endereco{" + "id=" + getId() + ", cep=" + getCep() + ", descricao=" + getDescricao() + ", numero=" + getNumero() + ", bairro=" + getBairro() + ", complemento=" + getComplemento() + ", municipio=" + getMunicipio() + '}';
-    }
-
-    /**
-     * @return the id
-     */
     public Long getId() {
         return id;
     }
 
-    /**
-     * @return the cep
-     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public int getCep() {
         return cep;
     }
 
-    /**
-     * @return the descricao
-     */
+    public void setCep(int cep) {
+        this.cep = cep;
+    }
+
     public String getDescricao() {
         return descricao;
     }
 
-    /**
-     * @return the numero
-     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public String getNumero() {
         return numero;
     }
 
-    /**
-     * @return the bairro
-     */
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
     public String getBairro() {
         return bairro;
     }
 
-    /**
-     * @return the complemento
-     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
     public String getComplemento() {
         return complemento;
     }
 
-    /**
-     * @return the municipio
-     */
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
     public Municipio getMunicipio() {
         return municipio;
     }
+
+    public void setMunicipio(Municipio municipio) {
+        this.municipio = municipio;
+    }
+
+    
+
 
     
 }

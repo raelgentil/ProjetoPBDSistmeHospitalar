@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,50 +47,50 @@ public class GrupoCID implements Serializable, IEntidadeBase{
                 @JoinColumn(name = "categoria_id")})
     private List<CategoriaCID> categorias;
 
-    public GrupoCID(String codigoCategoriaInicial, String codigoCategoriaFinal, String descricao) {
-        this.codigoCategoriaInicial = codigoCategoriaInicial;
-        this.codigoCategoriaFinal = codigoCategoriaFinal;
-        this.descricao = descricao;
-        this.categorias = new ArrayList<>();
+    public GrupoCID() {
     }
 
-    private GrupoCID() {
+    
+    public Long getId() {
+        return id;
     }
 
-//String codcatInicial;//   atributo inicial: código (codcat) da primeira categoria do grupo;
-//String codcatFinal;//atributo final: código (codcat) da última categoria do grupo;
-//String codgrupo;//atributo codgrupo: código do grupo, usado como identificador, montado como inicial-final;
-//String nome;//elemento nome: texto com o nome do grupo;
-//String nome50;//elemento nome50: texto com o nome abreviado do grupo (50 caracteres); e
-//List<Categoria> categorias;//conjunto de um ou mais elementos grupo e/ou categoria (portanto, um grupo pode conter outros grupos).
-//List<Grupo> subGrupos;  
-    @Override
-    public String toString() {
-        return "\nCIDGrupo{" + "id=" + id + ", codigoCategoriaInicial=" + codigoCategoriaInicial + ", codigoCategoriaFinal=" + codigoCategoriaFinal + ", descricao=" + descricao + '}' + "\n";
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCodigoCategoriaInicial() {
         return codigoCategoriaInicial;
     }
 
+    public void setCodigoCategoriaInicial(String codigoCategoriaInicial) {
+        this.codigoCategoriaInicial = codigoCategoriaInicial;
+    }
+
     public String getCodigoCategoriaFinal() {
         return codigoCategoriaFinal;
+    }
+
+    public void setCodigoCategoriaFinal(String codigoCategoriaFinal) {
+        this.codigoCategoriaFinal = codigoCategoriaFinal;
     }
 
     public String getDescricao() {
         return descricao;
     }
 
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public List<CategoriaCID> getCategorias() {
         return categorias;
     }
 
-    public void addCategoria(CategoriaCID categoria) {
-        categorias.add(categoria);
+    public void setCategorias(List<CategoriaCID> categorias) {
+        this.categorias = categorias;
     }
 
-    public Long getId() {
-        return id;
-    }
+    
     
 }

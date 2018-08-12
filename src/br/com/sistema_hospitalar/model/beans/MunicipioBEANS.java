@@ -42,9 +42,9 @@ public class MunicipioBEANS {
 
     }
 
-    public Municipio getPorId(EntityManagerFactory factory, Municipio municipio) {
+    public Municipio getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, Municipio.class, municipio.getId());
+        return dao.getPorId(factory, Municipio.class, id);
     }
 
     public List<Municipio> buscarPorDescricao(EntityManagerFactory factory, String descricao) {

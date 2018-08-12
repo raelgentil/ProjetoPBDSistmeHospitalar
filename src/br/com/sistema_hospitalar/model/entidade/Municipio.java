@@ -5,7 +5,6 @@
  */
 package br.com.sistema_hospitalar.model.entidade;
 
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,7 +15,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IMunicipio;
 
 
 /**
@@ -40,55 +38,34 @@ public class Municipio implements Serializable, IEntidadeBase{
     @JoinColumn(name = "estado_id", referencedColumnName = "id", nullable = false)
     private Estado estado;
 
-    private Municipio() {
-    }
-    
-    
-       public Municipio(String descricao, Estado estado) {
-        this.descricao = descricao;
-        this.estado = estado;
+    public Municipio() {
     }
 
-    public Municipio(Long id, String descricao, Estado estado) {
-        this.id = id;
-        this.descricao = descricao;
-        this.estado = estado;
-    }
-    
-    
-    
-
-
-    @Override
-    public String toString() {
-        return "Municipio{" + "id=" + getId() + ", cep="  + ", descricao=" + getDescricao() + ", estado=" + getEstado() + '}';
-    }
-
-    /**
-     * @return the id
-     */
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    /**
-     * @return the descricao
-     */
     public String getDescricao() {
         return descricao;
     }
 
-    /**
-     * @return the estado
-     */
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
     public Estado getEstado() {
         return estado;
     }
 
-//    public List<Endereco> getEnderecos() {
-//        return enderecos;
-//    }
+    public void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+
+    
 
 
 }

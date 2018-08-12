@@ -1,9 +1,7 @@
 package br.com.sistema_hospitalar.model.dao;
 
 
-import br.com.sistema_hospitalar.model.dao.interfaces.IMunicipioDAO;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
-import br.com.sistema_hospitalar.model.entidade.interfaces.IEntidadeBase;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
