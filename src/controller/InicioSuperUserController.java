@@ -35,7 +35,7 @@ public class InicioSuperUserController implements Initializable {
         });
         
         pacienteBotao.setOnMouseClicked((MouseEvent e)->{
-            System.out.println("Gerenciar Pacientes");
+            Controlador.trocarPane(Panes.visualizar);
           // Controlador.trocarTela("login");
            //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
         });
