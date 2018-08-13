@@ -1,5 +1,6 @@
 package controller;
 
+import enums.Enums;
 import enums.Panes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +16,7 @@ public class Controlador extends Application{
     
     private static Stage janela;
     private static Scene login,principal;
-    private static Pane ANTERIOR,principalPane,inicioSUPane, gerenciarFuncPane, visualizar;
+    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar;
     
     
     public static void main(String[] args){
@@ -33,10 +34,10 @@ public class Controlador extends Application{
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
-        
         stage.setScene(login);
         janela = stage;
         stage.show();
+        
         
               
     }
@@ -53,19 +54,10 @@ public class Controlador extends Application{
         switch(pane){
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
-            case visualizar:{HomeController.get().alterarPane(visualizar);break;}
+            case visualizar:{HomeController.get().alterarPane(visualizar); VisualizarController.get().atualiar(); break;}
         }
     }
     public static void irHome(){
         HomeController.get().alterarPane(inicioSUPane);
-    }
-//    public Pane getPane(Tela tela){//NÃO usado
-//        switch(tela){
-//            case inicioSU: {return inicioSUPane;}
-//           
-//        }
-//    return null;
-//    }
-     
-    
+    }     
 }

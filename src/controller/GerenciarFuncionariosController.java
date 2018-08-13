@@ -19,18 +19,20 @@ import javafx.scene.image.ImageView;
  * @author João Emerson
  */
 public class GerenciarFuncionariosController implements Initializable {
-    
-   @FXML
+    private Enum opcao;
+    private static GerenciarFuncionariosController cont;
+    @FXML
     private Button admBotao;
-
+    
     @FXML
     private Button atendenteBotao;
-
+    
     @FXML
     private Button saudeBotao;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        cont = this;
         admBotao.setOnMouseClicked((MouseEvent) -> {
             Controlador.trocarPane(Panes.visualizar);
         });
@@ -40,6 +42,12 @@ public class GerenciarFuncionariosController implements Initializable {
         saudeBotao.setOnMouseClicked((MouseEvent) -> {
             Controlador.trocarPane(Panes.visualizar);
         });
+        
     }
-    
+    public Enum getOpcao(){
+        return opcao;
+    }
+    public static GerenciarFuncionariosController get(){
+        return cont;
+    }
 }

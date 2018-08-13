@@ -4,6 +4,6 @@ package enums;
  *
  * @author João Emerson
  */
-public enum Enum {
+public enum Enums {
    ProfSaude,adm,atendente;
 }
