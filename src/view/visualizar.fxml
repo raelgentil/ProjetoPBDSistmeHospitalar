@@ -31,10 +31,10 @@
           <TableColumn prefWidth="75.0" text="CPF" />
         </columns>
       </TableView>
-      <TextField fx:id="pesquisa" layoutX="104.0" layoutY="74.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise por nome ou cpf" />
+      <TextField fx:id="pesquisa" layoutX="121.0" layoutY="73.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise por nome ou cpf" />
       <Label layoutX="43.0" layoutY="78.0" text="Pesquisar:" />
-      <Label layoutX="43.0" layoutY="108.0" text="Filtros:" />
-      <RadioButton layoutX="96.0" layoutY="108.0" mnemonicParsing="false" selected="true" text="Todos" />
+      <Label layoutX="43.0" layoutY="119.0" text="Filtros:" />
+      <RadioButton layoutX="96.0" layoutY="119.0" mnemonicParsing="false" selected="true" text="Todos" />
       <HBox layoutX="779.0" layoutY="584.0" prefHeight="70.0" prefWidth="542.0">
          <children>
             <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Cadastrar" textFill="#1379a1">

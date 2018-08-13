@@ -5,6 +5,7 @@
  */
 package controller;
 
+import enums.Enums;
 import enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,7 +36,7 @@ public class InicioSuperUserController implements Initializable {
         });
         
         pacienteBotao.setOnMouseClicked((MouseEvent e)->{
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.paciente);
           // Controlador.trocarTela("login");
            //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
         });

@@ -1,5 +1,6 @@
 package controller;
 
+import enums.Enums;
 import enums.Panes;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -16,7 +17,7 @@ public class Controlador extends Application{
     
     private static Stage janela;
     private static Scene login,principal;
-    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar;
+    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente;
     private static ArrayList<Pane> pilha;
     
     public static void main(String[] args){
@@ -32,6 +33,7 @@ public class Controlador extends Application{
         principalPane = FXMLLoader.load(getClass().getResource("/view/home.fxml"));
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/view/gerenciarFuncionarios.fxml"));
         visualizar = FXMLLoader.load(getClass().getResource("/view/visualizar.fxml"));
+        cadastrarPaciente = FXMLLoader.load(getClass().getResource("/view/cadastrarPaciente.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -55,7 +57,15 @@ public class Controlador extends Application{
         switch(pane){
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
-            case visualizar:{HomeController.get().alterarPane(visualizar); VisualizarController.get().atualiar(); break;}
+            case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
+            default:{System.out.println("O próxima tela não foi encontrada");break;}
+        }
+    }
+    public static void trocarPane(Panes pane, Enums opcao){
+        if(HomeController.get().getPane() != null)
+            pilha.add(HomeController.get().getPane());
+        switch(pane){
+            case visualizar:{HomeController.get().alterarPane(visualizar); VisualizarController.get().atualizar(opcao); break;}
         }
     }
     public static void irHome(){
