@@ -145,7 +145,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="62.0" layoutY="62.0" prefHeight="394.0" prefWidth="517.0">
+                        <Pane layoutX="22.0" layoutY="62.0" prefHeight="394.0" prefWidth="605.0">
                            <children>
                               <Label layoutX="32.0" layoutY="161.0" text="Alergias:" textFill="#2323c6">
                                  <font>
@@ -162,26 +162,26 @@
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="tipoSanguineo" layoutX="179.0" layoutY="106.0" prefHeight="25.0" prefWidth="187.0" promptText="Selecione" />
-                              <Label layoutX="179.0" layoutY="85.0" text="Tipo Sanguíneo:" textFill="#2323c6">
+                              <ComboBox fx:id="tipoSanguineo" layoutX="253.0" layoutY="106.0" prefHeight="25.0" prefWidth="187.0" promptText="Selecione" />
+                              <Label layoutX="253.0" layoutY="85.0" text="Tipo Sanguíneo:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="fatorRh" layoutX="388.0" layoutY="108.0" prefHeight="25.0" prefWidth="98.0" promptText="Selecione" />
-                              <Label layoutX="388.0" layoutY="87.0" text="Fator RH:" textFill="#2323c6">
+                              <ComboBox fx:id="fatorRh" layoutX="477.0" layoutY="106.0" prefHeight="25.0" prefWidth="98.0" promptText="Selecione" />
+                              <Label layoutX="477.0" layoutY="85.0" text="Fator RH:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
                               <ComboBox fx:id="doador" layoutX="32.0" layoutY="108.0" prefHeight="25.0" prefWidth="113.0" promptText="Selecione" />
-                              <Label layoutX="32.0" layoutY="87.0" text="Doador de Órgãos:" textFill="#2323c6">
+                              <Label layoutX="32.0" layoutY="87.0" prefHeight="21.0" prefWidth="172.0" text="Doador de Órgãos:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea layoutX="25.0" layoutY="184.0" prefHeight="57.0" prefWidth="468.0" />
-                              <TextArea layoutX="25.0" layoutY="301.0" prefHeight="57.0" prefWidth="468.0" />
+                              <TextArea fx:id="alergias" layoutX="25.0" layoutY="184.0" prefHeight="57.0" prefWidth="550.0" />
+                              <TextArea fx:id="limitacoes" layoutX="25.0" layoutY="301.0" prefHeight="57.0" prefWidth="548.0" />
                            </children>
                            <opaqueInsets>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
