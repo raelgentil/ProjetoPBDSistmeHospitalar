@@ -5,7 +5,10 @@
  */
 package controller;
 
+import br.com.sistema_hospitalar.model.beans.EstadoBEANS;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
+import br.com.sistema_hospitalar.model.entidade.Estado;
+import br.com.sistema_hospitalar.model.entidade.Municipio;
 import br.com.sistema_hospitalar.model.entidade.Paciente;
 import java.net.URL;
 import java.sql.Date;
@@ -32,6 +35,8 @@ public class CadastrarPacienteController implements Initializable {
     private TextField cpf;
     @FXML
     private ComboBox<?> sexo;
+    @FXML
+    private TextField cep;
     @FXML
     private TextField email;
     @FXML
@@ -89,9 +94,18 @@ public class CadastrarPacienteController implements Initializable {
         
         Endereco e = new Endereco();
         e.setBairro(bairro.getText());
-//        e.setCep(cep);
-//        e.set
-
+        e.setCep(Integer.parseInt(cep.getText().replaceAll("-", "")));
+        e.setBairro(bairro.getText());
+        e.setComplemento(complemento.getText());
+        e.setDescricao(logradouro.getText());
+        
+        Municipio m = new Municipio();
+        m.setDescricao((String)cidade.getValue());
+        Estado est = new Estado();
+        est.setDescricao((String)estado.getValue());
+        
+        m.setEstado(est);
+        e.setMunicipio(m);
         p.setEndereco(e);
         
         Calendar data = Calendar.getInstance();
