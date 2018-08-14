@@ -197,11 +197,97 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Responsáveis">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="50.0" layoutY="35.0" prefHeight="438.0" prefWidth="544.0">
+                           <children>
+                              <Label layoutX="183.0" layoutY="39.0" text="Responsáveis" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman Bold Italic" size="23.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="responsaveisTable" layoutX="28.0" layoutY="100.0" prefHeight="200.0" prefWidth="503.0">
+                                <columns>
+                                  <TableColumn editable="false" prefWidth="309.0" text="Nome" />
+                                  <TableColumn editable="false" prefWidth="193.0" text="CPF" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="adicionarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="53.0" layoutY="315.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Adicionar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/lupa.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="removerBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="208.0" layoutY="315.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Remover" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/deleteUser.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="367.0" layoutY="315.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="135.0" text="Cadastrar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/addUser.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="salvarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1186.0" layoutY="594.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="146.0" text="Salvar" textFill="#1379a1">
+      <Button fx:id="salvarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1203.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Salvar" textFill="#1379a1">
          <font>
-            <Font name="Times New Roman Bold" size="18.0" />
+            <Font size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -215,14 +301,14 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/icons/editUser.png" />
+                  <Image url="@../resources/icons/save.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1032.0" layoutY="594.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="146.0" text="Voltar" textFill="#1379a1">
+      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1044.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Cancelar" textFill="#1379a1">
          <font>
-            <Font name="Times New Roman Bold" size="18.0" />
+            <Font size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -236,7 +322,7 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/icons/deleteUser.png" />
+                  <Image url="@../resources/icons/cancel.png" />
                </image>
             </ImageView>
          </graphic>

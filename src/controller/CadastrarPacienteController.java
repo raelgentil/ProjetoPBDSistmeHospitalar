@@ -5,7 +5,6 @@
  */
 package controller;
 
-import br.com.sistema_hospitalar.model.beans.EstadoBEANS;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
@@ -111,7 +110,6 @@ public class CadastrarPacienteController implements Initializable {
         Calendar data = Calendar.getInstance();
         data.setTime(Date.valueOf(dataNasc.getValue()));
         p.setDataDeNascimento(data);
-        
         return p;
     }
     public static CadastrarPacienteController get(){
