@@ -9,7 +9,6 @@ import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
 import br.com.sistema_hospitalar.model.entidade.Paciente;
-import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -22,6 +21,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -72,6 +72,8 @@ public class CadastrarPacienteController implements Initializable {
     private TextArea alergias;
     @FXML
     private TextArea limitacoes;
+     @FXML
+    private Tab dadosMedicos;
 
    
 
@@ -81,7 +83,16 @@ public class CadastrarPacienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
+        dadosMedicos.setDisable(false);
         carregarComponentes();
+        
+        salvarBotao.setOnMouseClicked((event) -> {
+            Controlador.FACHADA.salvarOuAtualizarPaciente(getPaciente());
+        });
+        voltarBotao.setOnMouseClicked((event) -> {
+            Controlador.voltar();
+            limparTela();
+        });
 //        estado.setItems(FXCollections.observableArrayList());
     }
     public Paciente getPaciente(){
@@ -106,8 +117,7 @@ public class CadastrarPacienteController implements Initializable {
         
         Municipio m = new Municipio();
         m.setDescricao((String)cidade.getValue());
-        CoreFacade facade = new CoreFacade();
-        m.setEstado(facade.buscarPorNomeEstado((String)estado.getValue()).get(0));
+        m.setEstado(Controlador.FACHADA.buscarPorNomeEstado((String)estado.getValue()).get(0));
         e.setMunicipio(m);
         p.setEndereco(e);
         
@@ -144,12 +154,13 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("AB");             
         tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
-        CoreFacade facade = new CoreFacade();
-        
-        for(Estado e: facade.buscarPorNomeEstado(""))
+        for(Estado e: Controlador.FACHADA.buscarPorNomeEstado(""))
             auxList.add(e.getDescricao());
-        if(auxList != null)
-            estado.setItems(FXCollections.observableArrayList(auxList));
+        estado.setItems(FXCollections.observableArrayList(auxList));
+    }
+
+    private void limparTela() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

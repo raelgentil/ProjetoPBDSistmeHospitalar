@@ -1,5 +1,6 @@
 package controller;
 
+import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import enums.Enums;
 import enums.Panes;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Controlador extends Application{
     private static Scene login,principal;
     private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente;
     private static ArrayList<Pane> pilha;
+    public  static CoreFacade FACHADA = new CoreFacade();
     
     public static void main(String[] args){
         launch(args);    
