@@ -64,9 +64,5 @@ public class EstadoDAO {
         return estadoVos;
     }
 
-    public List<String> getgetAllEstadosName(EntityManagerFactory factory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 
 }

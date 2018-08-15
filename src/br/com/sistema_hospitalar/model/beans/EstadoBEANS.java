@@ -59,8 +59,4 @@ public class EstadoBEANS {
         return daoE.buscarPorDescricao(factory, descricao);
     }
 
-    public List<String> getAllEstadosName(EntityManagerFactory factory) {
-        return daoE.getgetAllEstadosName(factory);
-    }
-
 }

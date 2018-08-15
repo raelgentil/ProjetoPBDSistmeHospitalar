@@ -106,10 +106,8 @@ public class CadastrarPacienteController implements Initializable {
         
         Municipio m = new Municipio();
         m.setDescricao((String)cidade.getValue());
-        Estado est = new Estado();
-        est.setDescricao((String)estado.getValue());
-        
-        m.setEstado(est);
+        CoreFacade facade = new CoreFacade();
+        m.setEstado(facade.buscarPorNomeEstado((String)estado.getValue()).get(0));
         e.setMunicipio(m);
         p.setEndereco(e);
         
@@ -148,7 +146,8 @@ public class CadastrarPacienteController implements Initializable {
         auxList.clear();
         CoreFacade facade = new CoreFacade();
         
-        auxList = facade.buscarPorNomeEstado("");
+        for(Estado e: facade.buscarPorNomeEstado(""))
+            auxList.add(e.getDescricao());
         if(auxList != null)
             estado.setItems(FXCollections.observableArrayList(auxList));
     }
