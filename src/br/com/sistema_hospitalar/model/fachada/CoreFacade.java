@@ -101,6 +101,10 @@ public class CoreFacade {
     public List<Estado> buscarPorNomeEstado( String descricao) {
         return estadoBEANS.buscarPorNome(factory, descricao);
     }
+    public List<String> getAllEstadosName(){
+        return estadoBEANS.getAllEstadosName(factory);
+    }
+    
 
     /**
      * 
