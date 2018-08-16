@@ -95,7 +95,7 @@ public class CoreFacade {
        return estadoBEANS.remover(factory, estado);
     }
 
-    public Estado estadoGetPorId(Long id) {
+    public Estado estadoBuscarPorId(Long id) {
        return estadoBEANS.getPorId(factory, id);
     }
     
@@ -126,7 +126,7 @@ public class CoreFacade {
         
     }
 
-    public Municipio municipioGetPorId(Long id) {
+    public Municipio municipioBuscarPorId(Long id) {
        return municipioBEANS.getPorId(factory, id);
     }
     
@@ -146,7 +146,7 @@ public class CoreFacade {
 
     }
 
-    public Endereco enderecoGetPorId(Long id) {
+    public Endereco enderecoBuscarPorId(Long id) {
         return enderecoBEANS.getPorId(factory, id);
     }
 
@@ -178,7 +178,7 @@ public class CoreFacade {
         return pessoaBEANS.remover(factory, pessoa);
     }
 
-    public Pessoa pessoaGetPorId(Long id) {
+    public Pessoa pessoaBuscarPorId(Long id) {
         
        return pessoaBEANS.getPorId(factory, id);
     }
@@ -205,7 +205,7 @@ public class CoreFacade {
         return pacienteBEANS.remover(factory, paciente);
     }
 
-    public Paciente pacienteGetPorId(Long id) {
+    public Paciente pacientesBuscarPorId(Long id) {
        return pacienteBEANS.getPorId(factory, id);
     }
     
@@ -261,7 +261,7 @@ public class CoreFacade {
         return prontuarioBEANS.remover(factory, prontuario);
     }
 
-    public Prontuario prontuarioGetPorId(Long id) {
+    public Prontuario prontuarioBuscarPorId(Long id) {
         return prontuarioBEANS.getPorId(factory, id);
     }
 
@@ -314,7 +314,7 @@ public class CoreFacade {
         return especializacaoBEANS.remover(factory, especializacao);
     }
 
-    public Especializacao especializacaoGetPorId(Long id) {
+    public Especializacao especializacaoBuscarPorId(Long id) {
         return especializacaoBEANS.getPorId(factory, id);
     }
     
@@ -342,7 +342,7 @@ public class CoreFacade {
         return proficionalSaudeBEANS.remover(factory, profissionalSaude);
     }
 
-    public ProfissionalSaude profissionalSaudeGetPorId(ProfissionalSaude profissionalSaude) {
+    public ProfissionalSaude profissionalSaudeBuscarPorId(ProfissionalSaude profissionalSaude) {
         return proficionalSaudeBEANS.getPorId(factory, profissionalSaude);
     }
 
@@ -369,7 +369,7 @@ public class CoreFacade {
         return atendenteBEANS.remover(factory, atendente);
     }
 
-    public Atendente atendenteGetPorId(Long id) {
+    public Atendente atendenteBuscarPorId(Long id) {
         return atendenteBEANS.getPorId(factory, id);
     }
 
@@ -392,25 +392,25 @@ public class CoreFacade {
      */
     
     
-    public boolean salvarOuAtualizar(Administrador administrador) {
+    public boolean administradorSalvarOuAtualizar(Administrador administrador) {
          
         return administradorBEANS.salvarOuAtualizar(factory, administrador);
         
     }
 
-    public boolean removerAdministrador(Administrador administrador) {
+    public boolean administradorRemover(Administrador administrador) {
         return administradorBEANS.remover(factory, administrador);
     }
 
-    public Administrador getPorIdAdministrador(Long id) {
+    public Administrador administradorBuscarPorId(Long id) {
         return administradorBEANS.getPorId(factory, id);
     }
 
-    public List<Administrador> buscarPorNomeAdministrador(String nome) {
+    public List<Administrador> administradorBuscarPorNome(String nome) {
         return administradorBEANS.buscarPorNome(factory, nome);
     }
 
-    public Administrador buscarPorCpfAdministrador(String cpf) {
+    public Administrador administradorBuscarPorCpf(String cpf) {
         return administradorBEANS.buscarPorCpf(factory, cpf);
     }
     
@@ -427,18 +427,18 @@ public class CoreFacade {
     
     
     
-    public boolean salvarOuAtualizarInsumo(Insumo insumo) {
+    public boolean insumoSalvarOuAtualizar(Insumo insumo) {
         return insumoBEANS.salvarOuAtualizar(factory, insumo);
     }
 
-    public boolean removerInsumo( Insumo insumo) {
+    public boolean insumoRemover( Insumo insumo) {
         return insumoBEANS.remover(factory, insumo);
     }
 
-    public Insumo getPorIdInsumo(Long id) {
+    public Insumo insumoBuscarPorId(Long id) {
         return insumoBEANS.getPorId(factory, id);
     }
-    public List<Insumo> buscarDescricaoInsumo(String descricao){
+    public List<Insumo> insumoBuscarDescricao(String descricao){
         return insumoBEANS.buscarDescricao(factory, descricao);
     }
     
@@ -449,24 +449,24 @@ public class CoreFacade {
      * 
      */
     
-    public boolean salvarOuAtualizarLote( Lote lote) {
+    public boolean loteSalvarOuAtualizar( Lote lote) {
         return loteBEANS.salvarOuAtualizar(factory, lote);
     }
 
-    public boolean removerLote(Lote lote) {
+    public boolean loteRemover(Lote lote) {
         return loteBEANS.remover(factory, lote);
     }
 
-    public Lote getPorIdLote(Long id) {
+    public Lote loteBuscarPorId(Long id) {
         
        return loteBEANS.buscarPorId(factory, id);
     }
     
-    public Lote buscarPorCodigoLote(Long codigo){
+    public Lote loteBuscarPorCodigo(Long codigo){
        return loteBEANS.buscarPorCodigo(factory, codigo);
     }
     
-    public List<Lote> buscarPorInsumoLote(Insumo insumo){
+    public List<Lote> loteBuscarPorInsumo(Insumo insumo){
        return loteBEANS.buscarPorInsumo(factory, insumo);
     }
     
@@ -477,15 +477,15 @@ public class CoreFacade {
      * 
      */
     
-    public List<CategoriaCID> bucarPorCodigoCategoriaCID(String codigo) {
+    public List<CategoriaCID> categoriaCIDBucarPorCodigoCategoriaCID(String codigo) {
         return categoriCIDBEANS.bucarPorCodigo(factory, codigo);
     }
     
-    public List<CategoriaCID> bucarPorDescricaoCategoriaCID(String descricao) {
+    public List<CategoriaCID>categoriaCIDBucarPorDescricao(String descricao) {
         return categoriCIDBEANS.bucarPorDescricao(factory, descricao);
     }
     
-    public CategoriaCID getPorIdCategoriaCID(Long id) {
+    public CategoriaCID categoriaCIDBuscarPorId(Long id) {
         return categoriCIDBEANS.getPorId(factory, id);
     }
     

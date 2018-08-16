@@ -61,7 +61,7 @@ public class App {
         Municipio municipio = new Municipio();
         municipio.setDescricao("Floresta");
         municipio.setEstado(estado);
-        coreFacade.salvarOuAtualizarMunicipio(municipio);
+        coreFacade.municipioSalvarOuAtualizar(municipio);
         
         Endereco endereco = new Endereco();
         endereco.setBairro("Centro");
@@ -70,13 +70,13 @@ public class App {
         endereco.setDescricao("Rua Padre Noberto");
         endereco.setNumero("205");
         endereco.setMunicipio(municipio);
-        coreFacade.salvarOuAtualizarEndereco(endereco);
+        coreFacade.enderecoSalvarOuAtualizar(endereco);
         
         Especializacao especializacao = new Especializacao();
         especializacao.setNome("Enfermagem");
         especializacao.setConselho("CRM");
         especializacao.setValor(200);
-        coreFacade.salvarOuAtualizarEspecializacao(especializacao);
+        coreFacade.especializacaoSalvarOuAtualizar(especializacao);
         
         List<Especializacao> especializacoess =  new ArrayList<>();
         especializacoess.add(especializacao);
@@ -97,7 +97,7 @@ public class App {
         profissionalSaude.setSexo("M");
         profissionalSaude.setTelefones("96345157");
         
-        coreFacade.salvarOuAtualizarProfissionalSaude(profissionalSaude);
+        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude);
     }
 
 }
