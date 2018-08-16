@@ -34,8 +34,13 @@ public class ProntuarioBEANS {
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Prontuario prontuario) {
         prontuario.setCids(atualizarCIDs(prontuario.getCidss()));
+        String codigo = buscarCodMedicoPaciente(factory, prontuario.getPaciente().getId(), prontuario.getMedico().getApelido());
+        if (codigo != null) {
+            prontuario.setCodMedicoPaciente(codigo);
+        }else{
+            prontuario.setCodMedicoPaciente(prontuario.getId() + "" + prontuario.getMedico().getApelido());
+        }
         if (prontuario.getId() == null) {
-            
             return dao.salvarOuAtualizar(factory, prontuario);
         } else {
             return dao.salvarOuAtualizar(factory, prontuario);

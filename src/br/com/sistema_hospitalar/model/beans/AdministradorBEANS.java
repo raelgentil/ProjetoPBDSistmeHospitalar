@@ -33,20 +33,25 @@ public class AdministradorBEANS {
     }
     
      public boolean salvarOuAtualizar(EntityManagerFactory factory, Administrador administrador) {
-         
+
         if (administrador.getId() == null) {
-                String login = beansF.criarLogin(factory, administrador);
-                
-            if (login !=null && !daoA.buscarSuperUsuario(factory)) {
+            String login = beansF.criarLogin(factory, administrador);
+            String senha = beansF.criptografar(administrador.getSenha());
+            administrador.setSenha(senha);
+
+            if (login != null) {
                 administrador.setLogin(login);
                 return dao.salvarOuAtualizar(factory, administrador);
             } else {
-                return false;
+                System.err.println("Erro Administrador ja existe");
             }
         } else {
+            if (!(administrador.getSenha().equals(dao.getPorId(factory, Administrador.class, administrador.getId()).getSenha()))) {
+                administrador.setSenha(beansF.criptografar(administrador.getSenha()));
+            }
             return dao.salvarOuAtualizar(factory, administrador);
         }
-        
+        return false;
     }
 
     public boolean remover(EntityManagerFactory factory, Administrador administrador) {
@@ -60,7 +65,7 @@ public class AdministradorBEANS {
     public List<Administrador> buscarPorNome(EntityManagerFactory factory, String nome) {
         return daoA.buscarPorNome(factory, nome);
     }
-
+    
     public Administrador buscarPorCpf(EntityManagerFactory factory, String cpf) {
         return daoA.buscarPorCpf(factory, cpf);
     }

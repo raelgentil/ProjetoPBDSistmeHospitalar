@@ -19,30 +19,37 @@ import javax.persistence.EntityManagerFactory;
  * @author rafaelgentil
  */
 public class ProficionalSaudeBEANS {
+
     DAO<ProfissionalSaude> dao;
     ProficionalSaudeDAO daoP;
     FuncionarioBEANS beansF;
     EspecializacaoBEANS beansE;
+
     public ProficionalSaudeBEANS(FuncionarioBEANS funcionarioBEANS, EspecializacaoBEANS beansE) {
         this.dao = new DAO<>();
         this.daoP = new ProficionalSaudeDAO();
         this.beansF = funcionarioBEANS;
         this.beansE = beansE;
     }
-    
-     public boolean salvarOuAtualizar(EntityManagerFactory factory, ProfissionalSaude profissionalSaude) {
-         
+
+    public boolean salvarOuAtualizar(EntityManagerFactory factory, ProfissionalSaude profissionalSaude) {
+
         if (profissionalSaude.getId() == null) {
-                String login = beansF.criarLogin(factory, profissionalSaude);
-                
-            if (login !=null) {
+            String login = beansF.criarLogin(factory, profissionalSaude);
+            String senha = beansF.criptografar(profissionalSaude.getSenha());
+            profissionalSaude.setSenha(senha);
+
+            if (login != null) {
                 profissionalSaude.setLogin(login);
                 profissionalSaude.setEspecializacoes(converterEspecializacoes(profissionalSaude.getEspecializacoess()));
                 return dao.salvarOuAtualizar(factory, profissionalSaude);
             } else {
-                System.err.println("Erro Atendente ja existe");
+                System.err.println("Erro Profissional ja existe");
             }
         } else {
+            if (!(profissionalSaude.getSenha().equals(dao.getPorId(factory, ProfissionalSaude.class, profissionalSaude.getId()).getSenha()))) {
+                profissionalSaude.setSenha(beansF.criptografar(profissionalSaude.getSenha()));
+            }
             return dao.salvarOuAtualizar(factory, profissionalSaude);
         }
         return false;
@@ -61,7 +68,7 @@ public class ProficionalSaudeBEANS {
         List<ProfissionalSaude> profissionalSaudes = daoP.buscarPorNome(factory, nome);
         for (ProfissionalSaude profissionalSaude : profissionalSaudes) {
             profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
-           
+
         }
         return profissionalSaudes;
     }
@@ -69,33 +76,28 @@ public class ProficionalSaudeBEANS {
     public ProfissionalSaude buscarPorCpf(EntityManagerFactory factory, String cpf) {
         ProfissionalSaude profissionalSaude = (ProfissionalSaude) daoP.buscarPorCpf(factory, cpf);
         profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
-        
+
         return profissionalSaude;
     }
-    
-    private String converterEspecializacoes(List<Especializacao> especializacoes){
+
+    private String converterEspecializacoes(List<Especializacao> especializacoes) {
         String especializacoess = "";
         for (Especializacao especializacao : especializacoes) {
             especializacoess += especializacao.getConselho() + "/" + especializacao.getCodigo() + ";";
         }
         return especializacoess;
     }
-    
-    private List<Especializacao> carregarEspecializacoes(EntityManagerFactory factory, String especializacoes){
+
+    private List<Especializacao> carregarEspecializacoes(EntityManagerFactory factory, String especializacoes) {
         List<Especializacao> especializacoess = new ArrayList<>();
-        String [] especializacoesPrimeiraQuebra = especializacoes.split(";");
+        String[] especializacoesPrimeiraQuebra = especializacoes.split(";");
         for (int i = 0; i < especializacoesPrimeiraQuebra.length; i++) {
-            String [] especializacoesSegundaQuebra = especializacoesPrimeiraQuebra[i].split("/");
+            String[] especializacoesSegundaQuebra = especializacoesPrimeiraQuebra[i].split("/");
             Especializacao especializacao = beansE.buscarPorConselho(factory, especializacoesSegundaQuebra[0]).get(0);
             especializacao.setCodigo(especializacoesSegundaQuebra[1]);
         }
-        
+
         return especializacoess;
     }
-    
-    
-    
-    
-    
-    
+
 }

@@ -36,11 +36,12 @@ public class ProfissionalSaude extends Funcionario implements Serializable {
     @Column(name = "especializacao", length = 50)
     private String especializacoes;
     
+    
+    private Long quantPacientes;
+    
     @Transient
     private List<Especializacao> especializacoess;
     
-    private String pacientesMarcados;
-
     @Transient
     private List<Consulta> consultas;
 
@@ -69,14 +70,6 @@ public class ProfissionalSaude extends Funcionario implements Serializable {
 
     public void setEspecializacoess(List<Especializacao> especializacoess) {
         this.especializacoess = especializacoess;
-    }
-
-    public String getPacientesMarcados() {
-        return pacientesMarcados;
-    }
-
-    public void setPacientesMarcados(String pacientesMarcados) {
-        this.pacientesMarcados = pacientesMarcados;
     }
 
     public List<Consulta> getConsultas() {

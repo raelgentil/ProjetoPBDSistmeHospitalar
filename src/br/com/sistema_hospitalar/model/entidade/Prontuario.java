@@ -55,7 +55,7 @@ public class Prontuario implements Serializable, IEntidadeBase {
     @Transient
     private List<CategoriaCID> cidss;
 
-    @Column(name = "cod_medico_paciente", unique = true, length = 20)
+    @Column(name = "cod_medico_paciente", length = 50)
     private String codMedicoPaciente;
 
     @Column(name = "observacoes")

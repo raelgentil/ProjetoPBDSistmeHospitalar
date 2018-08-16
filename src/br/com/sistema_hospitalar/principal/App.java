@@ -33,7 +33,13 @@ import javax.persistence.Persistence;
  *
  * Colocar no metodo delete uma verificação pra ver se o tabela tem um vinculo
  * com outra tabela se não tiver deleta
+ * 
+ * Usar as viws pra restrigir acesso acesso, usando pra verificar quem vai pooder visualizar determinadas coisas
+ * 
+ * da pra usar a view pra gerar as consultas marcadas pro dia, tb da pra usar a view pra reset senha e pra questão de medicamentos
  */
+
+
 public class App {
 
     public static void main(String[] args) {

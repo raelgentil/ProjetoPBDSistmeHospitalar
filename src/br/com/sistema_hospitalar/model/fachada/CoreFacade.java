@@ -66,6 +66,7 @@ public class CoreFacade {
     private CategoriCIDBEANS categoriCIDBEANS;
     
     public CoreFacade() {
+        
         estadoBEANS = new EstadoBEANS();
         municipioBEANS = new MunicipioBEANS();
         enderecoBEANS = new EnderecoBEANS();
@@ -80,6 +81,7 @@ public class CoreFacade {
         insumoBEANS =  new InsumoBEANS();
         loteBEANS = new LoteBEANS(insumoBEANS);
         categoriCIDBEANS = new CategoriCIDBEANS();
+        
     }
     
     public boolean salvarOuAtualizarEstado(Estado estado) {
@@ -101,6 +103,7 @@ public class CoreFacade {
     public List<Estado> buscarPorNomeEstado( String descricao) {
         return estadoBEANS.buscarPorNome(factory, descricao);
     }
+    
     
 
     /**

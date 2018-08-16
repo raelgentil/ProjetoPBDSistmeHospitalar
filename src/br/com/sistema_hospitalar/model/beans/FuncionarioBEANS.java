@@ -12,8 +12,13 @@ import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 
 /**
@@ -29,14 +34,22 @@ public class FuncionarioBEANS {
         daoF = new FuncionarioDAO();
         dao = new DAO<>();
     }
+    
 
     public Funcionario buscarUsuario(EntityManagerFactory factory, String login, String senha) {
-        Funcionario funcionario = daoF.buscarUsuario(factory, login);
-        if (funcionario.getSenha().equals(senha)) {
-            return funcionario;
+        Funcionario funcionario = null;
+        String senhaCrip = criptografar(senha);
+        if (login == null) {
+            funcionario = daoF.buscarUsuarioPrimeiroAcesso(factory, senha, senhaCrip);
         } else {
-            return null;
+            funcionario = daoF.buscarUsuario(factory, login);
+            if (funcionario.getSenha().equals(senhaCrip)) {
+                
+            } else {
+                funcionario = null;
+            }
         }
+        return funcionario;
     }
 
     public List<Funcionario> buscarPorAtivos(EntityManagerFactory factory, boolean ativo) {
@@ -46,7 +59,7 @@ public class FuncionarioBEANS {
     public String criarLogin(EntityManagerFactory factory, Pessoa pessoa) {
         String[] nomes = pessoa.getNome().split(" ");
         String login = "";
-        
+
         for (int i = 0; i < nomes.length; i++) {
             for (int j = 0; j < nomes.length; j++) {
                 if (!(nomes[i].equals(nomes[j]))) {
@@ -57,24 +70,44 @@ public class FuncionarioBEANS {
                 }
             }
         }
-        
+
         for (int i = 0; i < nomes.length; i++) {
             for (int j = 0; j < nomes.length; j++) {
                 if (!(nomes[i].equals(nomes[j]))) {
                     login = nomes[i] + "." + nomes[j];
-                     if (daoF.buscarUsuario(factory, login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)) == null) {
+                    if (daoF.buscarUsuario(factory, login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)) == null) {
                         return login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
                     }
                 }
             }
         }
-        
+
         return null;
     }
+
+    public void resetSenha() {
+
+    }
     
-    public void resetSenha(){
+    protected String criptografar(String senha){
+        String senhaCrip = "";
+        MessageDigest md;
         
+        try {
+            md = MessageDigest.getInstance("MD5");
+            byte [] byteSenha = senha.getBytes();
+//            for (int i = 0; i < byteSenha.length; i++) {
+//                byte b = byteSenha[i];
+//                
+//            }
+            BigInteger hash = new BigInteger(1, md.digest(byteSenha));
+            senhaCrip = hash.toString(16);
+            
+        } catch (NoSuchAlgorithmException ex) {
+            ex.printStackTrace();
+        }
         
+        return  senhaCrip;
     }
 
 }

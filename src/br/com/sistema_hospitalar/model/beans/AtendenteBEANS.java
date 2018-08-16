@@ -31,17 +31,22 @@ public class AtendenteBEANS {
     }
     
      public boolean salvarOuAtualizar(EntityManagerFactory factory, Atendente atendente) {
-         
+
         if (atendente.getId() == null) {
-                String login = beansF.criarLogin(factory, atendente);
-                
-            if (login !=null) {
+            String login = beansF.criarLogin(factory, atendente);
+            String senha = beansF.criptografar(atendente.getSenha());
+            atendente.setSenha(senha);
+
+            if (login != null) {
                 atendente.setLogin(login);
                 return dao.salvarOuAtualizar(factory, atendente);
             } else {
-                System.err.println("Erro Atendente ja existe");
+                System.err.println("Erro atendente ja existe");
             }
         } else {
+            if (!(atendente.getSenha().equals(dao.getPorId(factory, Atendente.class, atendente.getId()).getSenha()))) {
+                atendente.setSenha(beansF.criptografar(atendente.getSenha()));
+            }
             return dao.salvarOuAtualizar(factory, atendente);
         }
         return false;
