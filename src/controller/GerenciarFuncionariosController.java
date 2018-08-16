@@ -3,8 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package br.com.sistema_hospitalar.controller;
+package controller;
 
+import enums.Enums;
 import enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,13 +35,13 @@ public class GerenciarFuncionariosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cont = this;
         admBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.adm);
         });
         atendenteBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.atendente);
         });
         saudeBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.ProfSaude);
         });
         
     }

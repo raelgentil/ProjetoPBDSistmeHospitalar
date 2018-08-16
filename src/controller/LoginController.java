@@ -35,8 +35,8 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         botao.setOnMouseClicked((MouseEvent e)->{
             System.out.println("Logado "+ txtemail.getText());
-//            Controlador.trocarTela("principal");
-//            Controlador.trocarPane(Panes.inicioSU);
+            Controlador.trocarTela("principal");
+            Controlador.trocarPane(Panes.inicioSU);
            //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
         });
     }    
