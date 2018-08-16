@@ -3,42 +3,43 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package br.com.sistema_hospitalar.controller;
 
-import enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
  *
  * @author João Emerson
  */
-public class LoginController implements Initializable {
+public class visualizarController implements Initializable {
 
-    @FXML
-    private TextField txtemail;
     
+      @FXML
+    private TableView<?> tabela;
+
+    @FXML
+    private Button cadastrarBotao;
+
+    @FXML
+    private Button editarBotao;
+
+    @FXML
+    private Button excluirBotao;
+
+    @FXML
+    private TextField pesquisa;
     
-
-    @FXML
-    private TextField txtsenha;
-
-    @FXML
-    private Button botao;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        botao.setOnMouseClicked((MouseEvent e)->{
-            System.out.println("Logado "+ txtemail.getText());
-//            Controlador.trocarTela("principal");
-//            Controlador.trocarPane(Panes.inicioSU);
-           //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
-        });
+        // TODO
     }    
     
 }
