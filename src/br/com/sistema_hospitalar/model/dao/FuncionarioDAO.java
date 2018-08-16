@@ -21,6 +21,31 @@ import javax.persistence.TypedQuery;
 public class FuncionarioDAO {
     
     
+    public Funcionario buscarUsuarioPrimeiroAcesso(EntityManagerFactory factory, String senha, String SenhaC){
+        EntityManager em = null;
+        Funcionario funcionario = null;
+        try {
+            
+            em = factory.createEntityManager();
+            /**
+             * Em tela vai funcionar como se o atendente pesquisasse o paciente e selecionasse o medico
+             * q o paciente vai e depois verificava se esse paciente ja possui ou não vinculo com aquele medico
+             */
+            TypedQuery<Funcionario> q = em.createQuery("select f from Funcionario f where f.cpf = :senha and f.senha = :senhaC", Funcionario.class);
+            q.setParameter("senha", senha);
+            q.setParameter("senhaC", SenhaC);
+            funcionario = q.getSingleResult();
+
+        } catch (Exception e) {
+            System.out.println("br.com.sistema_hospitalar.model.dao.FuncionarioDAO.buscarUsuario()");
+            System.out.println("erro FuncionarioDAO: " + e.getMessage());
+
+        } finally {
+            em.close();
+        }
+        return funcionario;
+    }
+    
     public Funcionario buscarUsuario(EntityManagerFactory factory, String login){
         EntityManager em = null;
         Funcionario funcionario = null;
