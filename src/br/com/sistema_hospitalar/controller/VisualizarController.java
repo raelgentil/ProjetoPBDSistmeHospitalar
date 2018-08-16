@@ -5,7 +5,7 @@
  */
 package br.com.sistema_hospitalar.controller;
 
-import enums.Enums;
+import br.com.sistema_hospitalar.enums.Enums;
 import java.net.URL;
 import java.util.AbstractList;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package enums;
+package br.com.sistema_hospitalar.enums;
 
 /**
  *

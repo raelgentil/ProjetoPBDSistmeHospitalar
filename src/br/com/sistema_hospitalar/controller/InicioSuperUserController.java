@@ -5,7 +5,7 @@
  */
 package br.com.sistema_hospitalar.controller;
 
-import enums.Panes;
+import br.com.sistema_hospitalar.enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

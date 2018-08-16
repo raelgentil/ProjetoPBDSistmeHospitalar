@@ -1,7 +1,7 @@
 package br.com.sistema_hospitalar.controller;
 
-import enums.Enums;
-import enums.Panes;
+import br.com.sistema_hospitalar.enums.Enums;
+import br.com.sistema_hospitalar.enums.Panes;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
