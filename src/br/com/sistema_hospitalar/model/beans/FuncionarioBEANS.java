@@ -85,7 +85,13 @@ public class FuncionarioBEANS {
         return null;
     }
 
-    public void resetSenha() {
+    public boolean resetSenha(EntityManagerFactory factory, Long id) {
+        Funcionario funcionario  = dao.getPorId(factory, Funcionario.class, id);
+        funcionario.setSenha(criptografar(funcionario.getCpf()));
+        funcionario.setResetar(false);
+        
+        return dao.salvarOuAtualizar(factory, funcionario);
+        
 
     }
     

@@ -19,6 +19,7 @@ import br.com.sistema_hospitalar.model.beans.PacienteBEANS;
 import br.com.sistema_hospitalar.model.beans.PessoaBEANS;
 import br.com.sistema_hospitalar.model.beans.ProficionalSaudeBEANS;
 import br.com.sistema_hospitalar.model.beans.ProntuarioBEANS;
+import br.com.sistema_hospitalar.model.beans.FuncionarioResetSenhaBEANS;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
@@ -34,6 +35,7 @@ import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
 import com.sun.glass.ui.View;
 import java.util.Calendar;
 import java.util.List;
@@ -64,6 +66,7 @@ public class CoreFacade {
     private InsumoBEANS insumoBEANS;
     private LoteBEANS loteBEANS;
     private CategoriCIDBEANS categoriCIDBEANS;
+    private FuncionarioResetSenhaBEANS resetSenhaBEANS;
     
     public CoreFacade() {
         
@@ -84,23 +87,23 @@ public class CoreFacade {
         
     }
     
-    public boolean salvarOuAtualizarEstado(Estado estado) {
+    public boolean estadoSalvarOuAtualizar(Estado estado) {
         return estadoBEANS.salvarOuAtualizar(factory, estado);
     }
 
-    public boolean removerEstado(Estado estado) {
+    public boolean estadoRremover(Estado estado) {
        return estadoBEANS.remover(factory, estado);
     }
 
-    public Estado getPorIdEstado(Long id) {
+    public Estado estadoGetPorId(Long id) {
        return estadoBEANS.getPorId(factory, id);
     }
     
-    public Estado encontrarPorUfEstado(String uf) {
+    public Estado estadoEncontrarPorUf(String uf) {
         return estadoBEANS.buscarPorUf(factory, uf);
     }
     
-    public List<Estado> buscarPorNomeEstado( String descricao) {
+    public List<Estado> estadoBuscarPorNome( String descricao) {
         return estadoBEANS.buscarPorNome(factory, descricao);
     }
     
@@ -113,17 +116,17 @@ public class CoreFacade {
      * 
      */
     
-    public void salvarOuAtualizarMunicipio(Municipio Municipio) {
+    public void municipioSalvarOuAtualizar(Municipio Municipio) {
         municipioBEANS.salvarOuAtualizar(factory, Municipio);
 
     }
 
-    public void removerMunicipio(Municipio municipio) {
+    public void municipioRemover(Municipio municipio) {
         municipioBEANS.remover(factory, municipio);
         
     }
 
-    public Municipio getPorIdMunicipio(Long id) {
+    public Municipio municipioGetPorId(Long id) {
        return municipioBEANS.getPorId(factory, id);
     }
     
@@ -134,29 +137,29 @@ public class CoreFacade {
      * 
      */
     
-     public boolean salvarOuAtualizarEndereco(Endereco endereco) {
+     public boolean enderecoSalvarOuAtualizar(Endereco endereco) {
         return enderecoBEANS.salvarOuAtualizar(factory, endereco);
     }
 
-    public boolean removerEndereco(Endereco endereco) {
+    public boolean enderecoRemover(Endereco endereco) {
         return enderecoBEANS.remover(factory, endereco);
 
     }
 
-    public Endereco getPorIdEndereco(Long id) {
+    public Endereco enderecoGetPorId(Long id) {
         return enderecoBEANS.getPorId(factory, id);
     }
 
-    public List<Endereco> buscarPorBairroEndereco(String bairro) {
+    public List<Endereco> enderecoBuscarPorBairro(String bairro) {
         return enderecoBEANS.buscarPorBairro(factory, bairro);
     }
 
 
-    public List<Endereco> buscarPordescricaoEndereco(String descricao) {
+    public List<Endereco> enderecoBuscarPordescricao(String descricao) {
         return enderecoBEANS.buscarPordescricao(factory, descricao);
     }
 
-    public Endereco getMunicipioEndereco(Endereco endereco) {
+    public Endereco enderecoGetMunicipio(Endereco endereco) {
         return  enderecoBEANS.getMunicipio(factory,endereco);
     }
     
@@ -167,24 +170,24 @@ public class CoreFacade {
      * 
      */
     
-   public boolean salvarOuAtualizarPessoa(Pessoa pessoa) {
+   public boolean pessoaSalvarOuAtualizar(Pessoa pessoa) {
        return pessoaBEANS.salvarOuAtualizar(factory, pessoa);
     }
 
-    public boolean removerPessoa(Pessoa pessoa) {
+    public boolean pessoaRemover(Pessoa pessoa) {
         return pessoaBEANS.remover(factory, pessoa);
     }
 
-    public Pessoa getPorIdPessoa(Long id) {
+    public Pessoa pessoaGetPorId(Long id) {
         
        return pessoaBEANS.getPorId(factory, id);
     }
     
-    public List<Pessoa> buscarPorNomePessoa(String nome) {
+    public List<Pessoa> pessoaBuscarPorNome(String nome) {
          return pessoaBEANS.buscarPorNome(factory, nome);
     }
     
-    public Pessoa buscarPorCpfPessoa(EntityManagerFactory factory, String cpf) {
+    public Pessoa pessoaBuscarPorCpf(EntityManagerFactory factory, String cpf) {
         return pessoaBEANS.buscarPorCpf(factory, cpf);
     }
     
@@ -194,47 +197,47 @@ public class CoreFacade {
  * 
  */
 
-    public boolean salvarOuAtualizarPaciente(Paciente paciente) {
+    public boolean pacienteSalvarOuAtualizar(Paciente paciente) {
         return pacienteBEANS.salvarOuAtualizar(factory, paciente);
     }
 
-    public boolean removerPaciente(Paciente paciente) {
+    public boolean pacienteRemover(Paciente paciente) {
         return pacienteBEANS.remover(factory, paciente);
     }
 
-    public Paciente getPorIdPaciente(Long id) {
+    public Paciente pacienteGetPorId(Long id) {
        return pacienteBEANS.getPorId(factory, id);
     }
     
-     public List<Paciente> buscarPorNomePaciente(String nome) {
+     public List<Paciente> pacienteBuscarPorNome(String nome) {
          return pacienteBEANS.buscarPorNome(factory, nome);
     }
     
-    public Paciente buscarPorCpfPaciente(String cpf) {
+    public Paciente pacienteBuscarPorCpf(String cpf) {
         return pacienteBEANS.buscarPorCpf(factory, cpf);
     }
     
-    public List<Paciente> buscarPorTipoSanguinioPaciente(String tipoSanguinio) {
+    public List<Paciente> pacienteBuscarPorTipoSanguinio(String tipoSanguinio) {
         return pacienteBEANS.buscarPorTipoSanguinio(factory, tipoSanguinio);
     }
 
-    public List<Paciente> buscarPorFatoRHPaciente(boolean fatorRh) {
+    public List<Paciente> pacienteBuscarPorFatoRH(boolean fatorRh) {
         return pacienteBEANS.buscarPorFatoRH(factory, fatorRh);
     }
 
-    public List<Paciente> buscarPorLimitacoesPaciente(String limitacao) {
+    public List<Paciente> pacienteBuscarPorLimitacoes(String limitacao) {
         return pacienteBEANS.buscarPorLimitacoes(factory, limitacao);
     }
 
-    public List<Paciente> buscarPorAlergiasPaciente(String alergia) {
+    public List<Paciente> pacienteBuscarPorAlergias(String alergia) {
         return pacienteBEANS.buscarPorAlergias(factory, alergia);
     }
 
-    public List<Paciente> buscarPorDataDeFalecimentoPaciente(Calendar date) {
+    public List<Paciente> pacienteBuscarPorDataDeFalecimento(Calendar date) {
         return pacienteBEANS.buscarPorDataDeFalecimento(factory, date);
     }
     
-    public List<Paciente> buscarPorDoadorDeOrgaosPaciente(boolean alergia) {
+    public List<Paciente> pacienteBuscarPorDoadorDeOrgaos(boolean alergia) {
         return pacienteBEANS.buscarPorDoadorDeOrgaos(factory, alergia);
     }
 // 
@@ -250,23 +253,23 @@ public class CoreFacade {
      * 
      */
     
-    public boolean salvarOuAtualizarProntuario(Prontuario prontuario) {
+    public boolean prontuarioSalvarOuAtualizar(Prontuario prontuario) {
         return prontuarioBEANS.salvarOuAtualizar(factory, prontuario);
     }
 
-    public boolean removerProntuario(Prontuario prontuario) {
+    public boolean prontuarioRemover(Prontuario prontuario) {
         return prontuarioBEANS.remover(factory, prontuario);
     }
 
-    public Prontuario getPorIdProntuario(Long id) {
+    public Prontuario prontuarioGetPorId(Long id) {
         return prontuarioBEANS.getPorId(factory, id);
     }
 
-    public String buscarCodMedicoPacienteProntuario(Long idPaciente, String codMedicoPaciente) {
+    public String prontuarioBuscarCodMedicoPaciente(Long idPaciente, String codMedicoPaciente) {
         return prontuarioBEANS.buscarCodMedicoPaciente(factory,idPaciente, codMedicoPaciente);
     }
 
-    public List<Prontuario> buscarPorCodMedicoPacient(Long idPaciente, String codMedicoPaciente) {
+    public List<Prontuario> prontuarioBuscarPorCodMedicoPacient(Long idPaciente, String codMedicoPaciente) {
         return prontuarioBEANS.buscarPorCodMedicoPacient(factory, idPaciente, codMedicoPaciente);
     }
     
@@ -278,13 +281,21 @@ public class CoreFacade {
      * 
      */
     
-    public Funcionario buscarUsuario(String login, String senha) {
+    public Funcionario funcionarioBuscarUsuario(String login, String senha) {
         return funcionarioBEANS.buscarUsuario(factory, login, senha);
 
     }
 
-    public List<Funcionario> buscarPorAtivosFuncionario(boolean ativo) {
+    public List<Funcionario> funcionarioBuscarPorAtivos(boolean ativo) {
         return funcionarioBEANS.buscarPorAtivos(factory, ativo);
+    }
+    
+    public boolean funcionarioResetSenha( Long id){
+        return funcionarioBEANS.resetSenha(factory, id);
+    }
+    
+    public  List<FuncionarioResetSenha> funcionarioGetAResetarSenha(){
+        return resetSenhaBEANS.getFuncionariosAResetarSenha(factory);
     }
     
     /**
@@ -295,23 +306,23 @@ public class CoreFacade {
      */
     
     
-     public boolean salvarOuAtualizarEspecializacao(Especializacao especializacao) {
+     public boolean especializacaoSalvarOuAtualizar(Especializacao especializacao) {
         return especializacaoBEANS.salvarOuAtualizar(factory, especializacao);
     }
 
-    public boolean removerEspecializacao(Especializacao especializacao) {
+    public boolean especializacaoRemover(Especializacao especializacao) {
         return especializacaoBEANS.remover(factory, especializacao);
     }
 
-    public Especializacao getPorIdEspecializacao(Long id) {
+    public Especializacao especializacaoGetPorId(Long id) {
         return especializacaoBEANS.getPorId(factory, id);
     }
     
-    public List<Especializacao> buscarPorNomeEspecializacao(String nome) {
+    public List<Especializacao> especializacaoBuscarPorNome(String nome) {
          return especializacaoBEANS.buscarPorNome(factory, nome);
     }
     
-    public List<Especializacao> buscarPorConselhoEspecializacao(String conselho) {
+    public List<Especializacao> especializacaoBuscarPorConselho(String conselho) {
         return especializacaoBEANS.buscarPorConselho(factory, conselho);
     }
     
@@ -323,23 +334,23 @@ public class CoreFacade {
      * 
      * 
      */
-    public boolean salvarOuAtualizarProfissionalSaude(ProfissionalSaude profissionalSaude) {
+    public boolean profissionalSaudeSalvarOuAtualizar(ProfissionalSaude profissionalSaude) {
          return proficionalSaudeBEANS.salvarOuAtualizar(factory, profissionalSaude);
     }
 
-    public boolean removerProfissionalSaude(ProfissionalSaude profissionalSaude) {
+    public boolean profissionalSaudeRemover(ProfissionalSaude profissionalSaude) {
         return proficionalSaudeBEANS.remover(factory, profissionalSaude);
     }
 
-    public ProfissionalSaude getPorIdProfissionalSaude(ProfissionalSaude profissionalSaude) {
+    public ProfissionalSaude profissionalSaudeGetPorId(ProfissionalSaude profissionalSaude) {
         return proficionalSaudeBEANS.getPorId(factory, profissionalSaude);
     }
 
-    public List<ProfissionalSaude> buscarPorNomeProfissionalSaude(String nome) {
+    public List<ProfissionalSaude> profissionalSaudeBuscarPorNome(String nome) {
         return proficionalSaudeBEANS.buscarPorNome(factory, nome);
     }
 
-    public ProfissionalSaude buscarPorCpfProfissionalSaude(String cpf) {
+    public ProfissionalSaude profissionalSaudeBuscarPorCpf(String cpf) {
         return proficionalSaudeBEANS.buscarPorCpf(factory, cpf);
     }
     
@@ -350,23 +361,23 @@ public class CoreFacade {
      * 
      */
     
-    public boolean salvarOuAtualizarAtendente(Atendente atendente) {
+    public boolean atendenteSalvarOuAtualizar(Atendente atendente) {
          return atendenteBEANS.salvarOuAtualizar(factory, atendente);
     }
 
-    public boolean removerAtendente(Atendente atendente) {
+    public boolean atendenteRemover(Atendente atendente) {
         return atendenteBEANS.remover(factory, atendente);
     }
 
-    public Atendente getPorIdAtendente(Long id) {
+    public Atendente atendenteGetPorId(Long id) {
         return atendenteBEANS.getPorId(factory, id);
     }
 
-    public List<Atendente> buscarPorNomeAtendente(String nome) {
+    public List<Atendente> atendenteBuscarPorNome(String nome) {
         return atendenteBEANS.buscarPorNome(factory, nome);
     }
 
-    public Atendente buscarPorCpfAtendente(String cpf) {
+    public Atendente atendenteBuscarPorCpf(String cpf) {
         return atendenteBEANS.buscarPorCpf(factory, cpf);
     }
     
@@ -381,7 +392,7 @@ public class CoreFacade {
      */
     
     
-    public boolean salvarOuAtualizarAdministrador(Administrador administrador) {
+    public boolean salvarOuAtualizar(Administrador administrador) {
          
         return administradorBEANS.salvarOuAtualizar(factory, administrador);
         

@@ -25,7 +25,7 @@ public abstract class Funcionario extends Pessoa implements Serializable {
     @Column(name = "login", unique = true, length = 50)
     private String login;
     
-    @Column(name = "senha", length = 11)
+    @Column(name = "senha", length = 100)
     private String senha;
     
     @Column(name = "salario")
@@ -39,6 +39,9 @@ public abstract class Funcionario extends Pessoa implements Serializable {
     
     @Column(name = "ativo")
     private boolean ativo;
+    
+    @Column(name = "resetar")
+    private boolean resetar;
 
     public Funcionario() {
     }
@@ -89,6 +92,14 @@ public abstract class Funcionario extends Pessoa implements Serializable {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public boolean isResetar() {
+        return resetar;
+    }
+
+    public void setResetar(boolean resetar) {
+        this.resetar = resetar;
     }
 
     

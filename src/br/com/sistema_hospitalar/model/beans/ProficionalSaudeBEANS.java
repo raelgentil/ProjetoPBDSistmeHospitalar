@@ -36,7 +36,7 @@ public class ProficionalSaudeBEANS {
 
         if (profissionalSaude.getId() == null) {
             String login = beansF.criarLogin(factory, profissionalSaude);
-            String senha = beansF.criptografar(profissionalSaude.getSenha());
+            String senha = beansF.criptografar(profissionalSaude.getCpf());
             profissionalSaude.setSenha(senha);
 
             if (login != null) {

@@ -44,7 +44,60 @@ public class App {
 
     public static void main(String[] args) {
         CoreFacade coreFacade = new CoreFacade();
+        salvarProfissionalSaude(coreFacade);
+        
+        
 
+    }
+    
+    
+    public static void salvarProfissionalSaude(CoreFacade coreFacade){
+        
+        Estado estado = new Estado();
+        estado.setDescricao("Pernambuco");
+        estado.setUf("PE");
+        coreFacade.estadoSalvarOuAtualizar(estado);
+        
+        Municipio municipio = new Municipio();
+        municipio.setDescricao("Floresta");
+        municipio.setEstado(estado);
+        coreFacade.salvarOuAtualizarMunicipio(municipio);
+        
+        Endereco endereco = new Endereco();
+        endereco.setBairro("Centro");
+        endereco.setCep(6540000);
+        endereco.setComplemento("Casa");
+        endereco.setDescricao("Rua Padre Noberto");
+        endereco.setNumero("205");
+        endereco.setMunicipio(municipio);
+        coreFacade.salvarOuAtualizarEndereco(endereco);
+        
+        Especializacao especializacao = new Especializacao();
+        especializacao.setNome("Enfermagem");
+        especializacao.setConselho("CRM");
+        especializacao.setValor(200);
+        coreFacade.salvarOuAtualizarEspecializacao(especializacao);
+        
+        List<Especializacao> especializacoess =  new ArrayList<>();
+        especializacoess.add(especializacao);
+
+        ProfissionalSaude profissionalSaude = new ProfissionalSaude();
+        profissionalSaude.setAtivo(true);
+        profissionalSaude.setCargaHorariaMinimaMensal(60);
+        profissionalSaude.setCpf("1234567891");
+        Calendar dataDeNascimento = Calendar.getInstance();
+        dataDeNascimento.set(1996, 2, 19);
+        profissionalSaude.setDataDeNascimento(dataDeNascimento);
+        profissionalSaude.setEmail("raelgentil@gmail.com");
+        profissionalSaude.setEndereco(endereco);
+        profissionalSaude.setEspecializacoess(especializacoess);
+        profissionalSaude.setHoraextra(0);
+        profissionalSaude.setNome("Rafael Gentil de Barros Sasntos");
+        profissionalSaude.setSalario(2000);
+        profissionalSaude.setSexo("M");
+        profissionalSaude.setTelefones("96345157");
+        
+        coreFacade.salvarOuAtualizarProfissionalSaude(profissionalSaude);
     }
 
 }
