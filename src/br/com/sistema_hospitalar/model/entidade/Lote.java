@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *
@@ -46,6 +47,9 @@ public class Lote implements Serializable,IEntidadeBase{
 
     @Column(name = "generico")
     private boolean generico;
+    
+    @Transient
+    private boolean insumoPego;
     
     @ManyToOne
     @JoinColumn(name = "insumo_id", referencedColumnName = "id", nullable = false)
@@ -108,6 +112,22 @@ public class Lote implements Serializable,IEntidadeBase{
 
     public void setInsumo(Insumo insumo) {
         this.insumo = insumo;
+    }
+
+    /**
+     * atributo usado pra verificar se o paciente pegou o medicamento ou não passado na prescrição
+     * @return boolean 
+     */
+    public boolean isInsumoPego() {
+        return insumoPego;
+    }
+
+    /**
+     * atributo usado pra verificar se o paciente pegou o medicamento ou não passado na prescrição
+     * @param insumoPego 
+     */
+    public void setInsumoPego(boolean insumoPego) {
+        this.insumoPego = insumoPego;
     }
 
     

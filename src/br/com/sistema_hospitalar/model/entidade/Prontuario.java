@@ -63,6 +63,9 @@ public class Prontuario implements Serializable, IEntidadeBase {
 
     @Column(name = "prescricao", length = 100)
     private String prescricao;
+    
+    @Transient
+    private List<Lote> prescricaoo;
 
     @ManyToOne
     @JoinColumn(name = "paciente_id", referencedColumnName = "id", nullable = false)
@@ -179,6 +182,15 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.medico = medico;
     }
 
+    public List<Lote> getPrescricaoo() {
+        return prescricaoo;
+    }
+
+    public void setPrescricaoo(List<Lote> prescricaoo) {
+        this.prescricaoo = prescricaoo;
+    }
+
+    
     
     
     
