@@ -5,13 +5,14 @@
 */
 package br.com.sistema_hospitalar.controller;
 
+
+import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -34,13 +35,13 @@ public class GerenciarFuncionariosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         cont = this;
         admBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.adm);
         });
         atendenteBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.atendente);
         });
         saudeBotao.setOnMouseClicked((MouseEvent) -> {
-            Controlador.trocarPane(Panes.visualizar);
+            Controlador.trocarPane(Panes.visualizar,Enums.ProfSaude);
         });
         
     }

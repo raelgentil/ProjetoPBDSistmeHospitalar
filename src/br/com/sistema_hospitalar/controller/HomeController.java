@@ -24,6 +24,7 @@ import javafx.scene.layout.StackPane;
 public class HomeController implements Initializable {
     
     private static HomeController controller = null;
+    private static Pane panel;
     private ArrayList<Pane> paineis;
     @FXML
     private StackPane pane;
@@ -49,7 +50,8 @@ public class HomeController implements Initializable {
         controller = this;
         paineis = new ArrayList<>();
         voltar.setOnMouseClicked((MouseEvent e)->{
-            voltar();
+            Controlador.voltar();
+           // voltar();
         });
         home.setOnMouseClicked((MouseEvent e)->{
             Controlador.irHome();
@@ -57,20 +59,25 @@ public class HomeController implements Initializable {
         
     }
     public void alterarPane(Pane p){
-        paineis.add(p);
+//        paineis.add(p);
+        panel = p;
         pane.getChildren().setAll(p);
     }
-    private void voltar(){        
-        if(paineis.size() > 0){
-            int lastIndex = paineis.size()-1;
-            pane.getChildren().setAll( paineis.get(lastIndex));
-            paineis.remove(lastIndex);
-            System.out.println("voltei  Tamanho: "+ paineis.size());
-        }else
-            System.out.println("Não volto  Tamanho: "+ paineis.size());
-    }
+//    private void voltar(){        
+//        if(paineis.size() > 0){
+//            int lastIndex = paineis.size()-1;
+//            pane.getChildren().setAll( paineis.get(lastIndex));
+//            paineis.remove(lastIndex);
+//            System.out.println("voltei  Tamanho: "+ paineis.size());
+//        }else
+//            System.out.println("Não volto  Tamanho: "+ paineis.size());
+//    }
     public static HomeController get(){
         return controller;
+    }
+
+    public Pane getPane() {
+        return panel;
     }
     
     

@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -17,10 +25,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="controller.CadastrarPacienteController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.CadastrarPacienteController">
    <children>
-      <TabPane layoutX="362.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="549.0" prefWidth="643.0" style="-fx-border-color: #000000;" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="362.0" layoutY="32.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="549.0" prefWidth="643.0" style="-fx-border-color: #000000;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Dados Pessoais">
             <content>
@@ -82,7 +89,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="62.0" layoutY="76.0" prefHeight="322.0" prefWidth="517.0">
+                        <Pane layoutX="62.0" layoutY="76.0" prefHeight="396.0" prefWidth="517.0">
                            <children>
                               <TextField fx:id="logradouro" layoutX="32.0" layoutY="113.0" prefHeight="25.0" prefWidth="454.0" />
                               <Label layoutX="32.0" layoutY="93.0" text="Logradouro:" textFill="#2323c6">
@@ -107,24 +114,30 @@
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="cidade" editable="true" layoutX="32.0" layoutY="280.0" prefHeight="25.0" prefWidth="187.0" promptText="Digite sua Cidade" />
-                              <Label layoutX="32.0" layoutY="259.0" text="Cidade:" textFill="#2323c6">
+                              <ComboBox fx:id="cidade" editable="true" layoutX="259.0" layoutY="217.0" prefHeight="25.0" prefWidth="226.0" promptText="Digite sua Cidade" />
+                              <Label layoutX="259.0" layoutY="196.0" text="Cidade:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="estado" layoutX="255.0" layoutY="278.0" prefHeight="25.0" prefWidth="230.0" promptText="Selecione" />
-                              <Label layoutX="255.0" layoutY="257.0" text="Estado:" textFill="#2323c6">
+                              <ComboBox fx:id="estado" layoutX="32.0" layoutY="324.0" prefHeight="25.0" prefWidth="230.0" promptText="Selecione" />
+                              <Label layoutX="32.0" layoutY="303.0" text="Estado:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="bairro" layoutX="32.0" layoutY="221.0" prefHeight="25.0" prefWidth="454.0" />
-                              <Label layoutX="32.0" layoutY="201.0" text="Bairro:" textFill="#2323c6">
+                              <TextField fx:id="bairro" layoutX="32.0" layoutY="270.0" prefHeight="25.0" prefWidth="454.0" />
+                              <Label layoutX="32.0" layoutY="250.0" text="Bairro:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
+                              <Label layoutX="32.0" layoutY="198.0" text="CEP" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cep" layoutX="32.0" layoutY="218.0" prefHeight="25.0" prefWidth="152.0" />
                            </children>
                            <opaqueInsets>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -134,18 +147,18 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Dados Médicos">
+            <Tab fx:id="dadosMedicos" text="Dados Médicos">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="62.0" layoutY="62.0" prefHeight="394.0" prefWidth="517.0">
+                        <Pane layoutX="22.0" layoutY="62.0" prefHeight="394.0" prefWidth="605.0">
                            <children>
                               <Label layoutX="32.0" layoutY="161.0" text="Alergias:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="195.0" layoutY="29.0" text="DADOS MÉDICOS" textFill="#2323c6">
+                              <Label layoutX="173.0" layoutY="30.0" text="DADOS MÉDICOS" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman Bold Italic" size="23.0" />
                                  </font>
@@ -155,26 +168,26 @@
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="tipoSanguineo" layoutX="179.0" layoutY="106.0" prefHeight="25.0" prefWidth="187.0" promptText="Selecione" />
-                              <Label layoutX="179.0" layoutY="85.0" text="Tipo Sanguíneo:" textFill="#2323c6">
+                              <ComboBox fx:id="tipoSanguineo" layoutX="253.0" layoutY="106.0" prefHeight="25.0" prefWidth="187.0" promptText="Selecione" />
+                              <Label layoutX="253.0" layoutY="85.0" text="Tipo Sanguíneo:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <ComboBox fx:id="fatorRh" layoutX="388.0" layoutY="108.0" prefHeight="25.0" prefWidth="98.0" promptText="Selecione" />
-                              <Label layoutX="388.0" layoutY="87.0" text="Fator RH:" textFill="#2323c6">
+                              <ComboBox fx:id="fatorRh" layoutX="477.0" layoutY="106.0" prefHeight="25.0" prefWidth="98.0" promptText="Selecione" />
+                              <Label layoutX="477.0" layoutY="85.0" text="Fator RH:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
                               <ComboBox fx:id="doador" layoutX="32.0" layoutY="108.0" prefHeight="25.0" prefWidth="113.0" promptText="Selecione" />
-                              <Label layoutX="32.0" layoutY="87.0" text="Doador de Órgãos:" textFill="#2323c6">
+                              <Label layoutX="32.0" layoutY="87.0" prefHeight="21.0" prefWidth="172.0" text="Doador de Órgãos:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextArea layoutX="25.0" layoutY="181.0" prefHeight="57.0" prefWidth="468.0" />
-                              <TextArea layoutX="25.0" layoutY="301.0" prefHeight="57.0" prefWidth="468.0" />
+                              <TextArea fx:id="alergias" layoutX="25.0" layoutY="184.0" prefHeight="57.0" prefWidth="550.0" />
+                              <TextArea fx:id="limitacoes" layoutX="25.0" layoutY="301.0" prefHeight="57.0" prefWidth="548.0" />
                            </children>
                            <opaqueInsets>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -184,11 +197,97 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Responsáveis">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="50.0" layoutY="35.0" prefHeight="438.0" prefWidth="544.0">
+                           <children>
+                              <Label layoutX="183.0" layoutY="39.0" text="Responsáveis" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman Bold Italic" size="23.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="responsaveisTable" layoutX="28.0" layoutY="100.0" prefHeight="200.0" prefWidth="503.0">
+                                <columns>
+                                  <TableColumn editable="false" prefWidth="309.0" text="Nome" />
+                                  <TableColumn editable="false" prefWidth="193.0" text="CPF" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="adicionarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="53.0" layoutY="315.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Adicionar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/lupa.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="removerBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="208.0" layoutY="315.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Remover" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/deleteUser.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="367.0" layoutY="315.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="135.0" text="Cadastrar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/addUser.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="salvarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1093.0" layoutY="636.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="146.0" text="Salvar" textFill="#1379a1">
+      <Button fx:id="salvarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1203.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Salvar" textFill="#1379a1">
          <font>
-            <Font name="Times New Roman Bold" size="18.0" />
+            <Font size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -202,14 +301,14 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/icons/editUser.png" />
+                  <Image url="@../resources/icons/save.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="939.0" layoutY="636.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="146.0" text="Voltar" textFill="#1379a1">
+      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1044.0" layoutY="594.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Cancelar" textFill="#1379a1">
          <font>
-            <Font name="Times New Roman Bold" size="18.0" />
+            <Font size="14.0" />
          </font>
          <effect>
             <DropShadow />
@@ -223,7 +322,7 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/icons/deleteUser.png" />
+                  <Image url="@../resources/icons/cancel.png" />
                </image>
             </ImageView>
          </graphic>
