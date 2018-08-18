@@ -76,7 +76,7 @@ public class CadastrarPacienteController implements Initializable {
     private Tab dadosMedicos;
 
    
-
+//Eu nao vou ser apagada
     
     
     private static CadastrarPacienteController controller;
