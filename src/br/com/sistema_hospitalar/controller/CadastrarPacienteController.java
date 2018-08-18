@@ -93,7 +93,7 @@ public class CadastrarPacienteController implements Initializable {
             Controlador.voltar();
             limparTela();
         });
-//        estado.setItems(FXCollections.observableArrayList());
+        estado.setItems(FXCollections.observableArrayList());
     }
     public Paciente getPaciente(){
         Paciente p = new Paciente();
@@ -154,9 +154,9 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("AB");             
         tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
-//        for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
-//            auxList.add(e.getDescricao());
-//        estado.setItems(FXCollections.observableArrayList(auxList));
+        for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
+            auxList.add(e.getDescricao());
+        estado.setItems(FXCollections.observableArrayList(auxList));
     }
 
     private void limparTela() {
