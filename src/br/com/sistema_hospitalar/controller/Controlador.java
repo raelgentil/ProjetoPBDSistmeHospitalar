@@ -22,7 +22,7 @@ public class Controlador extends Application{
     private static Scene login,principal;
     private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente;
     private static ArrayList<Pane> pilha;
-    public  static CoreFacade FACHADA = new CoreFacade();
+    public  static CoreFacade FACHADA ;//= new CoreFacade();
     
     public static void main(String[] args){
         launch(args);    

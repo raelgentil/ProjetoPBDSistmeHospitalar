@@ -5,10 +5,19 @@
  */
 package br.com.sistema_hospitalar.model.beans;
 
+import br.com.sistema_hospitalar.model.dao.DAO;
+import br.com.sistema_hospitalar.model.dao.InsumoDAO;
+import br.com.sistema_hospitalar.model.dao.LoteDAO;
 import br.com.sistema_hospitalar.model.dao.FuncionarioResetSenhaDAO;
+import br.com.sistema_hospitalar.model.entidade.Insumo;
+import br.com.sistema_hospitalar.model.entidade.Lote;
+import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import java.util.Calendar;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *

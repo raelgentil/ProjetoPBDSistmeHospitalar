@@ -16,7 +16,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -133,13 +132,7 @@ public class CadastrarPacienteController implements Initializable {
 
     private void carregarComponentes() {
         List auxList = new ArrayList();//,hrlist,doadorlist,tiposanguineolist;
-             ObservableList est = FXCollections.observableArrayList();
-        for(Estado e: Controlador.FACHADA.estadoBuscarPorNome("")){
-            est.add(""+e.getDescricao());
-            System.out.println(" "+ est.size());
-        }
         
-        estado.setItems(est);
         auxList.add("Masculino");
         auxList.add("Feminino");
         sexo.setItems(FXCollections.observableArrayList(auxList));
@@ -161,7 +154,9 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("AB");             
         tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
-       
+        for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
+            auxList.add(e.getDescricao());
+        estado.setItems(FXCollections.observableArrayList(auxList));
     }
 
     private void limparTela() {

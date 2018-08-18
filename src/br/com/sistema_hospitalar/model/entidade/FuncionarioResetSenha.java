@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author rafaelgentil
  */
-//@Entity
+@Entity
 @Table(name = "reset_senha")
 @XmlRootElement
 @NamedQueries({
