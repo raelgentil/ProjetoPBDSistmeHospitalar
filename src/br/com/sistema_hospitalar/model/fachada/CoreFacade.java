@@ -296,7 +296,9 @@ public class CoreFacade {
     public boolean funcionarioResetSenha( Long id){
         return funcionarioBEANS.resetSenha(factory, id);
     }
-    
+    public boolean solicitarResetSenha(String cpf){
+        return funcionarioBEANS.solicitarResetSenha(factory, cpf);
+    }
     public  List<FuncionarioResetSenha> funcionarioGetAResetarSenha(){
         return resetSenhaBEANS.getFuncionariosAResetarSenha(factory);
     }

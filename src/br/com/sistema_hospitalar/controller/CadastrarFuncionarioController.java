@@ -192,7 +192,6 @@ public class CadastrarFuncionarioController implements Initializable {
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("[ a-zA- Z0-9]"))//"^[0-9]*$[ a-zA- Z] * "))
-                password = Controlador.encriptar(password);
 //            else{
 //                System.out.println("Senha só pode conter letras e números");
 //                return null;
@@ -230,7 +229,6 @@ public class CadastrarFuncionarioController implements Initializable {
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("[ a-zA- Z0-9]"))//"^[0-9]*$[ a-zA- Z] * "))
-                password = Controlador.encriptar(password);
 //            else{
 //                System.out.println("Senha só pode conter letras e números");
 //                return null;
@@ -267,7 +265,6 @@ public class CadastrarFuncionarioController implements Initializable {
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("//w"))//"^[0-9]*$[ a-zA- Z] * "))
-                password = Controlador.encriptar(password);
 //            else{
 //                System.out.println("Senha só pode conter letras e números");
 //                return null;

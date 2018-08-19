@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -84,10 +83,5 @@ public class Controlador extends Application{
         pilha.remove(pilha.size()-1);
         }
     }
-    public static String encriptar(String s){
-        return Base64.encodeBase64String(s.getBytes());
-    }
-    public static String desencriptar(String s){
-         return new String(Base64.decodeBase64(s));
-    }
+ 
 }

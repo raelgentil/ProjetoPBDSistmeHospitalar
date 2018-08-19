@@ -34,7 +34,6 @@ public class FuncionarioBEANS {
         daoF = new FuncionarioDAO();
         dao = new DAO<>();
     }
-    
 
     public Funcionario buscarUsuario(EntityManagerFactory factory, String login, String senha) {
         Funcionario funcionario = null;
@@ -44,7 +43,7 @@ public class FuncionarioBEANS {
         } else {
             funcionario = daoF.buscarUsuario(factory, login);
             if (funcionario.getSenha().equals(senhaCrip)) {
-                
+
             } else {
                 funcionario = null;
             }
@@ -86,34 +85,45 @@ public class FuncionarioBEANS {
     }
 
     public boolean resetSenha(EntityManagerFactory factory, Long id) {
-        Funcionario funcionario  = dao.getPorId(factory, Funcionario.class, id);
+        Funcionario funcionario = dao.getPorId(factory, Funcionario.class, id);
         funcionario.setSenha(criptografar(funcionario.getCpf()));
         funcionario.setResetar(false);
-        
+
         return dao.salvarOuAtualizar(factory, funcionario);
-        
 
     }
-    
-    protected String criptografar(String senha){
+
+    public boolean solicitarResetSenha(EntityManagerFactory factory, String cpf) {
+        Funcionario funcionario = daoF.buscarCPF(factory, cpf);
+        funcionario.setResetar(true);
+        if (funcionario != null) {
+            return dao.salvarOuAtualizar(factory, funcionario);
+
+        } else {
+            return false;
+
+        }
+    }
+
+    protected String criptografar(String senha) {
         String senhaCrip = "";
         MessageDigest md;
-        
+
         try {
             md = MessageDigest.getInstance("MD5");
-            byte [] byteSenha = senha.getBytes();
+            byte[] byteSenha = senha.getBytes();
 //            for (int i = 0; i < byteSenha.length; i++) {
 //                byte b = byteSenha[i];
 //                
 //            }
             BigInteger hash = new BigInteger(1, md.digest(byteSenha));
             senhaCrip = hash.toString(16);
-            
+
         } catch (NoSuchAlgorithmException ex) {
             ex.printStackTrace();
         }
-        
-        return  senhaCrip;
+
+        return senhaCrip;
     }
 
 }
