@@ -21,7 +21,7 @@
         <columns>
           <TableColumn fx:id="nome" prefWidth="593.0" text="Nome" />
           <TableColumn fx:id="sexo" minWidth="0.0" prefWidth="56.0" text="Sexo" />
-            <TableColumn fx:id="cpf" prefWidth="269.0" text="CPF" />
+            <TableColumn fx:id="cpf" prefWidth="268.0" text="CPF" />
         </columns>
       </TableView>
       <TextField fx:id="pesquisa" layoutX="121.0" layoutY="73.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise Por Nome ou CPF" />

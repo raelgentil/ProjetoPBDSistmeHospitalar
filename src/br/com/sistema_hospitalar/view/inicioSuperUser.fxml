@@ -22,7 +22,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="funcionarioBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Funcionários" textFill="#1379a1">
+      <Button fx:id="funcionarioBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Funcionários" textFill="#1379a1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -43,11 +43,11 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Funcionários" textFill="#1379a1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Prontuários" textFill="#1379a1" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/worker.png" />
+                  <Image url="@../resources/icons/prontuario.png" />
                </image>
             </ImageView>
          </graphic>
@@ -61,11 +61,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Funcionários" textFill="#1379a1" GridPane.rowIndex="1">
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Atender" textFill="#1379a1" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/worker.png" />
+                  <Image url="@../resources/icons/atender.png" />
                </image>
             </ImageView>
          </graphic>
@@ -79,7 +79,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="pacienteBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Pacientes" textFill="#1379a1" GridPane.columnIndex="1">
+      <Button fx:id="pacienteBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Pacientes" textFill="#1379a1" GridPane.columnIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -97,11 +97,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Funcionários" textFill="#1379a1" GridPane.columnIndex="2">
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Farmácia" textFill="#1379a1" GridPane.columnIndex="2">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/worker.png" />
+                  <Image url="@../resources/icons/farmacia.png" />
                </image>
             </ImageView>
          </graphic>
@@ -115,11 +115,11 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Funcionários" textFill="#1379a1" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Relatórios" textFill="#1379a1" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../resources/icons/worker.png" />
+                  <Image url="@../resources/icons/relatorio.png" />
                </image>
             </ImageView>
          </graphic>
