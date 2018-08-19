@@ -41,14 +41,14 @@ public class Pessoa implements Serializable, IEntidadeBase{
     @Column(name = "email",length = 50)
     private String email;
     
-    @Column(name = "tefeones", length = 25)
+    @Column(name = "telefones", length = 25)
     private String telefones;
     
     @Column(name = "sexo", length = 2)
     private String sexo;
     
     @Temporal(javax.persistence.TemporalType.DATE)
-    @Column(name = "data_nasciemnto")
+    @Column(name = "data_nascimento")
     private Calendar dataDeNascimento;
     
     @ManyToOne()

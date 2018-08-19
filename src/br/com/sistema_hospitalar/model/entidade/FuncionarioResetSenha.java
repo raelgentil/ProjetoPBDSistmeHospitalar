@@ -21,11 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "reset_senha")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "ResetSenha.findAll", query = "SELECT r FROM ResetSenha r")
-    , @NamedQuery(name = "ResetSenha.findByNome", query = "SELECT r FROM ResetSenha r WHERE r.nome = :nome")
-    , @NamedQuery(name = "ResetSenha.findById", query = "SELECT r FROM ResetSenha r WHERE r.id = :id")})
+
 public class FuncionarioResetSenha implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -44,9 +44,7 @@ public class App {
 
     public static void main(String[] args) {
         CoreFacade coreFacade = new CoreFacade();
-        salvarProfissionalSaude(coreFacade);
-        
-        
+//        salvarProfissionalSaude(coreFacade);
 
     }
     
@@ -92,12 +90,12 @@ public class App {
         profissionalSaude.setEndereco(endereco);
         profissionalSaude.setEspecializacoess(especializacoess);
         profissionalSaude.setHoraextra(0);
-        profissionalSaude.setNome("Rafael Gentil de Barros Sasntos");
+        profissionalSaude.setNome("Rafael Gentil de Barros Santos");
         profissionalSaude.setSalario(2000);
         profissionalSaude.setSexo("M");
         profissionalSaude.setTelefones("96345157");
-        
         coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude);
+        
     }
 
 }
