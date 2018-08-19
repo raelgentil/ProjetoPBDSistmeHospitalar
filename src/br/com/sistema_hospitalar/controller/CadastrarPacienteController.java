@@ -16,6 +16,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -24,6 +25,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -44,6 +46,8 @@ public class CadastrarPacienteController implements Initializable {
     private TextField email;
     @FXML
     private TextField telefone;
+    @FXML
+    private TextField telefone2;
     @FXML
     private DatePicker dataNasc;
     @FXML
@@ -79,31 +83,38 @@ public class CadastrarPacienteController implements Initializable {
 //Eu nao vou ser apagada
     
     
-    private static CadastrarPacienteController controller;
+   private static CadastrarPacienteController controller;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
         dadosMedicos.setDisable(false);
         carregarComponentes();
         
-        salvarBotao.setOnMouseClicked((event) -> {
+        salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.FACHADA.pacienteSalvarOuAtualizar(getPaciente());
         });
-        voltarBotao.setOnMouseClicked((event) -> {
+        voltarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.voltar();
             limparTela();
         });
-        estado.setItems(FXCollections.observableArrayList());
+        cidade.setOnAction((ActionEvent event) -> {
+            Municipio m ;
+            List<Municipio> munis = Controlador.FACHADA.municipioBuscarPorNome((String)cidade.getValue());
+            if(munis.size() > 0 ){
+                m = munis.get(0);
+                estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
+            }
+        });
     }
     public Paciente getPaciente(){
         Paciente p = new Paciente();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
-        p.setSexo((String)sexo.getValue());
+        p.setSexo(((String)sexo.getValue()).substring(0, 1));
         p.setAlergias(alergias.getText());
         p.setLimitacoes(limitacoes.getText());
-        p.setTelefones(telefone.getText());
+        p.setTelefones(telefone.getText()+"||"+telefone2.getText());
         p.setTipoSanguinio((String)tipoSanguineo.getValue());
         p.setDoadorDeOrgaos(((String)doador.getValue()).equalsIgnoreCase("Sim"));
         p.setFatorRh(((String)fatorRh.getValue()).equalsIgnoreCase("Positivo"));
@@ -114,11 +125,20 @@ public class CadastrarPacienteController implements Initializable {
         e.setBairro(bairro.getText());
         e.setComplemento(complemento.getText());
         e.setDescricao(logradouro.getText());
+        e.setNumero(numero.getText());
         
-        Municipio m = new Municipio();
+        List<Municipio> municipios = Controlador.FACHADA.municipioBuscarPorNome((String)cidade.getValue());
+        Municipio m;
+        if(municipios.size() > 0)
+            m = municipios.get(0);
+        else
+            m =  new Municipio();
         m.setDescricao((String)cidade.getValue());
         m.setEstado(Controlador.FACHADA.estadoBuscarPorNome((String)estado.getValue()).get(0));
+        Controlador.FACHADA.municipioSalvarOuAtualizar(m);
+        
         e.setMunicipio(m);
+        Controlador.FACHADA.enderecoSalvarOuAtualizar(e);
         p.setEndereco(e);
         
         Calendar data = Calendar.getInstance();
@@ -154,9 +174,19 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("AB");             
         tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
+        
         for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
             auxList.add(e.getDescricao());
         estado.setItems(FXCollections.observableArrayList(auxList));
+        auxList.clear();
+        
+        List<Municipio> municipios = Controlador.FACHADA.municipioBuscarPorNome("");
+        if(municipios != null){
+            for(Municipio m: municipios)
+                auxList.add(m.getDescricao());
+            cidade.setItems(FXCollections.observableArrayList(auxList));
+        }
+        
     }
 
     private void limparTela() {

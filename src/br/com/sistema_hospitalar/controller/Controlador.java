@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.apache.commons.codec.binary.Base64;
 
 /**
  *
@@ -20,9 +21,9 @@ public class Controlador extends Application{
     
     private static Stage janela;
     private static Scene login,principal;
-    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente;
+    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
     private static ArrayList<Pane> pilha;
-    public  static CoreFacade FACHADA ;//= new CoreFacade();
+    public  static CoreFacade FACHADA = new CoreFacade();
     
     public static void main(String[] args){
         launch(args);    
@@ -38,6 +39,7 @@ public class Controlador extends Application{
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarFuncionarios.fxml"));
         visualizar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/visualizar.fxml"));
         cadastrarPaciente = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
+        cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -62,6 +64,7 @@ public class Controlador extends Application{
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
             case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
+            case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
             default:{System.out.println("O próxima tela não foi encontrada");break;}
         }
     }
@@ -80,5 +83,11 @@ public class Controlador extends Application{
         HomeController.get().alterarPane(pilha.get(pilha.size()-1));
         pilha.remove(pilha.size()-1);
         }
+    }
+    public static String encriptar(String s){
+        return Base64.encodeBase64String(s.getBytes());
+    }
+    public static String desencriptar(String s){
+         return new String(Base64.decodeBase64(s));
     }
 }
