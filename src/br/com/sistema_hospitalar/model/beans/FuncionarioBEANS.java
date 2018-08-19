@@ -95,6 +95,10 @@ public class FuncionarioBEANS {
 
     }
     
+//    public boolean solicitarResetSenha(String cpfOuLogin){
+//        Funcionario dao.
+//    }
+    
     protected String criptografar(String senha){
         String senhaCrip = "";
         MessageDigest md;

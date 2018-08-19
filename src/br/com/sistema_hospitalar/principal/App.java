@@ -45,24 +45,9 @@ public class App {
     public static void main(String[] args) {
         CoreFacade coreFacade = new CoreFacade();
 //        salvarProfissionalSaude(coreFacade);
-//      Perguntar ao doido como a pessoa vai saber por q tipo de medico ele foi atendido no prontuario
+
         
-ProfissionalSaude profissionalSaude = new ProfissionalSaude();
-        profissionalSaude.setAtivo(true);
-        profissionalSaude.setCargaHorariaMinimaMensal(60);
-        profissionalSaude.setCpf("1234567891");
-        Calendar dataDeNascimento = Calendar.getInstance();
-        dataDeNascimento.set(1996, 2, 19);
-        profissionalSaude.setDataDeNascimento(dataDeNascimento);
-        profissionalSaude.setEmail("raelgentil@gmail.com");
-        profissionalSaude.setHoraextra(0);
-        profissionalSaude.setNome("Rafael Gentil de Barros Santos");
-        profissionalSaude.setSalario(2000);
-        profissionalSaude.setSexo("M");
-        profissionalSaude.setTelefones("96345157");
-//        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude);
-        String[] nomes = profissionalSaude.getNome().split(" ");
-        System.out.println(nomes[0].charAt(0));
+
     }
     
     
