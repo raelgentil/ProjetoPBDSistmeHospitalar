@@ -21,7 +21,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="admBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Administradores" textFill="#1379a1">
+      <Button fx:id="admBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Administradores" textFill="#1379a1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -42,7 +42,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="atendenteBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Atendentes" textFill="#1379a1" GridPane.columnIndex="2">
+      <Button fx:id="atendenteBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Atendentes" textFill="#1379a1" GridPane.columnIndex="2">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -63,7 +63,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button fx:id="saudeBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Gerenciar Prof. Saúde" textFill="#1379a1" GridPane.columnIndex="1">
+      <Button fx:id="saudeBotao" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Profissionais de Saúde" textFill="#1379a1" GridPane.columnIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
