@@ -61,8 +61,8 @@ public class ProficionalSaudeDAO {
             profissionalSaudes = q.getResultList();
 
         } catch (Exception e) {
-            System.out.println("erro PessoaDAO: " + e.getMessage());
-            System.out.println("br.com.sistema_hospitalar.model.dao.ProfissionalSaudeDAO.buscarPorNome()");
+            System.out.println("erro ProfissionalSaudeDAO: " + e.getMessage());
+            System.out.println("br.com.sistema_hospitalar.model.dao.ProficionalSaudeDAO.buscarPorNome()");
             e.printStackTrace();
 
         } finally {
@@ -85,8 +85,8 @@ public class ProficionalSaudeDAO {
             profissionalSaude = q.getSingleResult();
 
         } catch (Exception e) {
-            System.out.println("erro PessoaDAO: " + e.getMessage());
-            System.out.println("br.com.sistema_hospitalar.model.dao.ProfissionalSaudeDAO.buscarPorNome()");
+            System.out.println("erro ProfissionalSaudeDAO: " + e.getMessage());
+            System.out.println("br.com.sistema_hospitalar.model.dao.ProficionalSaudeDAO.buscarPorApelido()");
             e.printStackTrace();
 
         } finally {
@@ -109,8 +109,8 @@ public class ProficionalSaudeDAO {
             profissionalSaudes = q.getResultList();
 
         } catch (Exception e) {
-            System.out.println("erro PessoaDAO: " + e.getMessage());
-            System.out.println("br.com.sistema_hospitalar.model.dao.ProfissionalSaudeDAO.buscarPorNome()");
+            System.out.println("erro ProfissionalSaudeDAO: " + e.getMessage());
+            System.out.println("br.com.sistema_hospitalar.model.dao.ProficionalSaudeDAO.buscarPorEspecializacao()");
             e.printStackTrace();
 
         } finally {

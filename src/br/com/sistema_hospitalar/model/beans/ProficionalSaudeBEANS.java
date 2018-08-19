@@ -9,8 +9,10 @@ import br.com.sistema_hospitalar.model.dao.DAO;
 import br.com.sistema_hospitalar.model.dao.ProficionalSaudeDAO;
 import br.com.sistema_hospitalar.model.entidade.Especializacao;
 import br.com.sistema_hospitalar.model.entidade.Paciente;
+import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 
@@ -38,6 +40,7 @@ public class ProficionalSaudeBEANS {
             String login = beansF.criarLogin(factory, profissionalSaude);
             String senha = beansF.criptografar(profissionalSaude.getCpf());
             profissionalSaude.setSenha(senha);
+            profissionalSaude.setApelido(criarApelido(factory, profissionalSaude));
 
             if (login != null) {
                 profissionalSaude.setLogin(login);
@@ -98,6 +101,39 @@ public class ProficionalSaudeBEANS {
         }
 
         return especializacoess;
+    }
+
+    private String criarApelido(EntityManagerFactory factory, Pessoa pessoa) {
+        String[] nomes = pessoa.getNome().split(" ");
+        nomes[0].charAt(0);
+        String apelido = "";
+
+        for (int i = 1; i < nomes.length; i++) {
+                apelido = nomes[0].charAt(0) + "";
+                if (nomes.length > 1) {
+                    apelido += nomes[i].charAt(0);
+                }
+                if (daoP.buscarPorApelido(factory, apelido) == null) {
+                    return apelido;
+                }
+
+        }
+        
+        for (int i = 1; i < nomes.length; i++) {
+                apelido = nomes[0].charAt(0) + "";
+                if (nomes.length > 1) {
+                    apelido += nomes[i].charAt(0);
+                }
+                if (nomes.length > 2) {
+                    apelido += nomes[i+1].charAt(0);
+                }
+                if (daoP.buscarPorApelido(factory, apelido) == null) {
+                    return apelido;
+                }
+
+        }
+
+        return null;
     }
 
 }

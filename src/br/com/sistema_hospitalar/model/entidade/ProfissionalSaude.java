@@ -36,9 +36,6 @@ public class ProfissionalSaude extends Funcionario implements Serializable {
     @Column(name = "especializacao", length = 50)
     private String especializacoes;
     
-    
-    private Long quantPacientes;
-    
     @Transient
     private List<Especializacao> especializacoess;
     
