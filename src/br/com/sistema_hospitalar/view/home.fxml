@@ -77,6 +77,6 @@
             </Pane>
          </children>
       </GridPane>
-      <StackPane fx:id="pane" accessibleText="Encerrar Sessão" prefHeight="600.0" prefWidth="800.0" GridPane.rowIndex="1" />
+      <StackPane fx:id="pane" accessibleText="Encerrar Sessão" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #fffffF;" GridPane.rowIndex="1" />
    </children>
 </GridPane>
