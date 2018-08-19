@@ -129,6 +129,9 @@ public class CoreFacade {
     public Municipio municipioBuscarPorId(Long id) {
        return municipioBEANS.getPorId(factory, id);
     }
+    public List<Municipio> municipioBuscarPorNome(String string) {
+        return municipioBEANS.buscarPorDescricao(factory, string);
+    }
     
     /**
      * 
@@ -488,6 +491,8 @@ public class CoreFacade {
     public CategoriaCID categoriaCIDBuscarPorId(Long id) {
         return categoriCIDBEANS.getPorId(factory, id);
     }
+
+    
     
     
     
