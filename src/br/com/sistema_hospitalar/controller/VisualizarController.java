@@ -91,27 +91,21 @@ public class VisualizarController implements Initializable {
         }catch(NullPointerException e){System.out.println("ERRO AO ATUALIZAR TELA!");}
     }
     private void cadastrar(){
-        if(opcao!=null)
+        if(opcao!=null){
             switch (opcao){
-                case paciente:{
-                    Controlador.trocarPane(Panes.cadastrarPaciente);
-                }
-                case adm:{
-                    
-                }
-                case ProfSaude:{
-                    
-                }
-                case atendente:{
-                    
-                }
+                case paciente:{Controlador.trocarPane(Panes.cadastrarPaciente);break;}
+                case adm:{Controlador.trocarPane(Panes.cadastrarFuncionario);break;}
+                case ProfSaude:{Controlador.trocarPane(Panes.cadastrarFuncionario);break;}
+                case atendente:{Controlador.trocarPane(Panes.cadastrarFuncionario);break;}
             }
+                CadastrarFuncionarioController.get().setOpcao(opcao);
+        }
     }
     private void editar(){
-        
+        CadastrarFuncionarioController.get().setOpcao(opcao);
     }
     private void excluir(){
-        
+        CadastrarFuncionarioController.get().setOpcao(opcao);
     }
     
     public static VisualizarController get(){

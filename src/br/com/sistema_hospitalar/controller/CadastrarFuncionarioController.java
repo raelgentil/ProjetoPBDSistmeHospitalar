@@ -5,10 +5,11 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
-import br.com.sistema_hospitalar.model.entidade.Paciente;
+import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,10 +21,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
@@ -32,66 +34,98 @@ import javafx.scene.input.MouseEvent;
  *
  * @author João Emerson
  */
-public class CadastrarPacienteController implements Initializable {
+public class CadastrarFuncionarioController implements Initializable {
 
-    @FXML
+     @FXML
     private TextField nome;
+
     @FXML
     private TextField cpf;
+
     @FXML
     private ComboBox<?> sexo;
-    @FXML
-    private TextField cep;
+
     @FXML
     private TextField email;
+
     @FXML
     private TextField telefone;
-    @FXML
-    private TextField telefone2;
+
     @FXML
     private DatePicker dataNasc;
+
+    @FXML
+    private TextField telefone2;
+
     @FXML
     private TextField logradouro;
+
     @FXML
     private TextField complemento;
+
     @FXML
     private TextField numero;
+
     @FXML
     private ComboBox<?> cidade;
+
     @FXML
     private ComboBox<?> estado;
+
     @FXML
     private TextField bairro;
+
     @FXML
-    private ComboBox<?> tipoSanguineo;
+    private TextField cep;
+
     @FXML
-    private ComboBox<?> fatorRh;
+    private TextField cargaHoraria;
+
     @FXML
-    private ComboBox<?> doador;
+    private TextField salario;
+
+    @FXML
+    private CheckBox ativo;
+
+    @FXML
+    private TextField login;
+
+    @FXML
+    private TextField senha;
+
+    @FXML
+    private Tab saude;
+
+    @FXML
+    private TableView<?> tabela;
+
+    @FXML
+    private Button adicionarBotao;
+
+    @FXML
+    private Button removerBotao;
+
+    @FXML
+    private Button cadastrarBotao;
+
+    @FXML
+    private TextField apelido;
+
     @FXML
     private Button salvarBotao;
+
     @FXML
     private Button voltarBotao;
-    @FXML
-    private TextArea alergias;
-    @FXML
-    private TextArea limitacoes;
-     @FXML
-    private Tab dadosMedicos;
-
-   
-//Eu nao vou ser apagada
+    private Enums opcao;
     
-    
-   private static CadastrarPacienteController controller;
+   private static CadastrarFuncionarioController controller;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
-        dadosMedicos.setDisable(false);
         carregarComponentes();
         
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
-            Controlador.FACHADA.pacienteSalvarOuAtualizar(getPaciente());
+           // Controlador.FACHADA.pacienteSalvarOuAtualizar(getPaciente());
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.voltar();
@@ -106,19 +140,13 @@ public class CadastrarPacienteController implements Initializable {
             }
         });
     }
-    public Paciente getPaciente(){
-        Paciente p = new Paciente();
+    public ProfissionalSaude getFuncionario(){
+        ProfissionalSaude p = new ProfissionalSaude();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
         p.setSexo(((String)sexo.getValue()).substring(0, 1));
-        p.setAlergias(alergias.getText());
-        p.setLimitacoes(limitacoes.getText());
         p.setTelefones(telefone.getText()+"||"+telefone2.getText());
-        p.setTipoSanguinio((String)tipoSanguineo.getValue());
-        p.setDoadorDeOrgaos(((String)doador.getValue()).equalsIgnoreCase("Sim"));
-        p.setFatorRh(((String)fatorRh.getValue()).equalsIgnoreCase("Positivo"));
-        
         Endereco e = new Endereco();
         e.setBairro(bairro.getText());
         e.setCep(Integer.parseInt(cep.getText().replaceAll("-", "")));
@@ -146,7 +174,7 @@ public class CadastrarPacienteController implements Initializable {
         p.setDataDeNascimento(data);
         return p;
     }
-    public static CadastrarPacienteController get(){
+    public static CadastrarFuncionarioController get(){
         return controller;
     }
 
@@ -156,23 +184,6 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("Masculino");
         auxList.add("Feminino");
         sexo.setItems(FXCollections.observableArrayList(auxList));
-        auxList.clear();
-        
-        auxList.add("Positivo");
-        auxList.add("Negativo");
-        fatorRh.setItems(FXCollections.observableArrayList(auxList));
-        auxList.clear();
-        
-        auxList.add("Sim");
-        auxList.add("Não");
-        doador.setItems(FXCollections.observableArrayList(auxList));
-        auxList.clear();
-        
-        auxList.add("O");
-        auxList.add("A");
-        auxList.add("B");
-        auxList.add("AB");             
-        tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
         
         for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
@@ -191,6 +202,11 @@ public class CadastrarPacienteController implements Initializable {
 
     private void limparTela() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setOpcao(Enums opcao) {
+        this.opcao = opcao;
+        saude.setDisable(opcao!=Enums.ProfSaude);
     }
     
 }

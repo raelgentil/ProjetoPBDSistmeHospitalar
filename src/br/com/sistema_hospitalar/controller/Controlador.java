@@ -20,7 +20,7 @@ public class Controlador extends Application{
     
     private static Stage janela;
     private static Scene login,principal;
-    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente;
+    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     
@@ -38,6 +38,7 @@ public class Controlador extends Application{
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarFuncionarios.fxml"));
         visualizar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/visualizar.fxml"));
         cadastrarPaciente = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
+        cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -62,6 +63,7 @@ public class Controlador extends Application{
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
             case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
+            case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
             default:{System.out.println("O próxima tela não foi encontrada");break;}
         }
     }
