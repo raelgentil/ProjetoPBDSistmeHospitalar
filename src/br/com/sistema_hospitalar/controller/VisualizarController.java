@@ -11,14 +11,18 @@ import static br.com.sistema_hospitalar.enums.Enums.adm;
 import static br.com.sistema_hospitalar.enums.Enums.atendente;
 import static br.com.sistema_hospitalar.enums.Enums.paciente;
 import br.com.sistema_hospitalar.enums.Panes;
+import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -43,9 +47,25 @@ public class VisualizarController implements Initializable {
     @FXML
     private TextField pesquisa;
     
+    @FXML
+    private TableColumn<Pessoa, String> nome;
+
+    @FXML
+    private TableColumn<Pessoa, String> sexo;
+
+    @FXML
+    private TableColumn<Pessoa, String> cpf;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
+        nome.setCellValueFactory( new PropertyValueFactory("nome"));
+        cpf.setCellValueFactory( new PropertyValueFactory("cpf"));
+        sexo.setCellValueFactory( new PropertyValueFactory("sexo"));
+        
+        pesquisa.setOnKeyReleased((event) -> {
+            atualizar(opcao);
+        });
         cadastrarBotao.setOnMouseClicked((MouseEvent) -> {
             cadastrar();
         });
@@ -58,29 +78,16 @@ public class VisualizarController implements Initializable {
         
     }
     public void atualizar(Enums opcao){
-        this.opcao = opcao;
-        tabela.getColumns().clear();
-        tabela.getColumns().add(new TableColumn("Nome:"));
-        tabela.getColumns().add(new TableColumn("CPF:"));
-        tabela.getColumns().add(new TableColumn("Sexo:"));
-        
-        tabela.getColumns().get(0).cellFactoryProperty();
-        
+        this.opcao = opcao; 
+        List aux = null;
         try{
             switch (opcao){
-                case paciente:{
-                    
-                }
-                case adm:{
-                    
-                }
-                case ProfSaude:{
-                    
-                }
-                case atendente:{
-                    
-                }
+                case paciente:{aux = Controlador.FACHADA.pacienteBuscarPorNome(pesquisa.getText());break;}
+                case adm:{aux = Controlador.FACHADA.administradorBuscarPorNome(pesquisa.getText());break;}
+                case ProfSaude:{aux = Controlador.FACHADA.profissionalSaudeBuscarPorNome(pesquisa.getText());break;}
+                case atendente:{aux = Controlador.FACHADA.atendenteBuscarPorNome(pesquisa.getText());break;}
             }
+            tabela.setItems(FXCollections.observableArrayList(aux));
         }catch(NullPointerException e){System.out.println("ERRO AO ATUALIZAR TELA!");}
     }
     private void cadastrar(){
