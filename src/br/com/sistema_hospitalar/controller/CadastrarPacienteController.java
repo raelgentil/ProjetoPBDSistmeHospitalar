@@ -79,7 +79,7 @@ public class CadastrarPacienteController implements Initializable {
 //Eu nao vou ser apagada
     
     
-    private static CadastrarPacienteController controller;
+   private static CadastrarPacienteController controller;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
@@ -154,9 +154,15 @@ public class CadastrarPacienteController implements Initializable {
         auxList.add("AB");             
         tipoSanguineo.setItems(FXCollections.observableArrayList(auxList));
         auxList.clear();
+        
         for(Estado e: Controlador.FACHADA.estadoBuscarPorNome(""))
             auxList.add(e.getDescricao());
         estado.setItems(FXCollections.observableArrayList(auxList));
+        auxList.clear();
+        
+//        for(Municipio m: Controlador.FACHADA.municipioBuscarPorId(1L)){
+//        }
+        
     }
 
     private void limparTela() {
