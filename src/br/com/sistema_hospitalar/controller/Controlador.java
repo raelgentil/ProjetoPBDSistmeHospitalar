@@ -4,6 +4,7 @@ import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
 import static br.com.sistema_hospitalar.enums.Panes.gerenciarFunc;
 import static br.com.sistema_hospitalar.enums.Panes.inicioSU;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.util.ArrayList;
 import javafx.application.Application;
@@ -23,7 +24,7 @@ public class Controlador extends Application{
     private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
-    
+    private static Funcionario usuarioLogado;
     public static void main(String[] args){
         launch(args);    
        
@@ -82,6 +83,15 @@ public class Controlador extends Application{
         HomeController.get().alterarPane(pilha.get(pilha.size()-1));
         pilha.remove(pilha.size()-1);
         }
+    }
+
+    public static Funcionario getUsuarioLogado() {
+        return usuarioLogado;
+    }
+
+    public static void setUsuarioLogado(Funcionario usuarioLogado) {
+        HomeController.get().atualizar(usuarioLogado);
+        Controlador.usuarioLogado = usuarioLogado;
     }
  
 }

@@ -1,12 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.sistema_hospitalar.controller;
 
 import br.com.sistema_hositalar.util.Mensagens;
 import br.com.sistema_hospitalar.enums.Panes;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -23,7 +25,7 @@ import javafx.scene.input.MouseEvent;
  * @author João Emerson
  */
 public class LoginController implements Initializable {
-
+    
     @FXML
     private TextField login;
     @FXML
@@ -36,9 +38,11 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         botao.setOnMouseClicked((MouseEvent e)->{
-            Mensagens.informacao("Login","Logado "+ login.getText());
-            Controlador.trocarTela("principal");
-            Controlador.trocarPane(Panes.inicioSU);
+            logar();
+        });
+        senha.setOnKeyReleased((event) -> {
+            if(event.getCode() == KeyCode.ENTER)
+                logar();
         });
         resetSenha.setOnMouseClicked((event) -> {
             String cpf = Mensagens.inserirTexto("Reset de Senha", "Insira seu CPF", "");
@@ -50,6 +54,17 @@ public class LoginController implements Initializable {
                     Mensagens.erro("Erro ao realizar solicitação de Reset", "Verifique o CPF informado!");
             }
         });
-    }    
+    }
+    private boolean logar(){
+        Funcionario f = Controlador.FACHADA.funcionarioBuscarUsuario(login.getText(), senha.getText());
+        if(f != null){
+            Controlador.setUsuarioLogado(f);
+            Controlador.trocarTela("principal");
+            Controlador.trocarPane(Panes.inicioSU);
+            return true;
+        }
+        Mensagens.erro("Credenciais Inválidas", "Dados de Login e/ou senha estão incorretos!");
+        return false;
+    }
     
 }

@@ -42,7 +42,7 @@ public class FuncionarioBEANS {
             funcionario = daoF.buscarUsuarioPrimeiroAcesso(factory, senha, senhaCrip);
         } else {
             funcionario = daoF.buscarUsuario(factory, login);
-            if (funcionario.getSenha().equals(senhaCrip)) {
+            if (funcionario != null && funcionario.getSenha().equals(senhaCrip)) {
 
             } else {
                 funcionario = null;
