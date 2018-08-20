@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  */
 public class Controlador extends Application{
     
-    private static Stage janela;
+    private static Stage janela, janelaAUX;
     private static Scene login,principal;
     private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
     private static ArrayList<Pane> pilha;
@@ -31,6 +31,7 @@ public class Controlador extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
+        janela = stage;
         pilha = new ArrayList<>();
         Pane loginPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/login.fxml"));
         inicioSUPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/inicioSuperUser.fxml"));
@@ -42,9 +43,8 @@ public class Controlador extends Application{
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
-        stage.setScene(login);
-        janela = stage;
-        stage.show();
+        janela.setScene(login);
+        janela.show();
         
         
               
