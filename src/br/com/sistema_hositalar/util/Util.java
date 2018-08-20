@@ -10,8 +10,9 @@ public class Util {
     
     public static void atualizarBanco(){
         preencherEstados();
+        verificarSU();
     }
-    private static void cadastrarSU(){
+    private static void verificarSU(){
         List<Administrador> adms = Controlador.FACHADA.administradorBuscarPorNome("");
         Administrador su = null;
         for(Administrador a: adms){
@@ -21,7 +22,12 @@ public class Util {
         if(su == null){
             su = new Administrador();
             su.setAtivo(true);
-            su.setCpf("000");
+            su.setSuperUsuario(true);
+            su.setCpf("0");
+            su.setNome("admin");
+            su.setNome("login");
+            su.setSenha("admin");
+            Controlador.FACHADA.administradorSalvarOuAtualizar(su);
         }
             
     }

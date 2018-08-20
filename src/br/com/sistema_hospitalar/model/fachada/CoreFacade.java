@@ -418,6 +418,9 @@ public class CoreFacade {
     public Administrador administradorBuscarPorCpf(String cpf) {
         return administradorBEANS.buscarPorCpf(factory, cpf);
     }
+    public boolean administridaorVerificarSU(){
+        return administradorBEANS.verificarSU(factory);
+    }
     
     
     
