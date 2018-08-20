@@ -44,8 +44,10 @@ public class LoginController implements Initializable {
             String cpf = Mensagens.inserirTexto("Reset de Senha", "Insira seu CPF", "");
             if(cpf != null){
                 System.out.println("CPF: "+cpf);
-                Controlador.FACHADA.solicitarResetSenha(cpf);
-//                Mensagens.informacao("Solicitação de Reset de realizada com sucesso!", "Quando o reset de senha for aprovado pelo administrador, voê deverá logar com a senha padrão!");
+                if(Controlador.FACHADA.solicitarResetSenha(cpf))
+                    Mensagens.informacao("Solicitação de Reset de realizada com sucesso!", "Quando o reset de senha for aprovado pelo administrador, voê deverá logar com a senha padrão!");
+                else
+                    Mensagens.erro("Erro ao realizar solicitação de Reset", "Verifique o CPF informado!");
             }
         });
     }    

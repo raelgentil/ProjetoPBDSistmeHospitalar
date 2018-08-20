@@ -95,8 +95,8 @@ public class FuncionarioBEANS {
 
     public boolean solicitarResetSenha(EntityManagerFactory factory, String cpf) {
         Funcionario funcionario = daoF.buscarCPF(factory, cpf);
-        funcionario.setResetar(true);
         if (funcionario != null) {
+        funcionario.setResetar(true);
             return dao.salvarOuAtualizar(factory, funcionario);
 
         } else {
