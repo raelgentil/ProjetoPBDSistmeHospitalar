@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -19,7 +27,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.CadastrarPacienteController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.CadastrarPacienteController">
    <children>
       <TabPane layoutX="362.0" layoutY="32.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="549.0" prefWidth="643.0" style="-fx-border-color: #000000;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -27,7 +35,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="666.0">
                      <children>
-                        <Pane layoutX="53.0" layoutY="47.0" prefHeight="424.0" prefWidth="535.0">
+                        <Pane fx:id="panePessoa" layoutX="53.0" layoutY="47.0" prefHeight="424.0" prefWidth="535.0">
                            <children>
                               <TextField fx:id="nome" layoutX="32.0" layoutY="113.0" prefHeight="25.0" prefWidth="454.0" />
                               <Label layoutX="32.0" layoutY="93.0" text="Nome:" textFill="#2323c6">
@@ -89,7 +97,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="62.0" layoutY="76.0" prefHeight="396.0" prefWidth="517.0">
+                        <Pane fx:id="paneEndereco" layoutX="62.0" layoutY="76.0" prefHeight="396.0" prefWidth="517.0">
                            <children>
                               <TextField fx:id="logradouro" layoutX="32.0" layoutY="113.0" prefHeight="25.0" prefWidth="454.0" />
                               <Label layoutX="32.0" layoutY="93.0" text="Logradouro:" textFill="#2323c6">
@@ -151,7 +159,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="22.0" layoutY="62.0" prefHeight="394.0" prefWidth="605.0">
+                        <Pane fx:id="paneMedico" layoutX="22.0" layoutY="62.0" prefHeight="394.0" prefWidth="605.0">
                            <children>
                               <Label layoutX="32.0" layoutY="161.0" text="Alergias:" textFill="#2323c6">
                                  <font>
@@ -201,7 +209,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Pane layoutX="50.0" layoutY="35.0" prefHeight="438.0" prefWidth="544.0">
+                        <Pane fx:id="paneResp" layoutX="50.0" layoutY="35.0" prefHeight="438.0" prefWidth="544.0">
                            <children>
                               <Label layoutX="183.0" layoutY="39.0" text="Responsáveis" textFill="#2323c6">
                                  <font>

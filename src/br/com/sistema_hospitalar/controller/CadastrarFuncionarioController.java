@@ -131,9 +131,8 @@ public class CadastrarFuncionarioController implements Initializable {
             cadastrar();
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
-//            if()
             Controlador.voltar();
-            limparTela();
+//            Controlador.limparPane(p);
         });
         cidade.setOnAction((ActionEvent event) -> {
             Municipio m ;
@@ -318,9 +317,6 @@ public class CadastrarFuncionarioController implements Initializable {
         
     }
 
-    private void limparTela() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public void setOpcao(Enums opcao) {
         this.opcao = opcao;

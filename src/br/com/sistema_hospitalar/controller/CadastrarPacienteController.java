@@ -26,6 +26,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -78,7 +79,15 @@ public class CadastrarPacienteController implements Initializable {
     private TextArea limitacoes;
      @FXML
     private Tab dadosMedicos;
-
+     @FXML
+    private Pane panePessoa;
+     @FXML
+    private Pane paneMedico;
+     @FXML
+    private Pane paneEndereco;
+     @FXML
+    private Pane paneResp;
+     
    
 //Eu nao vou ser apagada
     
@@ -190,7 +199,10 @@ public class CadastrarPacienteController implements Initializable {
     }
 
     private void limparTela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Controlador.limparPane(panePessoa);
+        Controlador.limparPane(paneMedico);
+        Controlador.limparPane(paneEndereco);
+        Controlador.limparPane(paneResp);
     }
     
 }

@@ -11,7 +11,15 @@ import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -89,6 +97,7 @@ public class Controlador extends Application{
     }
     public static void voltar(){
         if(pilha.size() > 0){
+            limparPane(pilha.get(pilha.size()-1));
         HomeController.get().alterarPane(pilha.get(pilha.size()-1));
         pilha.remove(pilha.size()-1);
         }
@@ -101,6 +110,24 @@ public class Controlador extends Application{
     public static void setUsuarioLogado(Funcionario usuarioLogado) {
         HomeController.get().atualizar(usuarioLogado);
         Controlador.usuarioLogado = usuarioLogado;
+    }
+    public static void limparPane(Pane p){
+        for(Node n: p.getChildren()){
+            if(n instanceof TextField)
+                ((TextField) n).clear();
+            else if (n instanceof PasswordField)
+                ((PasswordField) n).clear();
+            else if (n instanceof TabPane)
+                limparPane((Pane) n);
+            else if (n instanceof Pane)
+                limparPane((Pane) n);
+            else if (n instanceof ComboBox)
+                ((ComboBox) n).getSelectionModel().select(null);
+            else if (n instanceof TableView)
+                ((TableView) n).setItems(null);
+//            else if (n instanceof DatePicker)
+//                ((((TableView) n).setItems(null);) n).setItems(null);
+        }
     }
  
 }
