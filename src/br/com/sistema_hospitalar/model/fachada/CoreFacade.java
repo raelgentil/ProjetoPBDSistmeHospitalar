@@ -494,6 +494,10 @@ public class CoreFacade {
         return categoriCIDBEANS.getPorId(factory, id);
     }
 
+    public static EntityManagerFactory getFactory() {
+        return factory;
+    }
+
     
     
     

@@ -1,5 +1,6 @@
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Util;
 import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
 import static br.com.sistema_hospitalar.enums.Panes.gerenciarFunc;
@@ -46,6 +47,7 @@ public class Controlador extends Application{
         principal = new Scene(principalPane);
         janela.setScene(login);
         janela.show();
+        Util.atualizarBanco();
         
         
               
