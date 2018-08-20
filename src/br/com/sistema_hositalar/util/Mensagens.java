@@ -137,7 +137,7 @@ public class Mensagens {
 
     public static String inserirTexto(String title, String message, String defaultValue) {
         TextInputDialog dialog = new TextInputDialog(defaultValue);
-        dialog.initStyle(StageStyle.UTILITY);
+        dialog.initStyle(StageStyle.UNIFIED);
         dialog.setTitle("Digite");
         dialog.setHeaderText(title);
         dialog.setContentText(message);
