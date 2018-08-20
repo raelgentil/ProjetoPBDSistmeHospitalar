@@ -131,6 +131,7 @@ public class CadastrarFuncionarioController implements Initializable {
             cadastrar();
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
+//            if()
             Controlador.voltar();
             limparTela();
         });
@@ -145,7 +146,16 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     private void cadastrar(){
         switch (opcao){
-                case adm:{Controlador.FACHADA.administradorSalvarOuAtualizar(getAdministrador());break;}
+                case adm:{
+                    Administrador a = getAdministrador();
+                    if(!Controlador.FACHADA.administradorVerificarSU()){
+                        a.setSuperUsuario(true);
+                    }
+                    Controlador.FACHADA.administradorSalvarOuAtualizar(a);
+                    if(a.isSuperUsuario())
+                        Controlador.trocarTela("login");
+                    break;
+                }
                 case ProfSaude:{Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar(getProfissionalSaude());break;}
                 case atendente:{Controlador.FACHADA.atendenteSalvarOuAtualizar(getAtendente());break;}
             }

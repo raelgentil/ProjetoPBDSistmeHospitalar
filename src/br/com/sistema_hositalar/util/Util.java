@@ -10,31 +10,31 @@ public class Util {
     
     public static void atualizarBanco(){
         preencherEstados();
-        verificarSU();
+//        verificarSU();
     }
-    private static void verificarSU(){
-        List<Administrador> adms = Controlador.FACHADA.administradorBuscarPorNome("");
-        Administrador su = null;
-        for(Administrador a: adms){
-            if(a.isSuperUsuario())
-                su = a;
-        }
-        if(su == null){
-            su = new Administrador();
-            su.setAtivo(true);
-            su.setSuperUsuario(true);
-            su.setCpf("0");
-            su.setNome("admin");
-            su.setNome("login");
-            su.setSenha("admin");
-            Controlador.FACHADA.administradorSalvarOuAtualizar(su);
-        }
-            
-    }
+//    private static void verificarSU(){
+//        List<Administrador> adms = Controlador.FACHADA.administradorBuscarPorNome("");
+//        Administrador su = null;
+//        for(Administrador a: adms){
+//            if(a.isSuperUsuario())
+//                su = a;
+//        }
+//        if(su == null){
+//            su = new Administrador();
+//            su.setAtivo(true);
+//            su.setSuperUsuario(true);
+//            su.setCpf("0");
+//            su.setNome("admin");
+//            su.setNome("login");
+//            su.setSenha("admin");
+//            Controlador.FACHADA.administradorSalvarOuAtualizar(su);
+//        }
+//            
+//    }
     private static void preencherEstados(){
         List<Estado> estadosBD = Controlador.FACHADA.estadoBuscarPorNome("");
         List<Estado> estados = new ArrayList<>();
-        if(estadosBD.size() < 26){
+        if(estadosBD.size() < 27){
            estados.add(new Estado("AC", "Acre"));
            estados.add(new Estado("AL", "Alagoas"));
            estados.add(new Estado("AP", "Amapá"));

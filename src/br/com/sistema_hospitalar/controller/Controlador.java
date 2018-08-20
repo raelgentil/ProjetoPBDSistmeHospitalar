@@ -1,5 +1,6 @@
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
 import br.com.sistema_hositalar.util.Util;
 import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
@@ -21,7 +22,7 @@ import javafx.stage.Stage;
 public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
-    private static Scene login,principal;
+    private static Scene login,principal, aux;
     private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
@@ -43,11 +44,17 @@ public class Controlador extends Application{
         cadastrarPaciente = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         
+        Util.atualizarBanco();
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
-        janela.setScene(login);
+        if(!FACHADA.administradorVerificarSU()){
+            Mensagens.informacao("Super Usuario não cadastrado!", "Pressione OK para ir para tela de Cadastro");
+            CadastrarFuncionarioController.get().setOpcao(Enums.adm);
+            aux = new Scene(cadastrarFuncionario);
+            janela.setScene(aux);
+        }else
+            janela.setScene(login);
         janela.show();
-        Util.atualizarBanco();
         
         
               
