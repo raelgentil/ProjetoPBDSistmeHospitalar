@@ -10,6 +10,7 @@ import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.net.URL;
@@ -122,6 +123,7 @@ public class CadastrarFuncionarioController implements Initializable {
     private Enums opcao;
     
    private static CadastrarFuncionarioController controller;
+   private Funcionario funcionario;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         controller = this;
@@ -129,10 +131,11 @@ public class CadastrarFuncionarioController implements Initializable {
         
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             cadastrar();
+            Controlador.voltar();
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.voltar();
-//            Controlador.limparPane(p);
+           // Controlador.limparPane(p);
         });
         cidade.setOnAction((ActionEvent event) -> {
             Municipio m ;
@@ -142,6 +145,9 @@ public class CadastrarFuncionarioController implements Initializable {
                 estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
             }
         });
+    }
+    public void setTela(Funcionario f){
+        
     }
     private void cadastrar(){
         switch (opcao){
@@ -158,6 +164,7 @@ public class CadastrarFuncionarioController implements Initializable {
                 case ProfSaude:{Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar(getProfissionalSaude());break;}
                 case atendente:{Controlador.FACHADA.atendenteSalvarOuAtualizar(getAtendente());break;}
             }
+        funcionario = null;
     }
     private Endereco getEndereco(){
         Endereco e = new Endereco();
@@ -183,7 +190,11 @@ public class CadastrarFuncionarioController implements Initializable {
         return e;
     }
     public ProfissionalSaude getProfissionalSaude(){
-        ProfissionalSaude p = new ProfissionalSaude();
+        ProfissionalSaude p;
+        if(funcionario != null)
+            p = (ProfissionalSaude) funcionario;
+        else
+            p = new ProfissionalSaude();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -220,7 +231,11 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     
     public Atendente getAtendente(){
-        Atendente p = new Atendente();
+        Atendente p;
+        if(funcionario != null)
+            p = (Atendente) funcionario;
+        else
+            p = new Atendente();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -256,7 +271,11 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     
     public Administrador getAdministrador(){
-        Administrador p = new Administrador();
+        Administrador p;
+        if(funcionario != null)
+             p = (Administrador) funcionario;
+        else
+            p = new Administrador();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -292,6 +311,22 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     public static CadastrarFuncionarioController get(){
         return controller;
+    }
+
+    public ComboBox<?> getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(ComboBox<?> sexo) {
+        this.sexo = sexo;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
 

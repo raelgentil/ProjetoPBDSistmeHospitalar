@@ -42,6 +42,7 @@ public class Controlador extends Application{
     
     @Override
     public void start(Stage stage) throws Exception {
+        Util.atualizarBanco();
         janela = stage;
         pilha = new ArrayList<>();
         Pane loginPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/login.fxml"));
@@ -52,7 +53,6 @@ public class Controlador extends Application{
         cadastrarPaciente = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         
-        Util.atualizarBanco();
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
         if(!FACHADA.administradorVerificarSU()){

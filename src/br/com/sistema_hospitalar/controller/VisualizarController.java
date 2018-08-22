@@ -5,13 +5,19 @@
 */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
 import br.com.sistema_hospitalar.enums.Enums;
 import static br.com.sistema_hospitalar.enums.Enums.ProfSaude;
 import static br.com.sistema_hospitalar.enums.Enums.adm;
 import static br.com.sistema_hospitalar.enums.Enums.atendente;
 import static br.com.sistema_hospitalar.enums.Enums.paciente;
 import br.com.sistema_hospitalar.enums.Panes;
+import br.com.sistema_hospitalar.model.entidade.Administrador;
+import br.com.sistema_hospitalar.model.entidade.Atendente;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
+import br.com.sistema_hospitalar.model.entidade.Paciente;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
+import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -99,13 +105,25 @@ public class VisualizarController implements Initializable {
                 case atendente:{Controlador.trocarPane(Panes.cadastrarFuncionario);break;}
             }
                 CadastrarFuncionarioController.get().setOpcao(opcao);
+                atualizar(opcao);
         }
     }
     private void editar(){
         CadastrarFuncionarioController.get().setOpcao(opcao);
+        CadastrarFuncionarioController.get().setTela((Funcionario)tabela.getSelectionModel().getSelectedItem());
+        atualizar(opcao);
     }
     private void excluir(){
-        CadastrarFuncionarioController.get().setOpcao(opcao);
+        if(Mensagens.Pergunta("DESEJA CONTINUAR?", "Deseja realmente excluir", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES) && opcao!=null){
+            switch (opcao){
+                case paciente:{Controlador.FACHADA.pacienteRemover((Paciente)tabela.getSelectionModel().getSelectedItem());;break;}
+                case adm:{Controlador.FACHADA.administradorRemover((Administrador)tabela.getSelectionModel().getSelectedItem());;break;}
+                case ProfSaude:{Controlador.FACHADA.profissionalSaudeRemover((ProfissionalSaude)tabela.getSelectionModel().getSelectedItem());;break;}
+                case atendente:{Controlador.FACHADA.atendenteRemover((Atendente)tabela.getSelectionModel().getSelectedItem());;break;}
+            }
+            
+        }
+        atualizar(opcao);
     }
     
     public static VisualizarController get(){

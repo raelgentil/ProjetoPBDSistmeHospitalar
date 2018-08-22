@@ -62,6 +62,7 @@ public class Util {
            estados.add(new Estado("SP", "São Paulo"));
            estados.add(new Estado("SE", "Sergipe"));
            estados.add(new Estado("TO", "Tocantins"));
+           
            for(Estado e: estadosBD)
                for(Estado est: estados)
                    if(e.getUf().equalsIgnoreCase(est.getUf()))
