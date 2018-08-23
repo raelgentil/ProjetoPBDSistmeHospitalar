@@ -39,7 +39,7 @@ public class Controlador extends Application{
         launch(args);    
        
     }
-    
+
     @Override
     public void start(Stage stage) throws Exception {
         Util.atualizarBanco();
@@ -69,7 +69,7 @@ public class Controlador extends Application{
     }
     public static void trocarTela(String nomeTela){        
         switch(nomeTela){
-            case "login":{ janela.setScene(login); break; }
+            case "login":{ janela.close();janela.setScene(login);janela.setMaximized(false);janela.show();break; }
             case "principal":{ janela.setScene(principal); janela.setMaximized(true); break; }
         }
         
@@ -101,6 +101,10 @@ public class Controlador extends Application{
         HomeController.get().alterarPane(pilha.get(pilha.size()-1));
         pilha.remove(pilha.size()-1);
         }
+    }
+    static void Logout() {
+        setUsuarioLogado(null);
+        trocarTela("login");
     }
 
     public static Funcionario getUsuarioLogado() {

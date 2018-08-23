@@ -57,10 +57,17 @@ public class HomeController implements Initializable {
         home.setOnMouseClicked((MouseEvent e)->{
             Controlador.irHome();
         });
+        sairSessao.setOnMouseClicked((MouseEvent e)->{
+            Controlador.Logout();
+        });
         
     }
     public  void atualizar(Funcionario f){
+        if(f != null)
         nomeUsuario.setText(f.getNome());
+        else
+            nomeUsuario.setText("NOME USUARIO");
+        
     }
     public void alterarPane(Pane p){
 //        paineis.add(p);
