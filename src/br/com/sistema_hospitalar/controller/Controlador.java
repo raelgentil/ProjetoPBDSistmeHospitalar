@@ -10,6 +10,7 @@ import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.util.ArrayList;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -31,7 +32,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario;
+    private static Pane principalPane,inicioSUPane, gerenciarFuncPane, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -51,6 +52,7 @@ public class Controlador extends Application{
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarFuncionarios.fxml"));
         visualizar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/visualizar.fxml"));
         cadastrarPaciente = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
+        cadastrarPaciente2 = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         
         login = new Scene(loginPane);
@@ -74,6 +76,27 @@ public class Controlador extends Application{
         }
         
     }
+    public static void abrirTelaAux(Panes pane){
+        if(janelaAUX == null)
+            janelaAUX = new Stage();
+        Pane painel = null;
+         switch(pane){
+            case cadastrarPaciente:{painel = cadastrarPaciente2;break;}
+            default:{Mensagens.erro("Erro ao carregar  tela","A tela solicitada não foi encontrada");break;}
+        }
+         if(painel != null){
+         if(aux == null)
+            aux = new Scene(painel);
+         else
+             aux.setRoot(painel);
+         janelaAUX.setScene(aux);
+         janelaAUX.show();
+         }
+         
+    }
+        public static void fecharTelaAux(){
+        
+    }
     public static void trocarPane(Panes pane){
         if(HomeController.get().getPane() != null)
             pilha.add(HomeController.get().getPane());
@@ -82,7 +105,7 @@ public class Controlador extends Application{
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
             case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
             case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
-            default:{System.out.println("O próxima tela não foi encontrada");break;}
+            default:{Mensagens.erro("Erro ao carregar Próxima tela","O próxima tela não foi encontrada");break;}
         }
     }
     public static void trocarPane(Panes pane, Enums opcao){

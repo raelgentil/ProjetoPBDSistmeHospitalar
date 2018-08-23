@@ -5,6 +5,7 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
@@ -87,6 +88,13 @@ public class CadastrarPacienteController implements Initializable {
     private Pane paneEndereco;
      @FXML
     private Pane paneResp;
+     @FXML
+    private Button adicionarBotao;
+
+    @FXML
+    private Button cadastrarBotao;
+    @FXML
+    private Button removerBotao;
      
    
 //Eu nao vou ser apagada
@@ -113,6 +121,9 @@ public class CadastrarPacienteController implements Initializable {
                 m = munis.get(0);
                 estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
             }
+        });
+        cadastrarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.cadastrarPaciente);
         });
     }
     public Paciente getPaciente(){
