@@ -18,6 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -34,6 +35,8 @@ public class LoginController implements Initializable {
     private Button botao;
     @FXML
     private Label resetSenha;
+    @FXML
+    private AnchorPane pane;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -43,6 +46,10 @@ public class LoginController implements Initializable {
         senha.setOnKeyReleased((event) -> {
             if(event.getCode() == KeyCode.ENTER)
                 logar();
+        });
+        login.setOnKeyReleased((event) -> {
+            if(event.getCode() == KeyCode.ENTER)
+                senha.requestFocus();
         });
         resetSenha.setOnMouseClicked((event) -> {
             String cpf = Mensagens.inserirTexto("Reset de Senha", "Insira seu CPF", "");
@@ -61,6 +68,7 @@ public class LoginController implements Initializable {
             Controlador.setUsuarioLogado(f);
             Controlador.trocarTela("principal");
             Controlador.trocarPane(Panes.inicioSU);
+            Controlador.limparPane(pane);
             return true;
         }
         Mensagens.erro("Credenciais Inválidas", "Dados de Login e/ou senha estão incorretos!");
