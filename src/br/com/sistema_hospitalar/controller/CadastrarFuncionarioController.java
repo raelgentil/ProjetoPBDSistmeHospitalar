@@ -11,6 +11,7 @@ import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
+import br.com.sistema_hospitalar.model.entidade.Especializacao;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
@@ -31,8 +32,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -103,7 +106,7 @@ public class CadastrarFuncionarioController implements Initializable {
     private Tab saude;
 
     @FXML
-    private TableView<?> tabela;
+    private TableView<Especializacao> tabela;
 
     @FXML
     private Button adicionarBotao;
@@ -122,21 +125,38 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private Button voltarBotao;
+    @FXML
+    private TableColumn<Especializacao, String> nomeColun;
+
+    @FXML
+    private TableColumn<Especializacao, String> codColun;
+
+    @FXML
+    private TableColumn<Especializacao, Double> valorColun;
+    
     private Enums opcao;
+    private ArrayList<Especializacao> especializacoes;
     
    private static CadastrarFuncionarioController controller;
    private Funcionario funcionario;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeColun.setCellValueFactory( new PropertyValueFactory("nome"));
+        codColun.setCellValueFactory( new PropertyValueFactory("codigo"));
+        valorColun.setCellValueFactory( new PropertyValueFactory("valor"));
+        tabela.setItems(FXCollections.observableArrayList());
+        //especializacoes = new ArrayList();
         controller = this;
         carregarComponentes();
         
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             cadastrar();
             Controlador.voltar();
+            tabela.setItems(FXCollections.observableArrayList());
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.voltar();
+            tabela.setItems(FXCollections.observableArrayList());
            // Controlador.limparPane(p);
         });
         cidade.setOnAction((ActionEvent event) -> {
@@ -151,9 +171,21 @@ public class CadastrarFuncionarioController implements Initializable {
             Controlador.abrirTelaAux(Panes.cadastrarEsp);
 //            Controlador.limparPane(p);
         });
+        adicionarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.adicionarEsp);
+//            Controlador.limparPane(p);
+        });
     }
     public void setTela(Funcionario f){
         
+    }
+    public void addEspecializacao(Especializacao e){
+        String codigo = "";
+        codigo = Mensagens.inserirTexto("Digite o código", "Insira o código dessa especialização do profissional", "");
+        e.setCodigo(codigo);
+        tabela.getItems().add(e);
+        tabela.refresh();
+//        especializacoes.add(e);
     }
     private void cadastrar(){
         boolean msg= false;
@@ -236,6 +268,7 @@ public class CadastrarFuncionarioController implements Initializable {
         p.setEndereco(getEndereco());
         
         p.setApelido(apelido.getText());
+        p.setEspecializacoess(tabela.getItems());
         
         return p;
     }

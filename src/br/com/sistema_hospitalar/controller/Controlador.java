@@ -32,7 +32,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
+    private static Pane principalPane,inicioSUPane, adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -56,6 +56,7 @@ public class Controlador extends Application{
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         agendar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
         cadastrarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarEspecializacao.fxml"));
+        adicionarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/adcionarEspecializacao.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -68,6 +69,7 @@ public class Controlador extends Application{
             janela.setScene(login);
         janela.show();
         }catch(Exception e){
+            e.printStackTrace();
             Mensagens.erro("Erro ao Inicializar!", e.getMessage());
         }  
         
@@ -87,6 +89,7 @@ public class Controlador extends Application{
          switch(pane){
             case cadastrarPaciente:{painel = cadastrarPaciente2;break;}
             case cadastrarEsp:{painel = cadastrarEspecializacao;break;}
+            case adicionarEsp:{painel = adicionarEspecializacao;AdcionarEspecializacaoController.get().atualizar();break;}
             default:{Mensagens.erro("Erro ao carregar  tela","A tela solicitada não foi encontrada");break;}
         }
          if(painel != null){

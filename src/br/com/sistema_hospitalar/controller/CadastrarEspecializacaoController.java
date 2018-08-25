@@ -48,7 +48,7 @@ public class CadastrarEspecializacaoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         atualizar();
         salvarBotao.setOnMouseClicked((event) -> {
-            if(conselhos.getSelectionModel().getSelectedIndex() >= 0 ){
+            if(conselhos.getSelectionModel().getSelectedItem() != null ){
                 esp = getEspecializacao();
                 Controlador.FACHADA.especializacaoSalvarOuAtualizar(esp);
                 Controlador.fecharTelaAux();
