@@ -177,18 +177,12 @@
                                  </font>
                               </Label>
                               <CheckBox fx:id="ativo" layoutX="395.0" layoutY="158.0" mnemonicParsing="false" selected="true" text="Funcionário Ativo" />
-                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="30.0" layoutY="212.0" prefHeight="21.0" prefWidth="172.0" text="Login:" textFill="#2323c6">
+                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="30.0" layoutY="218.0" prefHeight="21.0" prefWidth="110.0" text="Senha:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="login" layoutX="30.0" layoutY="238.0" prefHeight="25.0" prefWidth="172.0" />
-                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="234.0" layoutY="211.0" prefHeight="21.0" prefWidth="110.0" text="Senha:" textFill="#2323c6">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <PasswordField fx:id="senha" layoutX="228.0" layoutY="238.0" />
+                              <PasswordField fx:id="senha" layoutX="30.0" layoutY="239.0" prefHeight="25.0" prefWidth="170.0" />
                            </children>
                            <opaqueInsets>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />

@@ -5,7 +5,9 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
 import br.com.sistema_hospitalar.enums.Enums;
+import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
@@ -91,8 +93,8 @@ public class CadastrarFuncionarioController implements Initializable {
     @FXML
     private CheckBox ativo;
 
-    @FXML
-    private TextField login;
+//    @FXML
+//    private TextField login;
 
     @FXML
     private PasswordField  senha;
@@ -145,25 +147,34 @@ public class CadastrarFuncionarioController implements Initializable {
                 estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
             }
         });
+        cadastrarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.cadastrarEsp);
+//            Controlador.limparPane(p);
+        });
     }
     public void setTela(Funcionario f){
         
     }
     private void cadastrar(){
+        boolean msg= false;
+        Funcionario fu = null;
         switch (opcao){
                 case adm:{
                     Administrador a = getAdministrador();
+                    fu = a;
                     if(!Controlador.FACHADA.administradorVerificarSU()){
                         a.setSuperUsuario(true);
                     }
-                    Controlador.FACHADA.administradorSalvarOuAtualizar(a);
+                    msg = Controlador.FACHADA.administradorSalvarOuAtualizar(a);
                     if(a.isSuperUsuario())
                         Controlador.trocarTela("login");
                     break;
                 }
-                case ProfSaude:{Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar(getProfissionalSaude());break;}
-                case atendente:{Controlador.FACHADA.atendenteSalvarOuAtualizar(getAtendente());break;}
+                case ProfSaude:{fu = getProfissionalSaude();msg = Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar((ProfissionalSaude) fu);break;}
+                case atendente:{fu = getAtendente() ;msg = Controlador.FACHADA.atendenteSalvarOuAtualizar((Atendente) fu);break;}
             }
+        if(msg && fu != null)
+            Mensagens.informacao("Informação", "O login para o funcionário é: "+ fu.getLogin());
         funcionario = null;
     }
     private Endereco getEndereco(){
@@ -206,7 +217,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
@@ -247,7 +258,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
@@ -287,7 +298,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
