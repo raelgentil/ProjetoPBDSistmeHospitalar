@@ -43,7 +43,7 @@
             <Insets />
          </opaqueInsets>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Prontuários" textFill="#1379a1" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Button fx:id="prontuarios" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Prontuários" textFill="#1379a1" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -61,7 +61,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Atender" textFill="#1379a1" GridPane.rowIndex="1">
+      <Button fx:id="agendar" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Agendar Atendimento" textFill="#1379a1" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -97,7 +97,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Farmácia" textFill="#1379a1" GridPane.columnIndex="2">
+      <Button fx:id="farmacia" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Farmácia" textFill="#1379a1" GridPane.columnIndex="2">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -115,7 +115,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Relatórios" textFill="#1379a1" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button fx:id="relatorios" alignment="CENTER" contentDisplay="TOP" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="109.0" prefWidth="208.0" text="Relatórios" textFill="#1379a1" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <graphic>
             <ImageView fitHeight="57.0" fitWidth="93.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -109,7 +109,10 @@ public class Paciente extends Pessoa implements Serializable {
     public void setDependentes(List<Pessoa> dependentes) {
         this.dependentes = dependentes;
     }
-
+@Override
+    public String toString() {
+        return getNome();
+    }
     
     
     
