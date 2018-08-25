@@ -184,7 +184,6 @@ public class CadastrarFuncionarioController implements Initializable {
         m.setDescricao((String)cidade.getValue());
         m.setEstado(Controlador.FACHADA.estadoBuscarPorNome((String)estado.getValue()).get(0));
         Controlador.FACHADA.municipioSalvarOuAtualizar(m);
-        
         e.setMunicipio(m);
         Controlador.FACHADA.enderecoSalvarOuAtualizar(e);
         return e;

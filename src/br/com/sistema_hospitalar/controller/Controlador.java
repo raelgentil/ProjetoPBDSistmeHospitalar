@@ -37,12 +37,12 @@ public class Controlador extends Application{
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
     public static void main(String[] args){
-        launch(args);    
-       
+        launch(args);  
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+        try{
         Util.atualizarBanco();
         janela = stage;
         pilha = new ArrayList<>();
@@ -66,7 +66,9 @@ public class Controlador extends Application{
         }else
             janela.setScene(login);
         janela.show();
-        
+        }catch(Exception e){
+            Mensagens.erro("Erro não Previsto", e.getMessage());
+        }  
         
               
     }

@@ -68,7 +68,7 @@ public class AgendarController implements Initializable {
         Calendar atual = Calendar.getInstance();
         atual.setTimeInMillis(System.currentTimeMillis());
         p.setDataAbertura(atual);
-        p.setMedico(medico.getSelectionModel().getSelectedItem());
+        p.setMedico(medico.getItems().get(medico.getSelectionModel().getSelectedIndex()));
         p.setPaciente(paciente.getItems().get(paciente.getSelectionModel().getSelectedIndex()));
         p.setNumero(Long.getLong(numeroProntuario.getText()));
         
