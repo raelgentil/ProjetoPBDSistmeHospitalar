@@ -175,8 +175,8 @@ public class Controlador extends Application{
                 ((ComboBox) n).getSelectionModel().select(null);
 //            else if (n instanceof TableView)
 //                ((TableView) n).setItems(null);
-//            else if (n instanceof DatePicker)
-//                ((((TableView) n).setItems(null);) n).setItems(null);
+            else if (n instanceof DatePicker)
+                ((DatePicker) n).setValue(null);
         }
     }
  
