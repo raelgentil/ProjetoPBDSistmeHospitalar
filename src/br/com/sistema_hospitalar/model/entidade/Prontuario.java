@@ -74,10 +74,31 @@ public class Prontuario implements Serializable, IEntidadeBase {
     @ManyToOne
     @JoinColumn(name = "medico_id", referencedColumnName = "id", nullable = true)
     private ProfissionalSaude medico;
+    
+    private String especializacaoMedico;
 
     public Prontuario() {
     }
 
+    public Prontuario(Long id, Long numero, Calendar dataAbertura, Calendar dataAtendimento, Calendar dataRetorno, Calendar dataPrevistaRetorno, String cids, List<CategoriaCID> cidss, String codMedicoPaciente, String observacoes, String prescricao, List<Lote> prescricaoo, Paciente paciente, ProfissionalSaude medico, String especializacaoMedico) {
+        this.id = id;
+        this.numero = numero;
+        this.dataAbertura = dataAbertura;
+        this.dataAtendimento = dataAtendimento;
+        this.dataRetorno = dataRetorno;
+        this.dataPrevistaRetorno = dataPrevistaRetorno;
+        this.cids = cids;
+        this.cidss = cidss;
+        this.codMedicoPaciente = codMedicoPaciente;
+        this.observacoes = observacoes;
+        this.prescricao = prescricao;
+        this.prescricaoo = prescricaoo;
+        this.paciente = paciente;
+        this.medico = medico;
+        this.especializacaoMedico = especializacaoMedico;
+    }
+
+    
     public Long getId() {
         return id;
     }
@@ -188,6 +209,14 @@ public class Prontuario implements Serializable, IEntidadeBase {
 
     public void setPrescricaoo(List<Lote> prescricaoo) {
         this.prescricaoo = prescricaoo;
+    }
+
+    public String getEspecializacaoMedico() {
+        return especializacaoMedico;
+    }
+
+    public void setEspecializacaoMedico(String especializacaoMedico) {
+        this.especializacaoMedico = especializacaoMedico;
     }
 
     

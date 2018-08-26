@@ -15,13 +15,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.VisualizarController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1366.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.VisualizarController">
    <children>
       <TableView fx:id="tabela" layoutX="192.0" layoutY="166.0" prefHeight="381.0" prefWidth="919.0">
         <columns>
-          <TableColumn fx:id="nome" prefWidth="593.0" text="Nome" />
-          <TableColumn fx:id="sexo" minWidth="0.0" prefWidth="56.0" text="Sexo" />
-            <TableColumn fx:id="cpf" prefWidth="268.0" text="CPF" />
+          <TableColumn fx:id="nome" prefWidth="593.0" style="-fx-alignment: CENTER;" text="Nome" />
+          <TableColumn fx:id="sexo" minWidth="0.0" prefWidth="56.0" style="-fx-alignment: CENTER;" text="Sexo" />
+            <TableColumn fx:id="cpf" prefWidth="268.0" style="-fx-alignment: CENTER;" text="CPF" />
         </columns>
       </TableView>
       <TextField fx:id="pesquisa" layoutX="121.0" layoutY="73.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise Por Nome ou CPF" />

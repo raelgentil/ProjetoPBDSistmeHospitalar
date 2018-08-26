@@ -5,6 +5,7 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
@@ -26,6 +27,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -78,7 +80,22 @@ public class CadastrarPacienteController implements Initializable {
     private TextArea limitacoes;
      @FXML
     private Tab dadosMedicos;
+     @FXML
+    private Pane panePessoa;
+     @FXML
+    private Pane paneMedico;
+     @FXML
+    private Pane paneEndereco;
+     @FXML
+    private Pane paneResp;
+     @FXML
+    private Button adicionarBotao;
 
+    @FXML
+    private Button cadastrarBotao;
+    @FXML
+    private Button removerBotao;
+     
    
 //Eu nao vou ser apagada
     
@@ -104,6 +121,9 @@ public class CadastrarPacienteController implements Initializable {
                 m = munis.get(0);
                 estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
             }
+        });
+        cadastrarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.cadastrarPaciente);
         });
     }
     public Paciente getPaciente(){
@@ -190,7 +210,10 @@ public class CadastrarPacienteController implements Initializable {
     }
 
     private void limparTela() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Controlador.limparPane(panePessoa);
+        Controlador.limparPane(paneMedico);
+        Controlador.limparPane(paneEndereco);
+        Controlador.limparPane(paneResp);
     }
     
 }

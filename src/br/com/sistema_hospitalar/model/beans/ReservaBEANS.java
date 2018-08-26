@@ -9,7 +9,7 @@ import br.com.sistema_hospitalar.model.dao.*;
 import br.com.sistema_hospitalar.model.entidade.Insumo;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Paciente;
-import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import br.com.sistema_hospitalar.model.entidade.Reserva;
 import java.util.Calendar;
@@ -50,6 +50,10 @@ public class ReservaBEANS {
     }
     public  List<Reserva> getReservasPaciente(EntityManagerFactory factory, Long idPaciente){
         return daoR.getReservasPaciente(factory, idPaciente);
+    }
+    
+    public  List<Reserva> getReservasProntuario(EntityManagerFactory factory, Long idProntuario){
+        return getReservasProntuario(factory, idProntuario);
     }
     
     

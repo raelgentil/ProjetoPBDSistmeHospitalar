@@ -26,19 +26,30 @@ public class InicioSuperUserController implements Initializable {
     private Button funcionarioBotao;
 
     @FXML
+    private Button prontuarios;
+
+    @FXML
+    private Button agendar;
+
+    @FXML
     private Button pacienteBotao;
+
+    @FXML
+    private Button farmacia;
+
+    @FXML
+    private Button relatorios;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         funcionarioBotao.setOnMouseClicked((MouseEvent e)->{
             Controlador.trocarPane(Panes.gerenciarFunc);
-          // Controlador.trocarTela("login");
-           //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
-        });
-        
+        });        
         pacienteBotao.setOnMouseClicked((MouseEvent e)->{
             Controlador.trocarPane(Panes.visualizar,Enums.paciente);
-          // Controlador.trocarTela("login");
-           //HomeController.setPane(Controlador.gera(url,"InicioSuperUser"));
+        });
+        agendar.setOnMouseClicked((MouseEvent e)->{
+            Controlador.trocarPane(Panes.agendar);
         });
     }    
     

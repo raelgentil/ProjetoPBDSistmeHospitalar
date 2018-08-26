@@ -20,6 +20,7 @@ import br.com.sistema_hospitalar.model.beans.PessoaBEANS;
 import br.com.sistema_hospitalar.model.beans.ProficionalSaudeBEANS;
 import br.com.sistema_hospitalar.model.beans.ProntuarioBEANS;
 import br.com.sistema_hospitalar.model.beans.FuncionarioResetSenhaBEANS;
+import br.com.sistema_hospitalar.model.beans.ReservaBEANS;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
@@ -35,6 +36,7 @@ import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
+import br.com.sistema_hospitalar.model.entidade.Reserva;
 import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import com.sun.glass.ui.View;
 import java.util.Calendar;
@@ -67,7 +69,7 @@ public class CoreFacade {
     private LoteBEANS loteBEANS;
     private CategoriCIDBEANS categoriCIDBEANS;
     private FuncionarioResetSenhaBEANS resetSenhaBEANS;
-    
+    private ReservaBEANS reservaBEANS;
     public CoreFacade() {
         
         estadoBEANS = new EstadoBEANS();
@@ -76,7 +78,8 @@ public class CoreFacade {
         pessoaBEANS = new PessoaBEANS();
         pacienteBEANS = new PacienteBEANS();
         funcionarioBEANS = new FuncionarioBEANS();
-        prontuarioBEANS = new ProntuarioBEANS();
+        reservaBEANS = new ReservaBEANS();
+        prontuarioBEANS = new ProntuarioBEANS(reservaBEANS);
         especializacaoBEANS = new EspecializacaoBEANS();
         proficionalSaudeBEANS = new ProficionalSaudeBEANS(funcionarioBEANS, especializacaoBEANS);
         atendenteBEANS = new AtendenteBEANS(funcionarioBEANS);
@@ -418,6 +421,9 @@ public class CoreFacade {
     public Administrador administradorBuscarPorCpf(String cpf) {
         return administradorBEANS.buscarPorCpf(factory, cpf);
     }
+    public boolean administradorVerificarSU(){
+        return administradorBEANS.verificarSU(factory);
+    }
     
     
     
@@ -494,6 +500,38 @@ public class CoreFacade {
         return categoriCIDBEANS.getPorId(factory, id);
     }
 
+    public static EntityManagerFactory getFactory() {
+        return factory;
+    }
+
+    /**
+     * 
+     * 
+     * 
+     * 
+     */
+    
+    public boolean salvarOuAtualizar(EntityManagerFactory factory, Reserva reserva) {
+        return reservaBEANS.salvarOuAtualizar(factory, reserva);
+    }
+
+    public boolean remover(EntityManagerFactory factory, Reserva reserva) {
+        return reservaBEANS.remover(factory, reserva);
+    }
+
+    public Reserva getPorId(EntityManagerFactory factory, Long id) {
+        return reservaBEANS.getPorId(factory, id);
+    }
+    public  List<Reserva> getReservasPaciente(EntityManagerFactory factory, Long idPaciente){
+        return reservaBEANS.getReservasPaciente(factory, idPaciente);
+    }
+    
+    public  List<Reserva> getReservasProntuario(EntityManagerFactory factory, Long idProntuario){
+        return reservaBEANS.getReservasProntuario(factory, idProntuario);
+    }
+    
+    
+    
     
     
     

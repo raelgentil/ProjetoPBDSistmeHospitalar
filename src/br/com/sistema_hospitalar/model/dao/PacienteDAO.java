@@ -69,6 +69,29 @@ public class PacienteDAO {
         }
         return pessoas;
     }
+    public List<Paciente> buscarPorDoido(EntityManagerFactory factory, String nome) {
+         EntityManager em = null;
+        List<Paciente> pessoas = null;
+        try {
+
+            em = factory.createEntityManager();
+
+            TypedQuery<Paciente> q = em.createQuery("select p from Paciente p where p.nome like :nome", Paciente.class);
+
+            q.setParameter("nome", "%" + nome + "%");
+
+            pessoas = q.getResultList();
+
+        } catch (Exception e) {
+            System.out.println("erro PessoaDAO: " + e.getMessage());
+            System.out.println("br.com.sistema_hospitalar.model.dao.PessoaDAO.buscarPorNome()");
+            e.printStackTrace();
+
+        } finally {
+            em.close();
+        }
+        return pessoas;
+    }
 
     public List<Paciente> buscarPorTipoSanguinio(EntityManagerFactory factory, String tipoSanguinio) {
         EntityManager em = null;

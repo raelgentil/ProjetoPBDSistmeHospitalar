@@ -5,11 +5,15 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
 import br.com.sistema_hospitalar.enums.Enums;
+import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
+import br.com.sistema_hospitalar.model.entidade.Especializacao;
 import br.com.sistema_hospitalar.model.entidade.Estado;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.net.URL;
@@ -28,8 +32,10 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -90,8 +96,8 @@ public class CadastrarFuncionarioController implements Initializable {
     @FXML
     private CheckBox ativo;
 
-    @FXML
-    private TextField login;
+//    @FXML
+//    private TextField login;
 
     @FXML
     private PasswordField  senha;
@@ -100,7 +106,7 @@ public class CadastrarFuncionarioController implements Initializable {
     private Tab saude;
 
     @FXML
-    private TableView<?> tabela;
+    private TableView<Especializacao> tabela;
 
     @FXML
     private Button adicionarBotao;
@@ -119,20 +125,42 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private Button voltarBotao;
+    @FXML
+    private TableColumn<Especializacao, String> nomeColun;
+
+    @FXML
+    private TableColumn<Especializacao, String> codColun;
+
+    @FXML
+    private TableColumn<Especializacao, Double> valorColun;
+    
     private Enums opcao;
+//    private ArrayList<Especializacao> especializacoes;
     
    private static CadastrarFuncionarioController controller;
+   private Funcionario funcionario;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        nomeColun.setCellValueFactory( new PropertyValueFactory("nome"));
+        codColun.setCellValueFactory( new PropertyValueFactory("codigo"));
+        valorColun.setCellValueFactory( new PropertyValueFactory("valor"));
+        tabela.setItems(FXCollections.observableArrayList());
+        //especializacoes = new ArrayList();
         controller = this;
         carregarComponentes();
-        
+        removerBotao.setOnMouseClicked((event) -> {
+            if(Mensagens.Pergunta("Deseja Continuar?", "Deseja realmente remover Especialização?", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES))
+            tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
+        });
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             cadastrar();
+            Controlador.voltar();
+            tabela.setItems(FXCollections.observableArrayList());
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.voltar();
-            limparTela();
+            tabela.setItems(FXCollections.observableArrayList());
+           // Controlador.limparPane(p);
         });
         cidade.setOnAction((ActionEvent event) -> {
             Municipio m ;
@@ -142,13 +170,47 @@ public class CadastrarFuncionarioController implements Initializable {
                 estado.getSelectionModel().select(estado.getItems().indexOf(m.getEstado().getDescricao()));
             }
         });
+        cadastrarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.cadastrarEsp);
+//            Controlador.limparPane(p);
+        });
+        adicionarBotao.setOnMouseClicked((MouseEvent event) -> {
+            Controlador.abrirTelaAux(Panes.adicionarEsp);
+//            Controlador.limparPane(p);
+        });
+    }
+    public void setTela(Funcionario f){
+        
+    }
+    public void addEspecializacao(Especializacao e){
+        String codigo = "";
+        codigo = Mensagens.inserirTexto("Digite o código", "Insira o código dessa especialização do profissional", "");
+        e.setCodigo(codigo);
+        tabela.getItems().add(e);
+        tabela.refresh();
+//        especializacoes.add(e);
     }
     private void cadastrar(){
+        boolean msg= false;
+        Funcionario fu = null;
         switch (opcao){
-                case adm:{Controlador.FACHADA.administradorSalvarOuAtualizar(getAdministrador());break;}
-                case ProfSaude:{Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar(getProfissionalSaude());break;}
-                case atendente:{Controlador.FACHADA.atendenteSalvarOuAtualizar(getAtendente());break;}
+                case adm:{
+                    Administrador a = getAdministrador();
+                    fu = a;
+                    if(!Controlador.FACHADA.administradorVerificarSU()){
+                        a.setSuperUsuario(true);
+                    }
+                    msg = Controlador.FACHADA.administradorSalvarOuAtualizar(a);
+                    if(a.isSuperUsuario())
+                        Controlador.trocarTela("login");
+                    break;
+                }
+                case ProfSaude:{fu = getProfissionalSaude();msg = Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar((ProfissionalSaude) fu);break;}
+                case atendente:{fu = getAtendente() ;msg = Controlador.FACHADA.atendenteSalvarOuAtualizar((Atendente) fu);break;}
             }
+        if(msg && fu != null)
+            Mensagens.informacao("Informação", "O login para o funcionário é: "+ fu.getLogin());
+        funcionario = null;
     }
     private Endereco getEndereco(){
         Endereco e = new Endereco();
@@ -168,13 +230,16 @@ public class CadastrarFuncionarioController implements Initializable {
         m.setDescricao((String)cidade.getValue());
         m.setEstado(Controlador.FACHADA.estadoBuscarPorNome((String)estado.getValue()).get(0));
         Controlador.FACHADA.municipioSalvarOuAtualizar(m);
-        
         e.setMunicipio(m);
         Controlador.FACHADA.enderecoSalvarOuAtualizar(e);
         return e;
     }
     public ProfissionalSaude getProfissionalSaude(){
-        ProfissionalSaude p = new ProfissionalSaude();
+        ProfissionalSaude p;
+        if(funcionario != null)
+            p = (ProfissionalSaude) funcionario;
+        else
+            p = new ProfissionalSaude();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -187,7 +252,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
@@ -206,12 +271,17 @@ public class CadastrarFuncionarioController implements Initializable {
         p.setEndereco(getEndereco());
         
         p.setApelido(apelido.getText());
+        p.setEspecializacoess(tabela.getItems());
         
         return p;
     }
     
     public Atendente getAtendente(){
-        Atendente p = new Atendente();
+        Atendente p;
+        if(funcionario != null)
+            p = (Atendente) funcionario;
+        else
+            p = new Atendente();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -224,7 +294,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
@@ -247,7 +317,11 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     
     public Administrador getAdministrador(){
-        Administrador p = new Administrador();
+        Administrador p;
+        if(funcionario != null)
+             p = (Administrador) funcionario;
+        else
+            p = new Administrador();
         p.setNome(nome.getText());
         p.setCpf(cpf.getText());
         p.setEmail(email.getText());
@@ -260,7 +334,7 @@ public class CadastrarFuncionarioController implements Initializable {
         
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
-        p.setLogin(login.getText());
+//        p.setLogin(login.getText());
         p.setSalario(Double.parseDouble(salario.getText()));
         String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
@@ -283,6 +357,22 @@ public class CadastrarFuncionarioController implements Initializable {
     }
     public static CadastrarFuncionarioController get(){
         return controller;
+    }
+
+    public ComboBox<?> getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(ComboBox<?> sexo) {
+        this.sexo = sexo;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
     
 
@@ -308,9 +398,6 @@ public class CadastrarFuncionarioController implements Initializable {
         
     }
 
-    private void limparTela() {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     public void setOpcao(Enums opcao) {
         this.opcao = opcao;

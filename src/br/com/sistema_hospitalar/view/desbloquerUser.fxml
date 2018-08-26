@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.sistema_hospitalar.controller.DesbloquerUserController">
+   <children>
+      <TableView fx:id="tabela" layoutX="239.0" layoutY="160.0" prefHeight="381.0" prefWidth="919.0">
+         <columns>
+            <TableColumn fx:id="nome" prefWidth="593.0" style="-fx-alignment: CENTER;" text="Nome" />
+            <TableColumn fx:id="sexo" minWidth="0.0" prefWidth="56.0" style="-fx-alignment: CENTER;" text="Sexo" />
+            <TableColumn fx:id="cpf" prefWidth="268.0" style="-fx-alignment: CENTER;" text="CPF" />
+         </columns>
+      </TableView>
+      <Button fx:id="resetar" alignment="CENTER" graphicTextGap="20.0" layoutX="1131.0" layoutY="591.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Resetar Senha" textFill="#1379a1">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/unlock.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="447.0" layoutY="50.0" text="DESBLOQUEAR FUNCIONÁRIOS" textFill="#2323c6">
+         <font>
+            <Font name="Times New Roman Bold Italic" size="33.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelar" alignment="CENTER" graphicTextGap="20.0" layoutX="943.0" layoutY="591.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Cancelar" textFill="#1379a1">
+         <font>
+            <Font name="Times New Roman Bold" size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/cancel.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

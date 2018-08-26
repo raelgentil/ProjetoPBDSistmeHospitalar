@@ -5,6 +5,7 @@
 */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -56,6 +57,16 @@ public class HomeController implements Initializable {
         home.setOnMouseClicked((MouseEvent e)->{
             Controlador.irHome();
         });
+        sairSessao.setOnMouseClicked((MouseEvent e)->{
+            Controlador.Logout();
+        });
+        
+    }
+    public  void atualizar(Funcionario f){
+        if(f != null)
+        nomeUsuario.setText(f.getNome());
+        else
+            nomeUsuario.setText("NOME USUARIO");
         
     }
     public void alterarPane(Pane p){
@@ -75,6 +86,7 @@ public class HomeController implements Initializable {
     public static HomeController get(){
         return controller;
     }
+    
 
     public Pane getPane() {
         return panel;

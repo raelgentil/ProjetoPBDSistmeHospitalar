@@ -12,7 +12,7 @@ import br.com.sistema_hospitalar.model.dao.FuncionarioResetSenhaDAO;
 import br.com.sistema_hospitalar.model.entidade.Insumo;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
-import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -31,7 +31,7 @@ public class FuncionarioResetSenhaBEANS {
         
     }
     
-    public  List<FuncionarioResetSenha> getFuncionariosAResetarSenha(EntityManagerFactory factory){
+    public  List<ResetSenha> getFuncionariosAResetarSenha(EntityManagerFactory factory){
        return dao.getFuncionariosAResetarSenha(factory);
     }
     

@@ -42,7 +42,7 @@ public class FuncionarioBEANS {
             funcionario = daoF.buscarUsuarioPrimeiroAcesso(factory, senha, senhaCrip);
         } else {
             funcionario = daoF.buscarUsuario(factory, login);
-            if (funcionario.getSenha().equals(senhaCrip)) {
+            if (funcionario != null && funcionario.getSenha().equals(senhaCrip)) {
 
             } else {
                 funcionario = null;
@@ -148,8 +148,8 @@ public class FuncionarioBEANS {
 
     public boolean solicitarResetSenha(EntityManagerFactory factory, String cpf) {
         Funcionario funcionario = daoF.buscarCPF(factory, cpf);
-        funcionario.setResetar(true);
         if (funcionario != null) {
+        funcionario.setResetar(true);
             return dao.salvarOuAtualizar(factory, funcionario);
 
         } else {

@@ -2,8 +2,24 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
   <persistence-unit name="ProjetoPBDPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha</class>
     <class>br.com.sistema_hospitalar.model.entidade.Reserva</class>
+    <class>br.com.sistema_hospitalar.model.entidade.ResetSenha</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogAlteracoes</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogFunci</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogDepend</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogPacient</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogProfSaude</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogInsumo</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogEndereco</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogEst</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogLote</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogProntu</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogPessoa</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogMunic</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogEspeci</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogEstado</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogAtend</class>
+    <class>br.com.sistema_hospitalar.model.entidade.logs.LogAdm</class>
     <properties>
       <!-- Detectar automaticamente as classes-tabelas -->
       <property name="hibernate.archive.autodetection" value="class"/>

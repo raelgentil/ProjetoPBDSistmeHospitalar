@@ -37,6 +37,11 @@ public class Estado implements Serializable , IEntidadeBase{
     public Estado() {
     }
 
+    public Estado(String uf, String descricao) {
+        this.uf = uf;
+        this.descricao = descricao;
+    }
+    
     public Long getId() {
         return id;
     }

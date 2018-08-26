@@ -148,7 +148,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Dados de Funcionário">
+            <Tab text="Funcionário">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -177,18 +177,12 @@
                                  </font>
                               </Label>
                               <CheckBox fx:id="ativo" layoutX="395.0" layoutY="158.0" mnemonicParsing="false" selected="true" text="Funcionário Ativo" />
-                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="30.0" layoutY="212.0" prefHeight="21.0" prefWidth="172.0" text="Login:" textFill="#2323c6">
+                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="30.0" layoutY="218.0" prefHeight="21.0" prefWidth="110.0" text="Senha:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="login" layoutX="30.0" layoutY="238.0" prefHeight="25.0" prefWidth="172.0" />
-                              <Label accessibleText="código que será usado para identificar o médico no prontuário" layoutX="234.0" layoutY="211.0" prefHeight="21.0" prefWidth="110.0" text="Senha:" textFill="#2323c6">
-                                 <font>
-                                    <Font name="Times New Roman" size="18.0" />
-                                 </font>
-                              </Label>
-                              <PasswordField fx:id="senha" layoutX="228.0" layoutY="238.0" />
+                              <PasswordField fx:id="senha" layoutX="30.0" layoutY="239.0" prefHeight="25.0" prefWidth="170.0" />
                            </children>
                            <opaqueInsets>
                               <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
@@ -198,7 +192,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="saude" text="Profissionais de Saúde">
+            <Tab fx:id="saude" text="Profissional de Saúde">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -211,9 +205,9 @@
                               </Label>
                               <TableView fx:id="tabela" layoutX="21.0" layoutY="176.0" prefHeight="200.0" prefWidth="503.0">
                                  <columns>
-                                    <TableColumn editable="false" prefWidth="320.0" text="Nome" />
-                                    <TableColumn editable="false" prefWidth="92.0" text="Código" />
-                                    <TableColumn editable="false" prefWidth="90.0" text="Valor(R$)" />
+                                    <TableColumn fx:id="nomeColun" editable="false" prefWidth="320.0" text="Nome" />
+                                    <TableColumn fx:id="codColun" editable="false" prefWidth="92.0" text="Código" />
+                                    <TableColumn fx:id="valorColun" editable="false" prefWidth="90.0" text="Valor(R$)" />
                                  </columns>
                               </TableView>
                               <Button fx:id="adicionarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="46.0" layoutY="391.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Adicionar" textFill="#1379a1">

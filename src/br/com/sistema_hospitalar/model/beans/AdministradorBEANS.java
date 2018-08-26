@@ -38,6 +38,9 @@ public class AdministradorBEANS {
             String login = beansF.criarLogin(factory, administrador);
             String senha = beansF.criptografar(administrador.getSenha());
             administrador.setSenha(senha);
+            
+            if(administrador.isSuperUsuario())
+                return dao.salvarOuAtualizar(factory, administrador);
 
             if (login != null) {
                 administrador.setLogin(login);
@@ -68,6 +71,9 @@ public class AdministradorBEANS {
     
     public Administrador buscarPorCpf(EntityManagerFactory factory, String cpf) {
         return daoA.buscarPorCpf(factory, cpf);
+    }
+    public boolean verificarSU(EntityManagerFactory factory){
+        return daoA.buscarSuperUsuario(factory);
     }
     
     

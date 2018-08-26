@@ -88,7 +88,7 @@ public class AdministradorDAO {
         } catch (Exception e) {
             System.out.println("erro AdministradorDAO: " + e.getMessage());
             System.out.println("br.com.sistema_hospitalar.model.dao.AdministradorDAO.buscarSuperUsuario()");
-            e.printStackTrace();
+           // e.printStackTrace();
             return false;
         } finally {
             em.close();

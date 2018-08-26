@@ -77,6 +77,11 @@ public class ProfissionalSaude extends Funcionario implements Serializable {
         this.consultas = consultas;
     }
 
+    @Override
+    public String toString() {
+        return getNome();
+    }
+
     
     
 }
