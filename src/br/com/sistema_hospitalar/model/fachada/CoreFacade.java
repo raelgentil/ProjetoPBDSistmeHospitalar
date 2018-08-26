@@ -87,6 +87,7 @@ public class CoreFacade {
         insumoBEANS =  new InsumoBEANS();
         loteBEANS = new LoteBEANS(insumoBEANS);
         categoriCIDBEANS = new CategoriCIDBEANS();
+        resetSenhaBEANS = new ResetSenhaBEANS();
         
     }
     

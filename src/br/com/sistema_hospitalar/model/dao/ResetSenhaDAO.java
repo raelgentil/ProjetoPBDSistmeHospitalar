@@ -13,7 +13,9 @@ import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
 import javax.persistence.Query;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 /**
@@ -28,9 +30,9 @@ public class ResetSenhaDAO {
         try {
             
             em = factory.createEntityManager();
-            TypedQuery<ResetSenha> q = em.createQuery("SELECT r FROM ResetSenha r order by nome", ResetSenha.class);
+            TypedQuery<ResetSenha> q = em.createQuery("SELECT r FROM ResetSenha r", ResetSenha.class);
             resetSenhas = q.getResultList();
-
+            
         } catch (Exception e) {
             System.out.println("br.com.sistema_hospitalar.model.dao.ResetSenhaDAO.getFuncionariosAResetarSenha()");
             System.out.println("erro ResetSenhaDAO: " + e.getMessage());
@@ -40,6 +42,7 @@ public class ResetSenhaDAO {
         }
         return resetSenhas;
     }
+
     
 //    public  List<FuncionarioResetSenha> getFuncionariosAResetarSenha(EntityManagerFactory factory){
 //        EntityManager em = null;

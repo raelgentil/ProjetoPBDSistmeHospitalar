@@ -57,16 +57,13 @@ public class App {
     public static void main(String[] args) {
         CoreFacade coreFacade = new CoreFacade();
 //        salvarProfissionalSaude(coreFacade);
-EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPBDPU");
 //        ResetSenhaDAO funcionarioResetSenhaDAO = new ResetSenhaDAO();
 //        List<ResetSenha> resetSenhas = funcionarioResetSenhaDAO.getFuncionariosAResetarSenha(factory);
 //        
 //        for (ResetSenha resetSenha : resetSenhas) {
 //            System.out.println(resetSenha.getNome());
 //        }
-
-       
-
+            
     }
     
 //    public static void salvarprontuario(CoreFacade coreFacade){
@@ -146,18 +143,18 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPB
         
         Endereco endereco1 = new Endereco();
         endereco1.setBairro("Centro");
-        endereco1.setCep(6540000);
-        endereco1.setComplemento("Casa");
+        endereco1.setCep(6544000);
+        endereco1.setComplemento("Ap");
         endereco1.setDescricao("Rua Padre Joaquim");
-        endereco1.setNumero("200");
+        endereco1.setNumero("2000");
         endereco1.setMunicipio(municipio1);
         coreFacade.enderecoSalvarOuAtualizar(endereco1);
         
         Especializacao especializacao1 = new Especializacao();
-        especializacao1.setNome("Enfermagem");
+        especializacao1.setNome("Medico");
         especializacao1.setConselho("CRM");
         especializacao1.setValor(200);
-        especializacao1.setConselho("COREM");
+        especializacao1.setCodigo("12145");
         coreFacade.especializacaoSalvarOuAtualizar(especializacao1);
         
         List<Especializacao> especializacoess1 =  new ArrayList<>();
@@ -166,7 +163,7 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPB
         ProfissionalSaude profissionalSaude1 = new ProfissionalSaude();
         profissionalSaude1.setAtivo(true);
         profissionalSaude1.setCargaHorariaMinimaMensal(60);
-        profissionalSaude1.setCpf("1234657891");
+        profissionalSaude1.setCpf("1234997891");
         Calendar dataDeNascimento1 = Calendar.getInstance();
         dataDeNascimento1.set(1996, 2, 19);
         profissionalSaude1.setDataDeNascimento(dataDeNascimento1);
@@ -174,11 +171,59 @@ EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPB
         profissionalSaude1.setEndereco(endereco1);
         profissionalSaude1.setEspecializacoess(especializacoess1);
         profissionalSaude1.setHoraextra(0);
-        profissionalSaude1.setNome("Rafaela Hosana de Barros Santos");
+        profissionalSaude1.setNome("Rafaela Hosana de Barros");
         profissionalSaude1.setSalario(2000);
         profissionalSaude1.setSexo("F");
         profissionalSaude1.setTelefones("96345157");
         coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude1);
+
+
+
+//Estado estado1 = new Estado();
+//        estado1.setDescricao("Paraiba");
+//        estado1.setUf("PA");
+//        coreFacade.estadoSalvarOuAtualizar(estado1);
+//        
+//        Municipio municipio1 = new Municipio();
+//        municipio1.setDescricao("Serra");
+//        municipio1.setEstado(estado1);
+//        coreFacade.municipioSalvarOuAtualizar(municipio1);
+//        
+//        Endereco endereco1 = new Endereco();
+//        endereco1.setBairro("Centro");
+//        endereco1.setCep(6540000);
+//        endereco1.setComplemento("Casa");
+//        endereco1.setDescricao("Rua Dormentes Joaquim");
+//        endereco1.setNumero("200");
+//        endereco1.setMunicipio(municipio1);
+//        coreFacade.enderecoSalvarOuAtualizar(endereco1);
+//        
+//        Especializacao especializacao1 = new Especializacao();
+//        especializacao1.setNome("Medico");
+//        especializacao1.setConselho("CRM");
+//        especializacao1.setValor(200);
+//        especializacao1.setCodigo("123456987");
+//        coreFacade.especializacaoSalvarOuAtualizar(especializacao1);
+//        
+//        List<Especializacao> especializacoess1 =  new ArrayList<>();
+//        especializacoess1.add(especializacao1);
+//
+//        ProfissionalSaude profissionalSaude1 = new ProfissionalSaude();
+//        profissionalSaude1.setAtivo(true);
+//        profissionalSaude1.setCargaHorariaMinimaMensal(60);
+//        profissionalSaude1.setCpf("1239957891");
+//        Calendar dataDeNascimento1 = Calendar.getInstance();
+//        dataDeNascimento1.set(1996, 2, 19);
+//        profissionalSaude1.setDataDeNascimento(dataDeNascimento1);
+//        profissionalSaude1.setEmail("rafaelahosanabarros@gmail.com");
+//        profissionalSaude1.setEndereco(endereco1);
+//        profissionalSaude1.setEspecializacoess(especializacoess1);
+//        profissionalSaude1.setHoraextra(0);
+//        profissionalSaude1.setNome("Rafaela Maria de Barros Santos");
+//        profissionalSaude1.setSalario(2000);
+//        profissionalSaude1.setSexo("F");
+//        profissionalSaude1.setTelefones("96345157");
+//        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude1);
         
     }
 
