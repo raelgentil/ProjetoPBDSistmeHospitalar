@@ -57,6 +57,12 @@ public class InicioSuperUserController implements Initializable {
         agendar.setOnMouseClicked((MouseEvent e)->{
             Controlador.trocarPane(Panes.agendar);
         });
+        farmacia.setOnMouseClicked((MouseEvent e)->{
+            Controlador.trocarPane(Panes.farmacia);
+        });
+        relatorios.setOnMouseClicked((MouseEvent e)->{
+            Controlador.trocarPane(Panes.relatorios);
+        });
     }
     public static InicioSuperUserController get(){
         return controller;
