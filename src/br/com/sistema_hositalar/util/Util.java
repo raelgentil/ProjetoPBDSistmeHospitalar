@@ -73,5 +73,37 @@ public class Util {
            
         }
     }
+    
+    
+    
+//    CREATE VIEW reset_senha
+//AS SELECT p.nome, f.id FROM funcionario f, pessoa p WHERE p.id = f.id and f.resetar = TRUE
+    
+    
+//    CREATE OR REPLACE FUNCTION calc_sala_ext(funcionario)
+//	RETURNS NUMERIC
+//	AS '
+//		DECLARE
+//			funcionario ALIAS FOR $1;
+//			salario NUMERIC = 0;
+//			contador INTEGER = 0;
+//		BEGIN
+//			WHILE contador < funcionario.hora_extra LOOP
+//				contador:= contador + 1;
+//				
+//				salario := ((1* funcionario.salario)/100) + salario; 
+//
+//			END LOOP;
+//			
+//				salario := salario + funcionario.salario;
+//			
+//			RETURN salario;
+//	END '
+//LANGUAGE plpgsql;
+
+    
+    
+//CREATE VIEW salario_hora_extra
+//AS SELECT p.nome,p.cpf, calc_sala_ext(f) "salario com Hora extra"  FROM funcionario f INNER JOIN pessoa p on p.id = f.id
            
 }
