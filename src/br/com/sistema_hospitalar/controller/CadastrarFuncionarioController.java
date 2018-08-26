@@ -135,7 +135,7 @@ public class CadastrarFuncionarioController implements Initializable {
     private TableColumn<Especializacao, Double> valorColun;
     
     private Enums opcao;
-    private ArrayList<Especializacao> especializacoes;
+//    private ArrayList<Especializacao> especializacoes;
     
    private static CadastrarFuncionarioController controller;
    private Funcionario funcionario;
@@ -148,7 +148,10 @@ public class CadastrarFuncionarioController implements Initializable {
         //especializacoes = new ArrayList();
         controller = this;
         carregarComponentes();
-        
+        removerBotao.setOnMouseClicked((event) -> {
+            if(Mensagens.Pergunta("Deseja Continuar?", "Deseja realmente remover Especialização?", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES))
+            tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
+        });
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             cadastrar();
             Controlador.voltar();
