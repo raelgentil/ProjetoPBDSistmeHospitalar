@@ -133,9 +133,13 @@ public class ProntuarioBEANS {
                 Reserva reserva = new Reserva();
                 reserva.setIdPacientes(prontuario.getPaciente().getId());
                 reserva.setIdProntuario(prontuario.getId());
+                reserva.setId(reservaBEANS.getReservaVazia(factory));
                 if (lote.getInsumo().getQuantidadeTotal()<= lote.getInsumo().getQuantidadeMinima()) {
                     reserva.setLiberado(false);
                 }
+                
+                    reservaBEANS.salvarOuAtualizar(factory, reserva);
+               
             }
             if (lote.isInsumoPego()) {
                 lotess +=  "s/" + lote.getId() + ";";

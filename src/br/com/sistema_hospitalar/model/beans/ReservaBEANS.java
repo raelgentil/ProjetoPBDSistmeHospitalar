@@ -56,6 +56,8 @@ public class ReservaBEANS {
         return getReservasProntuario(factory, idProntuario);
     }
     
-    
+     public  Long getReservaVazia(EntityManagerFactory factory){
+         return daoR.getReservaVazia(factory);
+     }
     
 }
