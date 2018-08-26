@@ -157,14 +157,14 @@ public class Controlador extends Application{
                 ((TextField) n).clear();
             else if (n instanceof PasswordField)
                 ((PasswordField) n).clear();
-            else if (n instanceof TabPane)
-                limparPane((Pane) n);
+//            else if (n instanceof TabPane)
+//                limparPane((Pane) n);
             else if (n instanceof Pane)
                 limparPane((Pane) n);
             else if (n instanceof ComboBox)
                 ((ComboBox) n).getSelectionModel().select(null);
-            else if (n instanceof TableView)
-                ((TableView) n).setItems(null);
+//            else if (n instanceof TableView)
+//                ((TableView) n).setItems(null);
 //            else if (n instanceof DatePicker)
 //                ((((TableView) n).setItems(null);) n).setItems(null);
         }

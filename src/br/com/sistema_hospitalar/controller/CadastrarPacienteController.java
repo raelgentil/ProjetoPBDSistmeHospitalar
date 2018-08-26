@@ -5,6 +5,9 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
+import br.com.sistema_hositalar.util.Util;
+import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Estado;
@@ -108,9 +111,16 @@ public class CadastrarPacienteController implements Initializable {
         carregarComponentes();
         
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
-            Controlador.FACHADA.pacienteSalvarOuAtualizar(getPaciente());
+            if(Controlador.FACHADA.pacienteSalvarOuAtualizar(getPaciente())){
+            VisualizarController.get().atualizar(Enums.paciente);
+            Controlador.voltar();
+            limparTela();
+            }else
+                Mensagens.erro("Erro ao Salvar!", "Verifique se todos os campos estão preenchidos");
         });
+        
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
+            VisualizarController.get().atualizar(Enums.paciente);
             Controlador.voltar();
             limparTela();
         });
