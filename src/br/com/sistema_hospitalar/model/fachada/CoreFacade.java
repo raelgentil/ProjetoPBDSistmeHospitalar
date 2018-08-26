@@ -515,6 +515,12 @@ public class CoreFacade {
         return reservaBEANS.salvarOuAtualizar(factory, reserva);
     }
 
+    /**
+     * Na hora de mandar a reserva pra ser removida lembrar de colocar boolean liberado com true, pois uso no beans pra remover 
+     * @param factory
+     * @param reserva
+     * @return 
+     */
     public boolean remover(EntityManagerFactory factory, Reserva reserva) {
         return reservaBEANS.remover(factory, reserva);
     }

@@ -32,9 +32,7 @@ public class ReservaBEANS {
     }
     
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Reserva reserva) {
-        if (reserva.getId()  == null) {
-            reserva.setId(daoR.getReservaVazia(factory));
-        }
+        
             return dao.salvarOuAtualizar(factory, reserva);
     }
 
