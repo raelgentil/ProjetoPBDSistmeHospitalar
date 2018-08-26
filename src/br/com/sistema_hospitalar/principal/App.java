@@ -57,6 +57,7 @@ public class App {
     public static void main(String[] args) {
         CoreFacade coreFacade = new CoreFacade();
 //        salvarProfissionalSaude(coreFacade);
+salvarinsumo(coreFacade);
 //        ResetSenhaDAO funcionarioResetSenhaDAO = new ResetSenhaDAO();
 //        List<ResetSenha> resetSenhas = funcionarioResetSenhaDAO.getFuncionariosAResetarSenha(factory);
 //        
@@ -80,6 +81,33 @@ public class App {
 //            }
 //        }
 //    }
+    
+    public static void salvarinsumo(CoreFacade coreFacade){
+        
+        Insumo i = new Insumo();
+        i.setDescricao("dipirona");
+        i.setQuantidadeMinima(10);
+        i.setValor(10);
+        
+        coreFacade.insumoSalvarOuAtualizar(i);
+        
+        
+        Lote l = new Lote();
+        l.setCodigo(123466L);
+        Calendar dataFabricacao = Calendar.getInstance();
+        dataFabricacao.set(2018, 2-1, 19);
+        l.setDataFabricacao(dataFabricacao);
+        Calendar dataValidade = Calendar.getInstance();
+        dataValidade.set(2019, 2-1, 19);
+        l.setDataValidade(dataValidade);
+        l.setGenerico(true);
+        l.setInsumo(i);
+        l.setQuantidadeInsumo(10);
+
+        coreFacade.loteSalvarOuAtualizar(l);
+
+        
+    }
     
     
     public static void salvarProfissionalSaude(CoreFacade coreFacade){

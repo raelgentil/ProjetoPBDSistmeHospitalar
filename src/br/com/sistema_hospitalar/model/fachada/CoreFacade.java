@@ -276,8 +276,8 @@ public class CoreFacade {
         return prontuarioBEANS.buscarCodMedicoPaciente(factory,idPaciente, codMedicoPaciente);
     }
 
-    public List<Prontuario> prontuarioBuscarPorCodMedicoPacient(Long idPaciente, String codMedicoPaciente) {
-        return prontuarioBEANS.buscarPorCodMedicoPacient(factory, idPaciente, codMedicoPaciente);
+    public List<Prontuario> prontuarioBuscarPorCodMedicoPacient(String codMedicoPaciente) {
+        return prontuarioBEANS.buscarPorCodMedicoPacient(factory,codMedicoPaciente);
     }
     
     /**
