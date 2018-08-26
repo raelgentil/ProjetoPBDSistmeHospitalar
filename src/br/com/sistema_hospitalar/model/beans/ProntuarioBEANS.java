@@ -42,7 +42,7 @@ public class ProntuarioBEANS {
         if (codigo != null) {
             prontuario.setCodMedicoPaciente(codigo);
         }else{
-            prontuario.setCodMedicoPaciente(prontuario.getId() + "" + prontuario.getMedico().getApelido());
+            prontuario.setCodMedicoPaciente("" + prontuario.getMedico().getApelido() + prontuario.getPaciente().getId());
         }
         if (prontuario.getId() == null) {
             return dao.salvarOuAtualizar(factory, prontuario);

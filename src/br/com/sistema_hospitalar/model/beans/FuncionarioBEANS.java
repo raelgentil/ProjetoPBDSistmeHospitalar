@@ -55,30 +55,83 @@ public class FuncionarioBEANS {
         return daoF.buscarPorAtivos(factory, ativo);
     }
 
-    public String criarLogin(EntityManagerFactory factory, Pessoa pessoa) {
-        String[] nomes = pessoa.getNome().split(" ");
-        String login = "";
+//    public String criarLogin(EntityManagerFactory factory, Pessoa pessoa) {
+//        String[] nomes = pessoa.getNome().split(" ");
+//        String login = "";
+//
+//        
+//        for (int i = 0; i < nomes.length; i++) {
+//            for (int j = 0; j < nomes.length; j++) {
+//                if (!(nomes[i].equals(nomes[j]))) {
+//                    login = nomes[i] + "." + nomes[j];
+//                    if (daoF.buscarUsuario(factory, login) == null) {
+//                        return login;
+//                    }
+//                }
+//            }
+//        }
+//
+//        for (int i = 0; i < nomes.length; i++) {
+//            for (int j = 0; j < nomes.length; j++) {
+//                if (!(nomes[i].equals(nomes[j]))) {
+//                    login = nomes[i] + "." + nomes[j];
+//                    if (daoF.buscarUsuario(factory, login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)) == null) {
+//                        return login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
+//                    }
+//                }
+//            }
+//        }
+//
+//        return null;
+//    }
+    
+      public String criarLogin(EntityManagerFactory factory, Pessoa pessoa) {
+       String[] nomes = pessoa.getNome().split(" ");
+        String apelido = "";
 
-        for (int i = 0; i < nomes.length; i++) {
-            for (int j = 0; j < nomes.length; j++) {
-                if (!(nomes[i].equals(nomes[j]))) {
-                    login = nomes[i] + "." + nomes[j];
-                    if (daoF.buscarUsuario(factory, login) == null) {
-                        return login;
-                    }
-                }
+        for (int i = 0; i < 3; i++) {
+            if (i < 1) {
+                apelido += nomes[i] + "";
             }
+            if (i >= 1 ) {
+                apelido += "." +  nomes[i] ;
+            }
+
+            if (daoF.buscarUsuario(factory, apelido ) == null) {
+                return apelido;
+            }
+            System.out.println("Contador: " + i);
         }
-
-        for (int i = 0; i < nomes.length; i++) {
-            for (int j = 0; j < nomes.length; j++) {
-                if (!(nomes[i].equals(nomes[j]))) {
-                    login = nomes[i] + "." + nomes[j];
-                    if (daoF.buscarUsuario(factory, login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)) == null) {
-                        return login + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
-                    }
-                }
+        
+        for (int i = 0; i < 3; i++) {
+            if (i < 1) {
+                apelido += nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
             }
+            if (i >= 1 ) {
+                apelido =  apelido.replace(pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)+ "", "");
+                apelido += "." +  nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
+            }
+
+            if (daoF.buscarUsuario(factory, apelido ) == null) {
+                return apelido;
+            }
+            System.out.println("Contador: " + i);
+        }
+        
+        for (int i = 0; i < 3; i++) {
+            if (i < 1) {
+                apelido += nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH);
+            }
+            if (i >= 1 ) {
+                apelido =  apelido.replace(pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH)+ "", "");
+                apelido += "." +  nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH);
+            }
+           
+
+            if (daoF.buscarUsuario(factory, apelido ) == null) {
+                return apelido;
+            }
+            System.out.println("Contador: " + i);
         }
 
         return null;

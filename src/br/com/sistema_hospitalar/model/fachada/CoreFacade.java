@@ -35,7 +35,7 @@ import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import br.com.sistema_hospitalar.model.entidade.IEntidadeBase;
-import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import com.sun.glass.ui.View;
 import java.util.Calendar;
 import java.util.List;
@@ -299,7 +299,7 @@ public class CoreFacade {
     public boolean solicitarResetSenha(String cpf){
         return funcionarioBEANS.solicitarResetSenha(factory, cpf);
     }
-    public  List<FuncionarioResetSenha> funcionarioGetAResetarSenha(){
+    public  List<ResetSenha> funcionarioGetAResetarSenha(){
         return resetSenhaBEANS.getFuncionariosAResetarSenha(factory);
     }
     
