@@ -62,8 +62,10 @@ public class GerenciarFuncionariosController implements Initializable {
 
     void atualizarFuncionarioLogado(Funcionario usuarioLogado) {
         if(usuarioLogado instanceof Administrador)
-            if(!((Administrador)usuarioLogado).isSuperUsuario())
+            if(!((Administrador)usuarioLogado).isSuperUsuario()){
                 admBotao.setDisable(true);
+                resetarBotao.setDisable(true);
+            }
                 
     }
 }
