@@ -63,6 +63,9 @@ public class InicioSuperUserController implements Initializable {
         relatorios.setOnMouseClicked((MouseEvent e)->{
             Controlador.trocarPane(Panes.relatorios);
         });
+        prontuarios.setOnMouseClicked((MouseEvent e)->{
+            Controlador.trocarPane(Panes.gerenciarProntuarios);
+        });
     }
     public static InicioSuperUserController get(){
         return controller;

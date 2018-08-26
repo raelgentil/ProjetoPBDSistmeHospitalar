@@ -77,8 +77,10 @@ public class ProntuarioBEANS {
     public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory, String codMedicoPaciente) {
         List<Prontuario> prontuarios = daoP.buscarPorCodMedicoPacient(factory,codMedicoPaciente);
         for (Prontuario prontuario : prontuarios) {
-            prontuario.setCidss(buscarCIDs(factory, prontuario.getCids()));
-            prontuario.setPrescricaoo(buscarPrescricao(factory, prontuario.getPrescricao()));
+            if(prontuario.getCids() != null)
+                prontuario.setCidss(buscarCIDs(factory, prontuario.getCids()));
+            if(prontuario.getPrescricao()!= null)
+                prontuario.setPrescricaoo(buscarPrescricao(factory, prontuario.getPrescricao()));
         }
         return prontuarios;
     }

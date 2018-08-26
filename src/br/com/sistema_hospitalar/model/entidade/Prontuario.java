@@ -219,6 +219,11 @@ public class Prontuario implements Serializable, IEntidadeBase {
         this.especializacaoMedico = especializacaoMedico;
     }
 
+    @Override
+    public String toString() {
+        return "Prontuario{" + "id=" + id + ", numero=" + numero + ", dataAbertura=" + dataAbertura + ", dataAtendimento=" + dataAtendimento + ", dataRetorno=" + dataRetorno + ", dataPrevistaRetorno=" + dataPrevistaRetorno + ", cids=" + cids + ", cidss=" + cidss + ", codMedicoPaciente=" + codMedicoPaciente + ", observacoes=" + observacoes + ", prescricao=" + prescricao + ", prescricaoo=" + prescricaoo + ", paciente=" + paciente + ", medico=" + medico + ", especializacaoMedico=" + especializacaoMedico + '}';
+    }
+
     
     
     

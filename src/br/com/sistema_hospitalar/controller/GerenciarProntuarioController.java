@@ -5,6 +5,10 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
+import br.com.sistema_hospitalar.enums.Panes;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
+import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import java.net.URL;
 import java.text.DateFormat;
@@ -14,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -44,6 +49,8 @@ public class GerenciarProntuarioController implements Initializable {
 
     @FXML
     private TableColumn<Prontuario, Calendar> atendimento;
+     @FXML
+    private CheckBox medicBox;
 
     @FXML
     private TextField pesquisa;
@@ -61,14 +68,58 @@ public class GerenciarProntuarioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         c = this;
         iniciarComponentes();
+        excluirBotao.setOnMouseClicked((event) -> {
+            if(tabela.getSelectionModel().getSelectedItem() != null){
+                if(Mensagens.Pergunta("DESEJA CONTINUAR?", "Deseja realmente excluir", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES)){
+                    Controlador.FACHADA.prontuarioRemover(tabela.getSelectionModel().getSelectedItem());
+                }
+            }else
+                Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
+        });
+        atenderBotao.setOnMouseClicked((event) -> {
+            if(tabela.getSelectionModel().getSelectedItem() != null){
+                    //AtenderProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
+                    Controlador.abrirTelaAux(Panes.atenderProntuario);
+                
+            }else
+                Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
+        });
+        editarBotao.setOnMouseClicked((event) -> {
+            if(tabela.getSelectionModel().getSelectedItem() != null){
+                    //EditarProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
+                    Controlador.abrirTelaAux(Panes.verProntuario);
+                
+            }else
+                Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
+        });
         
     } 
 
     public static GerenciarProntuarioController get() {
         return c;
     }
+    public void atualizarFuncionarioLogado(Funcionario f){
+        if(!(f instanceof ProfissionalSaude)){
+            medicBox.setDisable(true);
+            medicBox.setSelected(false);
+            
+        }else{
+            medicBox.setDisable(false);
+            medicBox.setSelected(true);
+        }
+            
+    }
     public void atualizar(){
-        tabela.setItems(FXCollections.observableArrayList(Controlador.FACHADA.prontuarioBuscarPorCodMedicoPacient(Long.MIN_VALUE, pesquisa.getText())));
+        if(medicBox.isSelected())
+            tabela.setItems(FXCollections.observableArrayList(Controlador.FACHADA.prontuarioBuscarPorCodMedicoPacient(((ProfissionalSaude)Controlador.getUsuarioLogado()).getApelido())));
+        else
+            tabela.setItems(FXCollections.observableArrayList(Controlador.FACHADA.prontuarioBuscarPorCodMedicoPacient(pesquisa.getText())));
+    for(Prontuario p : tabela.getItems()){
+        System.out.println(p);
+    }//
+    for(Prontuario p : Controlador.FACHADA.prontuarioBuscarPorCodMedicoPacient(pesquisa.getText())){
+        System.out.println(p);
+    }
     }
     private void iniciarComponentes(){
         final DateFormat dateFormat = DateFormat.getDateInstance() ;

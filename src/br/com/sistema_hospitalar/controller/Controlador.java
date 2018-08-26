@@ -10,16 +10,12 @@ import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.util.ArrayList;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -32,7 +28,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, farmacia,visualizarInsumo,cadastrarInsumo,cadastrarLote, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
+    private static Pane principalPane,inicioSUPane, farmacia,visualizarInsumo,gerenciarProntuarios,cadastrarInsumo,cadastrarLote, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -63,6 +59,7 @@ public class Controlador extends Application{
         visualizarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/visualizarInsumos.fxml"));
         cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarInsumo.fxml"));
         cadastrarLote = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarLote.fxml"));
+        gerenciarProntuarios = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarProntuario.fxml"));
 //        cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
         
         login = new Scene(loginPane);
@@ -126,6 +123,7 @@ public class Controlador extends Application{
             case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
             case cadastrarInsumo:{HomeController.get().alterarPane(cadastrarInsumo);CadastrarInsumoController.get().limpar();break;}
             case resetSenha:{HomeController.get().alterarPane(resetSenha);DesbloquerUserController.get().atualizar();break;}
+            case gerenciarProntuarios:{HomeController.get().alterarPane(gerenciarProntuarios);GerenciarProntuarioController.get().atualizar();break;}
             default:{Mensagens.erro("Erro ao carregar Próxima tela","O próxima tela não foi encontrada");break;}
         }
     }
@@ -159,6 +157,7 @@ public class Controlador extends Application{
         HomeController.get().atualizar(usuarioLogado);
         InicioSuperUserController.get().atualizarFuncionarioLogado(usuarioLogado);
         GerenciarFuncionariosController.get().atualizarFuncionarioLogado(usuarioLogado);
+        GerenciarProntuarioController.get().atualizarFuncionarioLogado(usuarioLogado);
         Controlador.usuarioLogado = usuarioLogado;
     }
     public static void limparPane(Pane p){

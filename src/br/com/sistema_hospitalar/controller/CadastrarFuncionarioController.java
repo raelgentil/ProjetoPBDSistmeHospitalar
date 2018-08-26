@@ -158,6 +158,7 @@ public class CadastrarFuncionarioController implements Initializable {
         //especializacoes = new ArrayList();
         controller = this;
         carregarComponentes();
+        apelido.setDisable(true);
         removerBotao.setOnMouseClicked((event) -> {
             if(Mensagens.Pergunta("Deseja Continuar?", "Deseja realmente remover Especialização?", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES))
                 tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
