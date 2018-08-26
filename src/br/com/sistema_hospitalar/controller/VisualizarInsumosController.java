@@ -71,6 +71,15 @@ public class VisualizarInsumosController implements Initializable {
         cadastrarBotao.setOnMouseClicked((event) -> {
             Controlador.trocarPane(Panes.cadastrarInsumo);
         });
+        editarBotao.setOnMouseClicked((event) -> {
+            if(tabela.getSelectionModel().getSelectedItem() != null){
+                System.out.println(tabela.getSelectionModel().getSelectedItem());
+                CadastrarInsumoController.get().setInsumo(tabela.getSelectionModel().getSelectedItem());
+                Controlador.trocarPane(Panes.cadastrarInsumo);
+                atualizar();
+            }else
+                Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
+        });
         
     } 
     

@@ -39,7 +39,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1008.0" layoutY="604.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Cancelar" textFill="#1379a1">
+      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1008.0" layoutY="604.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Voltar" textFill="#1379a1">
          <font>
             <Font size="14.0" />
          </font>
@@ -55,7 +55,7 @@
          <graphic>
             <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../resources/icons/cancel.png" />
+                  <Image url="@../resources/icons/voltar2.png" />
                </image>
             </ImageView>
          </graphic>
@@ -80,7 +80,7 @@
                                     <Font name="Times New Roman" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="email" layoutX="260.0" layoutY="248.0" prefHeight="25.0" prefWidth="230.0" />
+                              <TextField fx:id="valor" layoutX="260.0" layoutY="248.0" prefHeight="25.0" prefWidth="230.0" />
                               <Label layoutX="260.0" layoutY="228.0" text="Valor:" textFill="#2323c6">
                                  <font>
                                     <Font name="Times New Roman" size="18.0" />
@@ -100,7 +100,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Lotes">
+            <Tab fx:id="loteTab" text="Lotes">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

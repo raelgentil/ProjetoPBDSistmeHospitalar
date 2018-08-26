@@ -80,6 +80,11 @@ public class Insumo implements Serializable, IEntidadeBase {
         this.valor = valor;
     }
 
+    @Override
+    public String toString() {
+        return "Insumo{" + "id=" + id + ", descricao=" + descricao + ", quantidadeTotal=" + quantidadeTotal + ", quantidadeMinima=" + quantidadeMinima + ", valor=" + valor + '}';
+    }
+
     
 
     

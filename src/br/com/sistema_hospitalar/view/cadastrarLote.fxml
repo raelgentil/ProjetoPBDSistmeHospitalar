@@ -14,12 +14,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="607.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.sistema_hospitalar.controller.CadastrarLoteController">
+<AnchorPane id="AnchorPane" prefHeight="513.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.CadastrarLoteController">
    <children>
-      <Pane layoutX="33.0" layoutY="14.0" prefHeight="343.0" prefWidth="535.0">
+      <Pane fx:id="pane" layoutX="33.0" layoutY="14.0" prefHeight="343.0" prefWidth="535.0">
          <children>
-            <TextField fx:id="nome" layoutX="35.0" layoutY="133.0" prefHeight="25.0" prefWidth="159.0" />
+            <TextField fx:id="codigo" layoutX="35.0" layoutY="133.0" prefHeight="25.0" prefWidth="159.0" />
             <Label layoutX="35.0" layoutY="113.0" text="Código:" textFill="#2323c6">
                <font>
                   <Font name="Times New Roman" size="18.0" />
@@ -35,7 +34,7 @@
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="telefone" layoutX="300.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
+            <TextField fx:id="qntd" layoutX="300.0" layoutY="131.0" prefHeight="25.0" prefWidth="187.0" />
             <Label layoutX="300.0" layoutY="111.0" text="Quantidade/Estoque:" textFill="#2323c6">
                <font>
                   <Font name="Times New Roman" size="18.0" />
@@ -46,14 +45,14 @@
                   <Font name="Times New Roman Bold Italic" size="23.0" />
                </font>
             </Label>
-            <DatePicker layoutX="35.0" layoutY="211.0" />
+            <DatePicker fx:id="fabricacao" layoutX="35.0" layoutY="211.0" />
             <Label layoutX="300.0" layoutY="191.0" text="Data Validade:" textFill="#2323c6">
                <font>
                   <Font name="Times New Roman" size="18.0" />
                </font>
             </Label>
-            <DatePicker layoutX="300.0" layoutY="211.0" />
-            <ComboBox layoutX="40.0" layoutY="281.0" prefWidth="150.0" />
+            <DatePicker fx:id="validade" layoutX="300.0" layoutY="211.0" />
+            <ComboBox fx:id="generico" layoutX="40.0" layoutY="281.0" prefWidth="150.0" promptText="Selecione" />
          </children>
          <opaqueInsets>
             <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
