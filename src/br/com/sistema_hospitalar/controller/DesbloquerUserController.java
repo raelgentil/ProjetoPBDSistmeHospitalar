@@ -6,8 +6,7 @@
 package br.com.sistema_hospitalar.controller;
 
 import br.com.sistema_hositalar.util.Mensagens;
-import br.com.sistema_hospitalar.model.entidade.Funcionario;
-import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -26,10 +25,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class DesbloquerUserController implements Initializable {
 
     @FXML
-    private TableView<FuncionarioResetSenha> tabela;
+    private TableView<ResetSenha> tabela;
 
     @FXML
-    private TableColumn<FuncionarioResetSenha, String> nome;
+    private TableColumn<ResetSenha, String> nome;
 
 //    @FXML
 //    private TableColumn<Funcionario, String> sexo;
