@@ -28,6 +28,9 @@ public class GerenciarFuncionariosController implements Initializable {
     @FXML
     private Button atendenteBotao;
     
+     @FXML
+    private Button resetarBotao;
+    
     @FXML
     private Button saudeBotao;
     
@@ -42,6 +45,9 @@ public class GerenciarFuncionariosController implements Initializable {
         });
         saudeBotao.setOnMouseClicked((MouseEvent) -> {
             Controlador.trocarPane(Panes.visualizar,Enums.ProfSaude);
+        });
+        resetarBotao.setOnMouseClicked((MouseEvent) -> {
+            Controlador.trocarPane(Panes.resetSenha);
         });
         
     }

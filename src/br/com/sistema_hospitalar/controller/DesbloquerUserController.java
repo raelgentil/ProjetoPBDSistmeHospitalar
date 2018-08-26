@@ -5,9 +5,18 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
+import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * FXML Controller class
@@ -16,12 +25,50 @@ import javafx.fxml.Initializable;
  */
 public class DesbloquerUserController implements Initializable {
 
-    /**
-     * Initializes the controller class.
-     */
+    @FXML
+    private TableView<FuncionarioResetSenha> tabela;
+
+    @FXML
+    private TableColumn<FuncionarioResetSenha, String> nome;
+
+//    @FXML
+//    private TableColumn<Funcionario, String> sexo;
+//
+//    @FXML
+//    private TableColumn<Funcionario, String> cpf;
+
+    @FXML
+    private Button resetar;
+
+    @FXML
+    private Button cancelar;
+    private static DesbloquerUserController controller;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        controller = this;
+        nome.setCellValueFactory( new PropertyValueFactory("nome"));
+//        cpf.setCellValueFactory( new PropertyValueFactory("cpf"));
+//        sexo.setCellValueFactory( new PropertyValueFactory("sexo"));
+        cancelar.setOnMouseClicked((event) -> {
+            Controlador.voltar();
+            atualizar();
+        });
+        resetar.setOnMouseClicked((event) -> {
+            if(tabela.getSelectionModel().getSelectedItem() == null)
+                Mensagens.informacao("Você deve selecionar um item", "Selecione um item da tabela");
+            else
+                Controlador.FACHADA.funcionarioResetSenha(tabela.getSelectionModel().getSelectedItem().getId());
+            atualizar();
+        });
+        
+        
+    }
+    public static DesbloquerUserController get(){
+        return controller;
+    }
+    public void atualizar(){
+        tabela.setItems(FXCollections.observableArrayList(Controlador.FACHADA.funcionarioGetAResetarSenha()));
+    }
     
 }

@@ -50,6 +50,7 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private TextField cpf;
+    
 
     @FXML
     private ComboBox<?> sexo;

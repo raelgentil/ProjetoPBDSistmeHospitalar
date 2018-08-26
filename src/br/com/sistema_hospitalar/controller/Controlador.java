@@ -32,7 +32,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
+    private static Pane principalPane,inicioSUPane, resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -47,6 +47,9 @@ public class Controlador extends Application{
         janela = stage;
         pilha = new ArrayList<>();
         Pane loginPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/login.fxml"));
+        resetSenha = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/desbloquerUser.fxml"));
+        cadastrarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarEspecializacao.fxml"));
+        adicionarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/adcionarEspecializacao.fxml"));
         inicioSUPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/inicioSuperUser.fxml"));
         principalPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/home.fxml"));
         gerenciarFuncPane = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarFuncionarios.fxml"));
@@ -55,8 +58,6 @@ public class Controlador extends Application{
         cadastrarPaciente2 = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         agendar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
-        cadastrarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarEspecializacao.fxml"));
-        adicionarEspecializacao = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/adcionarEspecializacao.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -114,6 +115,7 @@ public class Controlador extends Application{
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
             case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
             case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
+            case resetSenha:{HomeController.get().alterarPane(resetSenha);DesbloquerUserController.get().atualizar();break;}
             default:{Mensagens.erro("Erro ao carregar Próxima tela","O próxima tela não foi encontrada");break;}
         }
     }
