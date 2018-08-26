@@ -73,7 +73,7 @@ public class CadastrarLoteController implements Initializable {
         l.setInsumo(CadastrarInsumoController.get().getInsumo());
         if(l.getInsumo()== null)
             return null;
-        l.setCodigo(Long.getLong(codigo.getText()));
+        l.setCodigo(Long.parseLong(codigo.getText()));
         l.setGenerico(generico.getValue().equals("Sim"));
         l.setQuantidadeInsumo(Integer.parseInt(qntd.getText()));
         
@@ -83,7 +83,7 @@ public class CadastrarLoteController implements Initializable {
         
         Calendar val = Calendar.getInstance();
         val.setTime(Date.valueOf(validade.getValue()));
-        l.setDataFabricacao(val);
+        l.setDataValidade(val);
         return l;
     }
     
