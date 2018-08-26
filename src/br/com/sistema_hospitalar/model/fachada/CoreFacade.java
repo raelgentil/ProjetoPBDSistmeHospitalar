@@ -19,7 +19,7 @@ import br.com.sistema_hospitalar.model.beans.PacienteBEANS;
 import br.com.sistema_hospitalar.model.beans.PessoaBEANS;
 import br.com.sistema_hospitalar.model.beans.ProficionalSaudeBEANS;
 import br.com.sistema_hospitalar.model.beans.ProntuarioBEANS;
-import br.com.sistema_hospitalar.model.beans.FuncionarioResetSenhaBEANS;
+import br.com.sistema_hospitalar.model.beans.ResetSenhaBEANS;
 import br.com.sistema_hospitalar.model.beans.ReservaBEANS;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
@@ -68,7 +68,7 @@ public class CoreFacade {
     private InsumoBEANS insumoBEANS;
     private LoteBEANS loteBEANS;
     private CategoriCIDBEANS categoriCIDBEANS;
-    private FuncionarioResetSenhaBEANS resetSenhaBEANS;
+    private ResetSenhaBEANS resetSenhaBEANS;
     private ReservaBEANS reservaBEANS;
     public CoreFacade() {
         

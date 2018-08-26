@@ -8,7 +8,7 @@ package br.com.sistema_hospitalar.model.beans;
 import br.com.sistema_hospitalar.model.dao.DAO;
 import br.com.sistema_hospitalar.model.dao.InsumoDAO;
 import br.com.sistema_hospitalar.model.dao.LoteDAO;
-import br.com.sistema_hospitalar.model.dao.FuncionarioResetSenhaDAO;
+import br.com.sistema_hospitalar.model.dao.ResetSenhaDAO;
 import br.com.sistema_hospitalar.model.entidade.Insumo;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
@@ -23,11 +23,11 @@ import javax.persistence.TypedQuery;
  *
  * @author rafaelgentil
  */
-public class FuncionarioResetSenhaBEANS {
-    private FuncionarioResetSenhaDAO dao;
+public class ResetSenhaBEANS {
+    private ResetSenhaDAO dao;
 
-    public FuncionarioResetSenhaBEANS(InsumoBEANS insumoBEANS) {
-        dao =new FuncionarioResetSenhaDAO();
+    public ResetSenhaBEANS(InsumoBEANS insumoBEANS) {
+        dao =new ResetSenhaDAO();
         
     }
     

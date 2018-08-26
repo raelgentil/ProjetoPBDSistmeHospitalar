@@ -5,7 +5,7 @@
  */
 package br.com.sistema_hospitalar.principal;
 
-import br.com.sistema_hospitalar.model.dao.FuncionarioResetSenhaDAO;
+import br.com.sistema_hospitalar.model.dao.ResetSenhaDAO;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
 import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
@@ -58,7 +58,7 @@ public class App {
         CoreFacade coreFacade = new CoreFacade();
 //        salvarProfissionalSaude(coreFacade);
 EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPBDPU");
-//        FuncionarioResetSenhaDAO funcionarioResetSenhaDAO = new FuncionarioResetSenhaDAO();
+//        ResetSenhaDAO funcionarioResetSenhaDAO = new ResetSenhaDAO();
 //        List<ResetSenha> resetSenhas = funcionarioResetSenhaDAO.getFuncionariosAResetarSenha(factory);
 //        
 //        for (ResetSenha resetSenha : resetSenhas) {

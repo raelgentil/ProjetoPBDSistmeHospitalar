@@ -20,7 +20,7 @@ import javax.persistence.TypedQuery;
  *
  * @author rafaelgentil
  */
-public class FuncionarioResetSenhaDAO {
+public class ResetSenhaDAO {
     
     public  List<ResetSenha> getFuncionariosAResetarSenha(EntityManagerFactory factory){
         EntityManager em = null;
