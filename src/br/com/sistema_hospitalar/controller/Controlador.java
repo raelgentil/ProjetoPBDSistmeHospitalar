@@ -103,7 +103,7 @@ public class Controlador extends Application{
          
     }
         public static void fecharTelaAux(){
-            janelaAUX.close();        
+            janelaAUX.close();  
     }
     public static void trocarPane(Panes pane){
         if(HomeController.get().getPane() != null)
