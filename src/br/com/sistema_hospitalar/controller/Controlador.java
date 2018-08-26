@@ -147,6 +147,8 @@ public class Controlador extends Application{
 
     public static void setUsuarioLogado(Funcionario usuarioLogado) {
         HomeController.get().atualizar(usuarioLogado);
+        InicioSuperUserController.get().atualizarFuncionarioLogado(usuarioLogado);
+        GerenciarFuncionariosController.get().atualizarFuncionarioLogado(usuarioLogado);
         Controlador.usuarioLogado = usuarioLogado;
     }
     public static void limparPane(Pane p){
