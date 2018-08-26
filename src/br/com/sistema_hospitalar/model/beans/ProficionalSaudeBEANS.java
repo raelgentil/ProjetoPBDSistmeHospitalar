@@ -98,6 +98,7 @@ public class ProficionalSaudeBEANS {
             String[] especializacoesSegundaQuebra = especializacoesPrimeiraQuebra[i].split("/");
             Especializacao especializacao = beansE.buscarPorConselho(factory, especializacoesSegundaQuebra[0]).get(0);
             especializacao.setCodigo(especializacoesSegundaQuebra[1]);
+            especializacoess.add(especializacao);
         }
 
         return especializacoess;
@@ -106,32 +107,29 @@ public class ProficionalSaudeBEANS {
     private String criarApelido(EntityManagerFactory factory, Pessoa pessoa) {
         String[] nomes = pessoa.getNome().split(" ");
         nomes[0].charAt(0);
-        String apelido = "";
-
-        for (int i = 0; i < nomes.length; i++) {
-                apelido += nomes[1].charAt(0) + "";
-                
-                if (daoP.buscarPorApelido(factory, apelido) == null) {
-                    return apelido;
-                }
-
-        }
+        String apelido1 = "";
         
-        for (int i = 1; i < nomes.length; i++) {
-                apelido = nomes[0].charAt(0) + "";
-                if (nomes.length > 1) {
-                    apelido += nomes[i].charAt(0);
-                }
-                if (nomes.length > 2) {
-                    apelido += nomes[i+1].charAt(0);
-                }
-                if (daoP.buscarPorApelido(factory, apelido) == null) {
-                    return apelido;
-                }
+        String apelido2 = "";
 
+        for (int i = 0; i < pessoa.getNome().length(); i++) {
+            if (i < nomes.length) {
+                apelido1 += nomes[i].charAt(0) + "";
+            }
+            if (i>= nomes.length) {
+                apelido1 = "";
+                apelido2+= nomes[i - nomes.length].charAt(0) + nomes[i - nomes.length].charAt(1) + "";
+            }
+
+            if (daoP.buscarPorApelido(factory, apelido1 + apelido2) == null) {
+                return apelido1 + apelido2;
+            }
+            System.out.println("Contador: " + i);
+            System.out.println("br.com.sistema_hospitalar.model.beans.ProficionalSaudeBEANS.criarApelido()");
         }
 
         return null;
     }
+    
+   
 
 }

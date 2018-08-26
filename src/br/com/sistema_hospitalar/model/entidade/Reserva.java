@@ -28,7 +28,7 @@ public class Reserva implements Serializable, IEntidadeBase{
     
     private Lote lote;
     
-    private boolean liberado;
+    private boolean liberado = true;
     
     /**
      * Esse atributo será usado pra saber quando cliente levou ou não o insumo e tb na hora de saber se adm liberou ou não o insumo pra

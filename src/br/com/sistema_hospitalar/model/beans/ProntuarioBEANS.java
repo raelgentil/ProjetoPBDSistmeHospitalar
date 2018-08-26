@@ -11,6 +11,7 @@ import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.Prontuario;
+import br.com.sistema_hospitalar.model.entidade.Reserva;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -27,24 +28,29 @@ public class ProntuarioBEANS {
     DAO<CategoriaCID> daoC;
     DAO<Lote> daoL;
     ProntuarioDAO daoP;
+    ReservaBEANS reservaBEANS;
 
-    public ProntuarioBEANS() {
+    public ProntuarioBEANS( ReservaBEANS reservaBEANS) {
         this.dao = new DAO<>();
         this.daoC = new DAO<>();
         this.daoL = new DAO<>();
         this.daoP = new ProntuarioDAO();
+        this.reservaBEANS = reservaBEANS;
     }
 
     public boolean salvarOuAtualizar(EntityManagerFactory factory, Prontuario prontuario) {
         if(prontuario.getCidss() != null)
             prontuario.setCids(atualizarCIDs(prontuario.getCidss()));
         if(prontuario.getPrescricaoo() != null)
-            prontuario.setPrescricao(atualizarPrescricao(prontuario.getPrescricaoo()));
+            prontuario.setPrescricao(atualizarPrescricao(factory, prontuario));
         String codigo = buscarCodMedicoPaciente(factory, prontuario.getPaciente().getId(), prontuario.getMedico().getApelido());
         if (codigo != null) {
             prontuario.setCodMedicoPaciente(codigo);
-        }else{
+        }
+        if (codigo == null) {
+
             prontuario.setCodMedicoPaciente(prontuario.getMedico().getApelido()+ prontuario.getPaciente().getId());
+
         }
         if (prontuario.getId() == null) {
             return dao.salvarOuAtualizar(factory, prontuario);
@@ -102,15 +108,45 @@ public class ProntuarioBEANS {
         String[] ids = prescricao.split(";");
         List<Lote> lotes = new ArrayList<>();
         for (int i = 0; i < ids.length; i++) {
-            lotes.add(daoL.getPorId(factory, Lote.class, Long.parseLong(ids[i])));
+            String[] SegundaQuebra = ids[i].split("/");
+            Lote lote = daoL.getPorId(factory, Lote.class, Long.parseLong(SegundaQuebra[0]));
+            if (SegundaQuebra[0].equals("s")) {
+                lote.setInsumoPego(true);
+            }else{
+                lote.setInsumoPego(false);
+            }
+            
+            lotes.add(lote);
+   
         }
         return lotes;
     }
     
-    private String atualizarPrescricao(List<Lote> lotes){
+    private String atualizarPrescricao(EntityManagerFactory factory, Prontuario prontuario){
         String lotess= "";
-        for (Lote lote : lotes) {
-            lotess += lote.getId() + ";";
+        boolean reservar = false;
+        if (reservaBEANS.getReservasProntuario(factory, Long.MIN_VALUE) == null) {
+            reservar = true;
+        }
+        for (Lote lote : prontuario.getPrescricaoo()) {
+            if (reservar) {
+                Reserva reserva = new Reserva();
+                reserva.setIdPacientes(prontuario.getPaciente().getId());
+                reserva.setIdProntuario(prontuario.getId());
+                reserva.setId(reservaBEANS.getReservaVazia(factory));
+                if (lote.getInsumo().getQuantidadeTotal()<= lote.getInsumo().getQuantidadeMinima()) {
+                    reserva.setLiberado(false);
+                }
+                
+                    reservaBEANS.salvarOuAtualizar(factory, reserva);
+               
+            }
+            if (lote.isInsumoPego()) {
+                lotess +=  "s/" + lote.getId() + ";";
+            }else{
+                 lotess +=  "n/" + lote.getId() + ";";
+            }
+            
             //lembrar de atualizar a parte do banco pra saber se o paciente ta levando o medicamento
             //receitado pelo medico
         }

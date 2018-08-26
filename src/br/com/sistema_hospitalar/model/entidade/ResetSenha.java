@@ -20,9 +20,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author rafaelgentil
  */
 @Entity
-@Table(name = "reset_senha")
+@Table(name = "reset_senha", catalog = "postgres", schema = "public")
 
-public class FuncionarioResetSenha implements Serializable {
+public class ResetSenha implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Column(name = "nome")
@@ -31,19 +31,24 @@ public class FuncionarioResetSenha implements Serializable {
     @Id
     private Long id;
 
-    public FuncionarioResetSenha() {
+    public ResetSenha() {
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }
 
-    
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-   
     
 }

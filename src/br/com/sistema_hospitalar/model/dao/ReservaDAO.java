@@ -8,7 +8,7 @@ package br.com.sistema_hospitalar.model.dao;
 import br.com.sistema_hospitalar.model.entidade.Insumo;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Paciente;
-import br.com.sistema_hospitalar.model.entidade.FuncionarioResetSenha;
+import br.com.sistema_hospitalar.model.entidade.ResetSenha;
 import br.com.sistema_hospitalar.model.entidade.Reserva;
 import java.util.Calendar;
 import java.util.List;
@@ -34,6 +34,26 @@ public class ReservaDAO {
 
         } catch (Exception e) {
             System.out.println("br.com.sistema_hospitalar.model.dao.ReservaDAO.getReservasPaciente()");
+            System.out.println("erro ReservaDAO: " + e.getMessage());
+
+        } finally {
+            em.close();
+        }
+        return reservas;
+    }
+    
+    public  List<Reserva> getReservasProntuario(EntityManagerFactory factory, Long idProntuario){
+        EntityManager em = null;
+        List<Reserva> reservas = null;
+        try {
+            
+            em = factory.createEntityManager();
+            TypedQuery<Reserva> q = em.createQuery("SELECT r FROM Reserva r where r.idProntuario = :idProntuario", Reserva.class);
+            q.setParameter("idProntuario",idProntuario);
+            reservas = q.getResultList();
+
+        } catch (Exception e) {
+            System.out.println("br.com.sistema_hospitalar.model.dao.ReservaDAO.getReservasProntuario()");
             System.out.println("erro ReservaDAO: " + e.getMessage());
 
         } finally {
