@@ -26,7 +26,7 @@ import javax.persistence.TypedQuery;
 public class ResetSenhaBEANS {
     private ResetSenhaDAO dao;
 
-    public ResetSenhaBEANS(InsumoBEANS insumoBEANS) {
+    public ResetSenhaBEANS() {
         dao =new ResetSenhaDAO();
         
     }

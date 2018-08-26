@@ -18,13 +18,7 @@ import javax.persistence.TypedQuery;
  */
 public class ProntuarioDAO {
     
-    private String prescricao;
-    /**
-     * @param factory
-     * @param idPaciente
-     * @param codMedicoPaciente
-     * @return String - codigoMedicoPaciente
-     */
+    
     public String buscarCodMedicoPaciente(EntityManagerFactory factory, Long idPaciente, String codMedicoPaciente){
         EntityManager em = null;
         String codigo = null;
@@ -51,16 +45,15 @@ public class ProntuarioDAO {
     }
     
     
-    public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory, Long idPaciente, String codMedicoPaciente){
+    public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory,String codMedicoPaciente){
         EntityManager em = null;
         List<Prontuario> prontuarios = null;
         try {
              
             em = factory.createEntityManager();
            
-            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.paciente.id = :id and p.codMedicoPaciente = :codMedicoPaciente", Prontuario.class);
-            q.setParameter("id", idPaciente);
-            q.setParameter("codMedicoPaciente", codMedicoPaciente);
+            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.codMedicoPaciente = :codMedicoPaciente", Prontuario.class);
+            q.setParameter("codMedicoPaciente", codMedicoPaciente + "%");
             prontuarios = q.getResultList();
 
         } catch (Exception e) {
@@ -72,28 +65,28 @@ public class ProntuarioDAO {
         }
         return prontuarios;
     }
-    
-    public int ultimoRegistroDeUmMedico(EntityManagerFactory factory, String codMedicoPaciente){
-        EntityManager em = null;
-        int quantidade = 0;
-        
-        try {
-
-            em = factory.createEntityManager();
-           
-            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.codMedicoPaciente like :codMedicoPaciente", Prontuario.class);
-            q.setParameter("codMedicoPaciente", codMedicoPaciente + "%");
-            quantidade = q.getResultList().size();
-
-        } catch (Exception e) {
-            System.out.println("br.com.sistema_hospitalar.model.dao.ProntuarioDAO.buscarPorCodMedicoPaciente()");
-            System.out.println("erro ProntuarioDAO: " + e.getMessage());
-
-        } finally {
-            em.close();
-        }
-        return quantidade;
-    }
+//    
+//    public int ultimoRegistroDeUmMedico(EntityManagerFactory factory, String codMedicoPaciente){
+//        EntityManager em = null;
+//        int quantidade = 0;
+//        
+//        try {
+//
+//            em = factory.createEntityManager();
+//           
+//            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.codMedicoPaciente like :codMedicoPaciente", Prontuario.class);
+//            q.setParameter("codMedicoPaciente", codMedicoPaciente + "%");
+//            quantidade = q.getResultList().size();
+//
+//        } catch (Exception e) {
+//            System.out.println("br.com.sistema_hospitalar.model.dao.ProntuarioDAO.buscarPorCodMedicoPaciente()");
+//            System.out.println("erro ProntuarioDAO: " + e.getMessage());
+//
+//        } finally {
+//            em.close();
+//        }
+//        return quantidade;
+//    }
     
     
     

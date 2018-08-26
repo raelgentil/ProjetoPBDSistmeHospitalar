@@ -91,9 +91,12 @@ public class FuncionarioBEANS {
 
         for (int i = 0; i < 3; i++) {
             if (i < 1) {
-                apelido += nomes[i] + "";
+                apelido += nomes[i] + "."+  pessoa.getCpf().substring(0, 3);
             }
             if (i >= 1 ) {
+                if (i==1) {
+                   apelido =  apelido.replaceAll("."+pessoa.getCpf().substring(0, 3), "");
+                }
                 apelido += "." +  nomes[i] ;
             }
 
@@ -105,10 +108,10 @@ public class FuncionarioBEANS {
         
         for (int i = 0; i < 3; i++) {
             if (i < 1) {
-                apelido += nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
+                apelido += nomes[i] + "." + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
             }
             if (i >= 1 ) {
-                apelido =  apelido.replace(pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)+ "", "");
+                apelido =  apelido.replace("." + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH)+ "", "");
                 apelido += "." +  nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.DAY_OF_MONTH);
             }
 
@@ -120,10 +123,10 @@ public class FuncionarioBEANS {
         
         for (int i = 0; i < 3; i++) {
             if (i < 1) {
-                apelido += nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH);
+                apelido += nomes[i] + "." + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH);
             }
             if (i >= 1 ) {
-                apelido =  apelido.replace(pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH)+ "", "");
+                apelido =  apelido.replace("." + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH)+ "", "");
                 apelido += "." +  nomes[i] + pessoa.getDataDeNascimento().get(GregorianCalendar.MONTH);
             }
            

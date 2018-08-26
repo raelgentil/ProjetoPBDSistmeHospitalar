@@ -74,8 +74,8 @@ public class ProntuarioBEANS {
         return daoP.buscarCodMedicoPaciente(factory, idPaciente, codMedicoPaciente);
     }
 
-    public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory, Long idPaciente, String codMedicoPaciente) {
-        List<Prontuario> prontuarios = daoP.buscarPorCodMedicoPacient(factory, idPaciente, codMedicoPaciente);
+    public List<Prontuario> buscarPorCodMedicoPacient(EntityManagerFactory factory, String codMedicoPaciente) {
+        List<Prontuario> prontuarios = daoP.buscarPorCodMedicoPacient(factory,codMedicoPaciente);
         for (Prontuario prontuario : prontuarios) {
             prontuario.setCidss(buscarCIDs(factory, prontuario.getCids()));
             prontuario.setPrescricaoo(buscarPrescricao(factory, prontuario.getPrescricao()));
@@ -83,9 +83,6 @@ public class ProntuarioBEANS {
         return prontuarios;
     }
 
-    public int ultimoRegistroDeUmMedico(EntityManagerFactory factory, String codMedicoPaciente) {
-        return daoP.ultimoRegistroDeUmMedico(factory, codMedicoPaciente);
-    }
 
     private List<CategoriaCID> buscarCIDs(EntityManagerFactory factory, String cids) {
         String[] ids = cids.split(";");
