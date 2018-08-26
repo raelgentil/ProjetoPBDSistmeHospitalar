@@ -5,6 +5,7 @@
  */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hospitalar.enums.Panes;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,7 +29,9 @@ public class GerenciarFarmaciaController implements Initializable {
     private Button gerenciar;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        gerenciar.setOnMouseClicked((event) -> {
+            Controlador.trocarPane(Panes.visualizarInsumo);
+        });
     }    
     
 }

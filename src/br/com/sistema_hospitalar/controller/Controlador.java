@@ -32,7 +32,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, farmacia, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
+    private static Pane principalPane,inicioSUPane, farmacia,visualizarInsumo,cadastrarInsumo,cadastrarLote, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -60,6 +60,9 @@ public class Controlador extends Application{
         cadastrarPaciente2 = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarPaciente.fxml"));
         cadastrarFuncionario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarFuncionario.fxml"));
         agendar = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
+        visualizarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/visualizarInsumos.fxml"));
+        cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarInsumo.fxml"));
+//        cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
         
         login = new Scene(loginPane);
         principal = new Scene(principalPane);
@@ -114,10 +117,12 @@ public class Controlador extends Application{
         switch(pane){
             case inicioSU:{HomeController.get().alterarPane(inicioSUPane);break;}
             case farmacia:{HomeController.get().alterarPane(farmacia);break;}
+            case visualizarInsumo:{HomeController.get().alterarPane(visualizarInsumo);break;}
             case agendar:{HomeController.get().alterarPane(agendar);AgendarController.get().atualizar();break;}
             case gerenciarFunc:{HomeController.get().alterarPane(gerenciarFuncPane);break;}
             case cadastrarPaciente:{HomeController.get().alterarPane(cadastrarPaciente);break;}
             case cadastrarFuncionario:{HomeController.get().alterarPane(cadastrarFuncionario);break;}
+            case cadastrarInsumo:{HomeController.get().alterarPane(cadastrarInsumo);break;}
             case resetSenha:{HomeController.get().alterarPane(resetSenha);DesbloquerUserController.get().atualizar();break;}
             default:{Mensagens.erro("Erro ao carregar Próxima tela","O próxima tela não foi encontrada");break;}
         }

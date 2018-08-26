@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.sistema_hospitalar.controller.VisualizarInsumosController">
+   <children>
+      <TableView fx:id="tabela" layoutX="202.0" layoutY="176.0" prefHeight="381.0" prefWidth="919.0">
+         <columns>
+            <TableColumn fx:id="descricao" prefWidth="699.0000152587891" style="-fx-alignment: CENTER;" text="Descrição" />
+            <TableColumn fx:id="estoque" minWidth="0.0" prefWidth="92.0" style="-fx-alignment: CENTER;" text="Estoque" />
+            <TableColumn fx:id="valor" prefWidth="126.0" style="-fx-alignment: CENTER;" text="Valor (R$)" />
+         </columns>
+      </TableView>
+      <TextField fx:id="pesquisa" layoutX="131.0" layoutY="83.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise Pela Descrição do Insumo" />
+      <Label layoutX="53.0" layoutY="88.0" text="Pesquisar:" />
+      <HBox layoutX="789.0" layoutY="594.0" prefHeight="70.0" prefWidth="542.0">
+         <children>
+            <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Cadastrar" textFill="#1379a1">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons/add.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="editarBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Editar" textFill="#1379a1">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="excluirBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Excluir" textFill="#1379a1">
+               <font>
+                  <Font name="Times New Roman Bold" size="18.0" />
+               </font>
+               <effect>
+                  <DropShadow />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/icons/remove.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+   </children>
+</AnchorPane>
