@@ -64,7 +64,7 @@ public class HomeController implements Initializable {
     }
     public  void atualizar(Funcionario f){
         if(f != null)
-        nomeUsuario.setText(f.getNome());
+        nomeUsuario.setText(f.getNome().toUpperCase());
         else
             nomeUsuario.setText("NOME USUARIO");
         

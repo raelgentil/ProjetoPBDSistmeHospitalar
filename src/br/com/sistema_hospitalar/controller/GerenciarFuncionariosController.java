@@ -8,6 +8,8 @@ package br.com.sistema_hospitalar.controller;
 
 import br.com.sistema_hospitalar.enums.Enums;
 import br.com.sistema_hospitalar.enums.Panes;
+import br.com.sistema_hospitalar.model.entidade.Administrador;
+import br.com.sistema_hospitalar.model.entidade.Funcionario;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -28,6 +30,9 @@ public class GerenciarFuncionariosController implements Initializable {
     @FXML
     private Button atendenteBotao;
     
+     @FXML
+    private Button resetarBotao;
+    
     @FXML
     private Button saudeBotao;
     
@@ -43,6 +48,9 @@ public class GerenciarFuncionariosController implements Initializable {
         saudeBotao.setOnMouseClicked((MouseEvent) -> {
             Controlador.trocarPane(Panes.visualizar,Enums.ProfSaude);
         });
+        resetarBotao.setOnMouseClicked((MouseEvent) -> {
+            Controlador.trocarPane(Panes.resetSenha);
+        });
         
     }
     public Enum getOpcao(){
@@ -50,5 +58,14 @@ public class GerenciarFuncionariosController implements Initializable {
     }
     public static GerenciarFuncionariosController get(){
         return cont;
+    }
+
+    void atualizarFuncionarioLogado(Funcionario usuarioLogado) {
+        if(usuarioLogado instanceof Administrador)
+            if(!((Administrador)usuarioLogado).isSuperUsuario()){
+                admBotao.setDisable(true);
+                resetarBotao.setDisable(true);
+            }
+                
     }
 }

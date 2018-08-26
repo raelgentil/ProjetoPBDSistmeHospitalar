@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package br.com.sistema_hospitalar.controller;
 
 import br.com.sistema_hositalar.util.Mensagens;
@@ -37,6 +37,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -44,123 +45,138 @@ import javafx.scene.input.MouseEvent;
  * @author João Emerson
  */
 public class CadastrarFuncionarioController implements Initializable {
-
-     @FXML
+    
+    @FXML
     private TextField nome;
-
+    
     @FXML
     private TextField cpf;
-
+    
+    
     @FXML
     private ComboBox<?> sexo;
-
+    
     @FXML
     private TextField email;
-
+    
     @FXML
     private TextField telefone;
-
+    
     @FXML
     private DatePicker dataNasc;
-
+    
     @FXML
     private TextField telefone2;
-
+    
     @FXML
     private TextField logradouro;
-
+    
     @FXML
     private TextField complemento;
-
+    
     @FXML
     private TextField numero;
-
+    
     @FXML
     private ComboBox<?> cidade;
-
+    
     @FXML
     private ComboBox<?> estado;
-
+    
     @FXML
     private TextField bairro;
-
+    
     @FXML
     private TextField cep;
-
+    
     @FXML
     private TextField cargaHoraria;
-
+    
     @FXML
     private TextField salario;
-
+    
     @FXML
     private CheckBox ativo;
-
+    
 //    @FXML
 //    private TextField login;
-
+    
     @FXML
     private PasswordField  senha;
-
+    @FXML
+    private Pane endereco;
+    @FXML
+    private Pane pessoal;
+    @FXML
+    private Pane profSaude;
+    @FXML
+    private Pane funcionarioPane;
+    
     @FXML
     private Tab saude;
-
+    
     @FXML
     private TableView<Especializacao> tabela;
-
+    
     @FXML
     private Button adicionarBotao;
-
+    
     @FXML
     private Button removerBotao;
-
+    
     @FXML
     private Button cadastrarBotao;
-
+    
     @FXML
     private TextField apelido;
-
+    
     @FXML
     private Button salvarBotao;
-
+    
     @FXML
     private Button voltarBotao;
     @FXML
     private TableColumn<Especializacao, String> nomeColun;
-
+    
     @FXML
     private TableColumn<Especializacao, String> codColun;
-
+    
     @FXML
     private TableColumn<Especializacao, Double> valorColun;
     
     private Enums opcao;
+    private boolean salvou = false;
 //    private ArrayList<Especializacao> especializacoes;
     
-   private static CadastrarFuncionarioController controller;
-   private Funcionario funcionario;
+    private static CadastrarFuncionarioController controller;
+    private Funcionario funcionario;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         nomeColun.setCellValueFactory( new PropertyValueFactory("nome"));
         codColun.setCellValueFactory( new PropertyValueFactory("codigo"));
         valorColun.setCellValueFactory( new PropertyValueFactory("valor"));
-        tabela.setItems(FXCollections.observableArrayList());
         //especializacoes = new ArrayList();
         controller = this;
         carregarComponentes();
         removerBotao.setOnMouseClicked((event) -> {
             if(Mensagens.Pergunta("Deseja Continuar?", "Deseja realmente remover Especialização?", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES))
-            tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
+                tabela.getItems().remove(tabela.getSelectionModel().getSelectedItem());
         });
         salvarBotao.setOnMouseClicked((MouseEvent event) -> {
             cadastrar();
-            Controlador.voltar();
-            tabela.setItems(FXCollections.observableArrayList());
+            if(salvou){
+                limparTela();
+                VisualizarController.get().atualizar(opcao);
+                tabela.setItems(FXCollections.observableArrayList());
+                Controlador.voltar();
+            }
         });
         voltarBotao.setOnMouseClicked((MouseEvent event) -> {
-            Controlador.voltar();
+            limparTela();
+            VisualizarController.get().atualizar(opcao);
             tabela.setItems(FXCollections.observableArrayList());
-           // Controlador.limparPane(p);
+            Controlador.voltar();
+            // Controlador.limparPane(p);
         });
         cidade.setOnAction((ActionEvent event) -> {
             Municipio m ;
@@ -176,7 +192,7 @@ public class CadastrarFuncionarioController implements Initializable {
         });
         adicionarBotao.setOnMouseClicked((MouseEvent event) -> {
             Controlador.abrirTelaAux(Panes.adicionarEsp);
-//            Controlador.limparPane(p);
+//            Controlador.limparPane(p); Mensagens.erro("Erro ao Salvar!", "Verifique se todos os campos estão preenchidos");
         });
     }
     public void setTela(Funcionario f){
@@ -191,24 +207,23 @@ public class CadastrarFuncionarioController implements Initializable {
 //        especializacoes.add(e);
     }
     private void cadastrar(){
-        boolean msg= false;
         Funcionario fu = null;
         switch (opcao){
-                case adm:{
-                    Administrador a = getAdministrador();
-                    fu = a;
-                    if(!Controlador.FACHADA.administradorVerificarSU()){
-                        a.setSuperUsuario(true);
-                    }
-                    msg = Controlador.FACHADA.administradorSalvarOuAtualizar(a);
-                    if(a.isSuperUsuario())
-                        Controlador.trocarTela("login");
-                    break;
+            case adm:{
+                Administrador a = getAdministrador();
+                fu = a;
+                if(!Controlador.FACHADA.administradorVerificarSU()){
+                    a.setSuperUsuario(true);
                 }
-                case ProfSaude:{fu = getProfissionalSaude();msg = Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar((ProfissionalSaude) fu);break;}
-                case atendente:{fu = getAtendente() ;msg = Controlador.FACHADA.atendenteSalvarOuAtualizar((Atendente) fu);break;}
+                salvou = Controlador.FACHADA.administradorSalvarOuAtualizar(a);
+                if(a.isSuperUsuario())
+                    Controlador.trocarTela("login");
+                break;
             }
-        if(msg && fu != null)
+            case ProfSaude:{fu = getProfissionalSaude();salvou = Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar((ProfissionalSaude) fu);break;}
+            case atendente:{fu = getAtendente() ;salvou = Controlador.FACHADA.atendenteSalvarOuAtualizar((Atendente) fu);break;}
+        }
+        if(salvou && fu != null)
             Mensagens.informacao("Informação", "O login para o funcionário é: "+ fu.getLogin());
         funcionario = null;
     }
@@ -253,8 +268,8 @@ public class CadastrarFuncionarioController implements Initializable {
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
 //        p.setLogin(login.getText());
-        p.setSalario(Double.parseDouble(salario.getText()));
-        String password = senha.getText();
+p.setSalario(Double.parseDouble(salario.getText()));
+String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("[ a-zA- Z0-9]"))//"^[0-9]*$[ a-zA- Z] * "))
 //            else{
@@ -267,13 +282,13 @@ public class CadastrarFuncionarioController implements Initializable {
 //        }
 //        System.out.println("Encriptado: "+password);
 //        System.out.println("Desencriptado: "+Controlador.desencriptar(password));
-        p.setSenha(password);        
-        p.setEndereco(getEndereco());
-        
-        p.setApelido(apelido.getText());
-        p.setEspecializacoess(tabela.getItems());
-        
-        return p;
+p.setSenha(password);
+p.setEndereco(getEndereco());
+
+p.setApelido(apelido.getText());
+p.setEspecializacoess(tabela.getItems());
+
+return p;
     }
     
     public Atendente getAtendente(){
@@ -295,8 +310,8 @@ public class CadastrarFuncionarioController implements Initializable {
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
 //        p.setLogin(login.getText());
-        p.setSalario(Double.parseDouble(salario.getText()));
-        String password = senha.getText();
+p.setSalario(Double.parseDouble(salario.getText()));
+String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("[ a-zA- Z0-9]"))//"^[0-9]*$[ a-zA- Z] * "))
 //            else{
@@ -309,17 +324,17 @@ public class CadastrarFuncionarioController implements Initializable {
 //        }
 //        System.out.println("Encriptado: "+password);
 //        System.out.println("Desencriptado: "+Controlador.desencriptar(password));
-        p.setSenha(password);        
-        p.setEndereco(getEndereco());
-        
-        
-        return p;
+p.setSenha(password);
+p.setEndereco(getEndereco());
+
+
+return p;
     }
     
     public Administrador getAdministrador(){
         Administrador p;
         if(funcionario != null)
-             p = (Administrador) funcionario;
+            p = (Administrador) funcionario;
         else
             p = new Administrador();
         p.setNome(nome.getText());
@@ -335,8 +350,8 @@ public class CadastrarFuncionarioController implements Initializable {
         p.setAtivo(ativo.isSelected());
         p.setCargaHorariaMinimaMensal(Double.parseDouble(cargaHoraria.getText()));
 //        p.setLogin(login.getText());
-        p.setSalario(Double.parseDouble(salario.getText()));
-        String password = senha.getText();
+p.setSalario(Double.parseDouble(salario.getText()));
+String password = senha.getText();
 //        if(password.length() > 6 && password.length() < 11){
 //            if(password.contains("//w"))//"^[0-9]*$[ a-zA- Z] * "))
 //            else{
@@ -349,33 +364,39 @@ public class CadastrarFuncionarioController implements Initializable {
 //        }
 //        System.out.println("Encriptado: "+password);
 //        System.out.println("Desencriptado: "+Controlador.desencriptar(password));
-        p.setSenha(password);        
-        p.setEndereco(getEndereco());
-        
-        
-        return p;
+p.setSenha(password);
+p.setEndereco(getEndereco());
+
+
+return p;
     }
     public static CadastrarFuncionarioController get(){
         return controller;
     }
-
+    private void limparTela(){
+        Controlador.limparPane(funcionarioPane);
+        Controlador.limparPane(endereco);
+        Controlador.limparPane(profSaude);
+        Controlador.limparPane(pessoal);
+    }
+    
     public ComboBox<?> getSexo() {
         return sexo;
     }
-
+    
     public void setSexo(ComboBox<?> sexo) {
         this.sexo = sexo;
     }
-
+    
     public Funcionario getFuncionario() {
         return funcionario;
     }
-
+    
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
     
-
+    
     private void carregarComponentes() {
         List auxList = new ArrayList();//,hrlist,doadorlist,tiposanguineolist;
         
@@ -397,8 +418,8 @@ public class CadastrarFuncionarioController implements Initializable {
         }
         
     }
-
-
+    
+    
     public void setOpcao(Enums opcao) {
         this.opcao = opcao;
         saude.setDisable(opcao!=Enums.ProfSaude);
