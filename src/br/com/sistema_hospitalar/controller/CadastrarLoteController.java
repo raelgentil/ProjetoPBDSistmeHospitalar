@@ -83,7 +83,7 @@ public class CadastrarLoteController implements Initializable {
         
         Calendar val = Calendar.getInstance();
         val.setTime(Date.valueOf(validade.getValue()));
-        l.setDataFabricacao(val);
+        l.setDataValidade(val);
         return l;
     }
     

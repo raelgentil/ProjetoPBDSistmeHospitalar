@@ -10,13 +10,14 @@ import br.com.sistema_hospitalar.enums.Panes;
 import br.com.sistema_hospitalar.model.entidade.Insumo;
 import br.com.sistema_hospitalar.model.entidade.Lote;
 import java.net.URL;
+import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -81,6 +82,31 @@ public class CadastrarInsumoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         c = this;
+        
+        final DateFormat dateFormat = DateFormat.getDateInstance() ; // or whatever format object you need...
+        dataColun.setCellFactory(col -> new TableCell<Lote, Calendar>() {
+            @Override
+            public void updateItem(Calendar item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {
+                    setText(null);
+                } else {
+                    setText(dateFormat.format(item.getTime()));
+                }
+            }
+        });
+        dataValColun.setCellFactory(col -> new TableCell<Lote, Calendar>() {
+            @Override
+            public void updateItem(Calendar item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null) {
+                    setText(null);
+                } else {
+                    setText(dateFormat.format(item.getTime()));
+                }
+            }
+        });
+        
         codColun.setCellValueFactory( new PropertyValueFactory("codigo"));
         dataColun.setCellValueFactory( new PropertyValueFactory("dataFabricacao"));
         dataValColun.setCellValueFactory( new PropertyValueFactory("dataValidade"));
