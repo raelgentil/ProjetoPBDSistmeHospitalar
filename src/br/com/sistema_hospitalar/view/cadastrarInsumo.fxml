@@ -1,11 +1,201 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.CadastrarInsumoController">
-    
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.sistema_hospitalar.controller.CadastrarInsumoController">
+   <children>
+      <Button fx:id="salvarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1167.0" layoutY="604.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Salvar" textFill="#1379a1">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/save.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="voltarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="1008.0" layoutY="604.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="132.0" text="Cancelar" textFill="#1379a1">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/cancel.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <TabPane layoutX="373.0" layoutY="23.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="549.0" prefWidth="643.0" style="-fx-border-color: #000000;" tabClosingPolicy="UNAVAILABLE">
+         <tabs>
+            <Tab text="Dados do Produto">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="520.0" prefWidth="666.0">
+                     <children>
+                        <Pane layoutX="53.0" layoutY="47.0" prefHeight="424.0" prefWidth="535.0">
+                           <children>
+                              <TextField fx:id="nome" layoutX="35.0" layoutY="133.0" prefHeight="25.0" prefWidth="454.0" />
+                              <Label layoutX="35.0" layoutY="113.0" text="Descrição:" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="cpf" layoutX="33.0" layoutY="211.0" prefHeight="25.0" prefWidth="159.0" />
+                              <Label layoutX="33.0" layoutY="191.0" text="Quantidade Mínima:" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="email" layoutX="32.0" layoutY="281.0" prefHeight="25.0" prefWidth="230.0" />
+                              <Label layoutX="32.0" layoutY="261.0" text="Valor:" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="telefone" layoutX="298.0" layoutY="209.0" prefHeight="25.0" prefWidth="187.0" />
+                              <Label layoutX="298.0" layoutY="189.0" text="Quantidade Total:" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="166.0" layoutY="33.0" text="DADOS DO PRODUTO" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman Bold Italic" size="23.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <opaqueInsets>
+                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                           </opaqueInsets>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="saude" text="Lotes">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane layoutX="49.0" layoutY="40.0" prefHeight="438.0" prefWidth="544.0">
+                           <children>
+                              <Label layoutX="229.0" layoutY="22.0" text="LOTES" textFill="#2323c6">
+                                 <font>
+                                    <Font name="Times New Roman Bold Italic" size="23.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tabela" layoutX="21.0" layoutY="80.0" prefHeight="296.0" prefWidth="503.0">
+                                 <columns>
+                                    <TableColumn fx:id="codColun" editable="false" prefWidth="152.0" text="Código" />
+                                    <TableColumn fx:id="nomeColun" editable="false" prefWidth="120.0" text="Data Fabricação" />
+                                    <TableColumn fx:id="valorColun" editable="false" prefWidth="138.0" text="Data Validade" />
+                                    <TableColumn fx:id="valorColun1" editable="false" prefWidth="92.0" text="Estoque" />
+                                 </columns>
+                              </TableView>
+                              <Button fx:id="adicionarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="46.0" layoutY="391.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Adicionar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/add.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="removerBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="201.0" layoutY="391.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="129.0" text="Remover" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/remove.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" layoutX="360.0" layoutY="391.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="135.0" text="Cadastrar" textFill="#1379a1">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <effect>
+                                    <DropShadow />
+                                 </effect>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="23.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icons/cadastro.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
 </AnchorPane>
