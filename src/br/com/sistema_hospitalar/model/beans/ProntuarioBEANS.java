@@ -124,7 +124,7 @@ public class ProntuarioBEANS {
     private String atualizarPrescricao(EntityManagerFactory factory, Prontuario prontuario){
         String lotess= "";
         boolean reservar = false;
-        if (reservaBEANS.getReservasProntuario(factory, Long.MIN_VALUE) == null) {
+        if (reservaBEANS.getReservasProntuario(factory, prontuario.getId()) == null) {
             reservar = true;
         }
         for (Lote lote : prontuario.getPrescricaoo()) {

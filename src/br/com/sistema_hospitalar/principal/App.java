@@ -5,112 +5,34 @@
  */
 package br.com.sistema_hospitalar.principal;
 
-import br.com.sistema_hospitalar.model.dao.ResetSenhaDAO;
 import br.com.sistema_hospitalar.model.entidade.Administrador;
-import br.com.sistema_hospitalar.model.entidade.Atendente;
-import br.com.sistema_hospitalar.model.entidade.CategoriaCID;
 import br.com.sistema_hospitalar.model.entidade.Endereco;
 import br.com.sistema_hospitalar.model.entidade.Especializacao;
 import br.com.sistema_hospitalar.model.entidade.Estado;
-import br.com.sistema_hospitalar.model.entidade.Funcionario;
-import br.com.sistema_hospitalar.model.entidade.ResetSenha;
-import br.com.sistema_hospitalar.model.entidade.Insumo;
-import br.com.sistema_hospitalar.model.entidade.Lote;
 import br.com.sistema_hospitalar.model.entidade.Municipio;
-import br.com.sistema_hospitalar.model.entidade.Paciente;
-import br.com.sistema_hospitalar.model.entidade.Pessoa;
 import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
-import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import br.com.sistema_hospitalar.model.fachada.CoreFacade;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
 import javax.persistence.Persistence;
+import javax.persistence.StoredProcedureQuery;
 
 /**
  *
  * @author rafaelgentil
- *
- *
- * Colocar no metodo delete uma verificação pra ver se o tabela tem um vinculo
- * com outra tabela se não tiver deleta
- * 
- * Usar as viws pra restrigir acesso acesso, usando pra verificar quem vai pooder visualizar determinadas coisas
- * 
- * da pra usar a view pra gerar as consultas marcadas pro dia, tb da pra usar a view pra reset senha e pra questão de medicamentos
- * 
- * usar a função  pra trazer a quantidade de paciente de cada medico ou seja qual sera o proximo numero do codigo medico paciente
- * 
- * 
- * da pra criar um gatilho pra calcular o salario quando inserir ou atualizar e pegar o valor antigo do salario pra saber 
- * 
- * utilizar o Old. salario pra ele pegar uma coluna especifica
- * 
- * 
- * criar dois logs um a nivel de banco e outro a nivel de sistema pra resolver o problema de quem atualizou a nivel de banco e a nossa
  */
-
-
 public class App {
-
-    public static void main(String[] args) {
-        CoreFacade coreFacade = new CoreFacade();
-//        salvarProfissionalSaude(coreFacade);
-salvarinsumo(coreFacade);
-//coreFacade.funcionarioGetAResetarSenha();
-//        ResetSenhaDAO funcionarioResetSenhaDAO = new ResetSenhaDAO();
-//        List<ResetSenha> resetSenhas = funcionarioResetSenhaDAO.getFuncionariosAResetarSenha(factory);
-//        
-//        for (ResetSenha resetSenha : resetSenhas) {
-//            System.out.println(resetSenha.getNome());
-//        }
-            
-    }
     
-//    public static void salvarprontuario(CoreFacade coreFacade){
+//    public static void main(String[] args) {
 //        
-//       List<Paciente> pacientes = null;
-//       int id_prof = 0;
-//       int total_paceinte;
-//       int total_prontuario_paciente;
-//       
-//       // abastercer o total
-//        for (Paciente paciente : pacientes) {
-//            if (paciente.getId()) {
-//                
-//            }
-//        }
+////        EntityManagerFactory factory = Persistence.createEntityManagerFactory("ProjetoPBDPU");
+//        
 //    }
-    
-    public static void salvarinsumo(CoreFacade coreFacade){
-        
-        Insumo i = new Insumo();
-//        i.setId(1L);
-        i.setDescricao("dipirona");
-        i.setQuantidadeMinima(10);
-        i.setValor(10);
-        
-        coreFacade.insumoSalvarOuAtualizar(i);
-        
-        
-        Lote l = new Lote();
-        l.setCodigo(123466L);
-        Calendar dataFabricacao = Calendar.getInstance();
-        dataFabricacao.set(2018, 2-1, 19);
-        l.setDataFabricacao(dataFabricacao);
-        Calendar dataValidade = Calendar.getInstance();
-        dataValidade.set(2019, 2-1, 19);
-        l.setDataValidade(dataValidade);
-        l.setGenerico(true);
-        l.setInsumo(i);
-        l.setQuantidadeInsumo(40);
-//        l.setId(1L);
 
-        coreFacade.loteSalvarOuAtualizar(l);
-
-        
-    }
     
     
     public static void salvarProfissionalSaude(CoreFacade coreFacade){
@@ -159,103 +81,29 @@ salvarinsumo(coreFacade);
 //        profissionalSaude.setSexo("M");
 //        profissionalSaude.setTelefones("96345157");
 //        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude);
-        
-        
-        
-        Estado estado1 = new Estado();
-        estado1.setDescricao("Bahia");
-        estado1.setUf("BA");
-        coreFacade.estadoSalvarOuAtualizar(estado1);
-        
-        Municipio municipio1 = new Municipio();
-        municipio1.setDescricao("Serra Negra");
-        municipio1.setEstado(estado1);
-        coreFacade.municipioSalvarOuAtualizar(municipio1);
-        
-        Endereco endereco1 = new Endereco();
-        endereco1.setBairro("Centro");
-        endereco1.setCep(6544000);
-        endereco1.setComplemento("Ap");
-        endereco1.setDescricao("Rua Padre Joaquim");
-        endereco1.setNumero("2000");
-        endereco1.setMunicipio(municipio1);
-        coreFacade.enderecoSalvarOuAtualizar(endereco1);
-        
-        Especializacao especializacao1 = new Especializacao();
-        especializacao1.setNome("Medico");
-        especializacao1.setConselho("CRM");
-        especializacao1.setValor(200);
-        especializacao1.setCodigo("12145");
-        coreFacade.especializacaoSalvarOuAtualizar(especializacao1);
-        
-        List<Especializacao> especializacoess1 =  new ArrayList<>();
-        especializacoess1.add(especializacao1);
 
-        ProfissionalSaude profissionalSaude1 = new ProfissionalSaude();
-        profissionalSaude1.setAtivo(true);
-        profissionalSaude1.setCargaHorariaMinimaMensal(60);
-        profissionalSaude1.setCpf("1234997891");
+        
+        Endereco endereco1 = coreFacade.enderecoBuscarPorId(1L);
+        
+        Administrador a = new Administrador();
+
+        a.setAtivo(true);
+        a.setCargaHorariaMinimaMensal(60);
+        a.setCpf("1224612888");
         Calendar dataDeNascimento1 = Calendar.getInstance();
-        dataDeNascimento1.set(1996, 2, 19);
-        profissionalSaude1.setDataDeNascimento(dataDeNascimento1);
-        profissionalSaude1.setEmail("raelhosanabarros@gmail.com");
-        profissionalSaude1.setEndereco(endereco1);
-        profissionalSaude1.setEspecializacoess(especializacoess1);
-        profissionalSaude1.setHoraextra(0);
-        profissionalSaude1.setNome("Rafaela Hosana de Barros");
-        profissionalSaude1.setSalario(2000);
-        profissionalSaude1.setSexo("F");
-        profissionalSaude1.setTelefones("96345157");
-        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude1);
-
-
-
-//Estado estado1 = new Estado();
-//        estado1.setDescricao("Paraiba");
-//        estado1.setUf("PA");
-//        coreFacade.estadoSalvarOuAtualizar(estado1);
-//        
-//        Municipio municipio1 = new Municipio();
-//        municipio1.setDescricao("Serra");
-//        municipio1.setEstado(estado1);
-//        coreFacade.municipioSalvarOuAtualizar(municipio1);
-//        
-//        Endereco endereco1 = new Endereco();
-//        endereco1.setBairro("Centro");
-//        endereco1.setCep(6540000);
-//        endereco1.setComplemento("Casa");
-//        endereco1.setDescricao("Rua Dormentes Joaquim");
-//        endereco1.setNumero("200");
-//        endereco1.setMunicipio(municipio1);
-//        coreFacade.enderecoSalvarOuAtualizar(endereco1);
-//        
-//        Especializacao especializacao1 = new Especializacao();
-//        especializacao1.setNome("Medico");
-//        especializacao1.setConselho("CRM");
-//        especializacao1.setValor(200);
-//        especializacao1.setCodigo("123456987");
-//        coreFacade.especializacaoSalvarOuAtualizar(especializacao1);
-//        
-//        List<Especializacao> especializacoess1 =  new ArrayList<>();
-//        especializacoess1.add(especializacao1);
-//
-//        ProfissionalSaude profissionalSaude1 = new ProfissionalSaude();
-//        profissionalSaude1.setAtivo(true);
-//        profissionalSaude1.setCargaHorariaMinimaMensal(60);
-//        profissionalSaude1.setCpf("1239957891");
-//        Calendar dataDeNascimento1 = Calendar.getInstance();
-//        dataDeNascimento1.set(1996, 2, 19);
-//        profissionalSaude1.setDataDeNascimento(dataDeNascimento1);
-//        profissionalSaude1.setEmail("rafaelahosanabarros@gmail.com");
-//        profissionalSaude1.setEndereco(endereco1);
-//        profissionalSaude1.setEspecializacoess(especializacoess1);
-//        profissionalSaude1.setHoraextra(0);
-//        profissionalSaude1.setNome("Rafaela Maria de Barros Santos");
-//        profissionalSaude1.setSalario(2000);
-//        profissionalSaude1.setSexo("F");
-//        profissionalSaude1.setTelefones("96345157");
-//        coreFacade.profissionalSaudeSalvarOuAtualizar(profissionalSaude1);
+        dataDeNascimento1.set(1976, 2, 19);
+        a.setDataDeNascimento(dataDeNascimento1);
+        a.setEmail("raelho22ana@gmail.com");
+        a.setEndereco(endereco1);
+        a.setHoraextra(0);
+        a.setNome("Rafaela Hosana de Barros Santos");
+        a.setSalario(2000);
+        a.setSexo("F");
+        a.setTelefones("96345157");
+        a.setSuperUsuario(true);
+        
+        coreFacade.administradorSalvarOuAtualizar(a);
         
     }
-
+    
 }

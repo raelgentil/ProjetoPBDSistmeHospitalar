@@ -34,9 +34,9 @@ public class AtendenteBEANS {
 
         if (atendente.getId() == null) {
             String login = beansF.criarLogin(factory, atendente);
-            String senha = beansF.criptografar(atendente.getSenha());
+            String senha = beansF.criptografar(factory, atendente.getCpf());
             atendente.setSenha(senha);
-
+            atendente.setLogin(login);
             if (login != null) {
                 atendente.setLogin(login);
                 return dao.salvarOuAtualizar(factory, atendente);
@@ -45,7 +45,7 @@ public class AtendenteBEANS {
             }
         } else {
             if (!(atendente.getSenha().equals(dao.getPorId(factory, Atendente.class, atendente.getId()).getSenha()))) {
-                atendente.setSenha(beansF.criptografar(atendente.getSenha()));
+                atendente.setSenha(beansF.criptografar(factory, atendente.getSenha()));
             }
             return dao.salvarOuAtualizar(factory, atendente);
         }

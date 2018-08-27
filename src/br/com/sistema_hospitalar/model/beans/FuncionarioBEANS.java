@@ -23,7 +23,7 @@ import javax.persistence.EntityManagerFactory;
 
 /**
  *
- * @author rafaelgentil
+ * @author rafaelgentil 
  */
 public class FuncionarioBEANS {
 
@@ -37,14 +37,15 @@ public class FuncionarioBEANS {
 
     public Funcionario buscarUsuario(EntityManagerFactory factory, String login, String senha) {
         Funcionario funcionario = null;
-        String senhaCrip = criptografar(senha);
+        String senhaCrip =  criptografar(factory, senha);
         if (login == null) {
             funcionario = daoF.buscarUsuarioPrimeiroAcesso(factory, senha, senhaCrip);
         } else {
             funcionario = daoF.buscarUsuario(factory, login);
             if (funcionario != null && funcionario.getSenha().equals(senhaCrip)) {
-
+                System.out.println("Logei");
             } else {
+                System.out.println("Não Achei nada");
                 funcionario = null;
             }
         }
@@ -142,7 +143,7 @@ public class FuncionarioBEANS {
 
     public boolean resetSenha(EntityManagerFactory factory, Long id) {
         Funcionario funcionario = dao.getPorId(factory, Funcionario.class, id);
-        funcionario.setSenha(criptografar(funcionario.getCpf()));
+        funcionario.setSenha(criptografar(factory, funcionario.getCpf()));
         funcionario.setResetar(false);
 
         return dao.salvarOuAtualizar(factory, funcionario);
@@ -160,26 +161,28 @@ public class FuncionarioBEANS {
 
         }
     }
-
-    protected String criptografar(String senha) {
-        String senhaCrip = "";
-        MessageDigest md;
-
-        try {
-            md = MessageDigest.getInstance("MD5");
-            byte[] byteSenha = senha.getBytes();
-//            for (int i = 0; i < byteSenha.length; i++) {
-//                byte b = byteSenha[i];
-//                
-//            }
-            BigInteger hash = new BigInteger(1, md.digest(byteSenha));
-            senhaCrip = hash.toString(16);
-
-        } catch (NoSuchAlgorithmException ex) {
-            ex.printStackTrace();
-        }
-
-        return senhaCrip;
-    }
+protected String criptografar(EntityManagerFactory factory, String senha) {
+    return daoF.criptografarSenha(factory, senha);
+}
+//    protected String criptografar(String senha) {
+//        String senhaCrip = "";
+//        MessageDigest md;
+//
+//        try {
+//            md = MessageDigest.getInstance("MD5");
+//            byte[] byteSenha = senha.getBytes();
+////            for (int i = 0; i < byteSenha.length; i++) {
+////                byte b = byteSenha[i];
+////                
+////            }
+//            BigInteger hash = new BigInteger(1, md.digest(byteSenha));
+//            senhaCrip = hash.toString(16);
+//
+//        } catch (NoSuchAlgorithmException ex) {
+//            ex.printStackTrace();
+//        }
+//
+//        return senhaCrip;
+//    }
 
 }

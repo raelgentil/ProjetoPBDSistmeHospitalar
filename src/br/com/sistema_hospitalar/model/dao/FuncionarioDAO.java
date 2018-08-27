@@ -12,6 +12,8 @@ import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.ParameterMode;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 
 /**
@@ -19,17 +21,17 @@ import javax.persistence.TypedQuery;
  * @author rafaelgentil
  */
 public class FuncionarioDAO {
-    
-    
-    public Funcionario buscarUsuarioPrimeiroAcesso(EntityManagerFactory factory, String senha, String SenhaC){
+
+    public Funcionario buscarUsuarioPrimeiroAcesso(EntityManagerFactory factory, String senha, String SenhaC) {
         EntityManager em = null;
         Funcionario funcionario = null;
         try {
-            
+
             em = factory.createEntityManager();
             /**
-             * Em tela vai funcionar como se o atendente pesquisasse o paciente e selecionasse o medico
-             * q o paciente vai e depois verificava se esse paciente ja possui ou não vinculo com aquele medico
+             * Em tela vai funcionar como se o atendente pesquisasse o paciente
+             * e selecionasse o medico q o paciente vai e depois verificava se
+             * esse paciente ja possui ou não vinculo com aquele medico
              */
             TypedQuery<Funcionario> q = em.createQuery("select f from Funcionario f where f.cpf = :senha and f.senha = :senhaC", Funcionario.class);
             q.setParameter("senha", senha);
@@ -45,16 +47,17 @@ public class FuncionarioDAO {
         }
         return funcionario;
     }
-    
-    public Funcionario buscarUsuario(EntityManagerFactory factory, String login){
+
+    public Funcionario buscarUsuario(EntityManagerFactory factory, String login) {
         EntityManager em = null;
         Funcionario funcionario = null;
         try {
-            
+
             em = factory.createEntityManager();
             /**
-             * Em tela vai funcionar como se o atendente pesquisasse o paciente e selecionasse o medico
-             * q o paciente vai e depois verificava se esse paciente ja possui ou não vinculo com aquele medico
+             * Em tela vai funcionar como se o atendente pesquisasse o paciente
+             * e selecionasse o medico q o paciente vai e depois verificava se
+             * esse paciente ja possui ou não vinculo com aquele medico
              */
             TypedQuery<Funcionario> q = em.createQuery("select f from Funcionario f where f.login = :login", Funcionario.class);
             q.setParameter("login", login);
@@ -69,16 +72,17 @@ public class FuncionarioDAO {
         }
         return funcionario;
     }
-    
-    public Funcionario buscarCPF(EntityManagerFactory factory, String cpf){
+
+    public Funcionario buscarCPF(EntityManagerFactory factory, String cpf) {
         EntityManager em = null;
         Funcionario funcionario = null;
         try {
-            
+
             em = factory.createEntityManager();
             /**
-             * Em tela vai funcionar como se o atendente pesquisasse o paciente e selecionasse o medico
-             * q o paciente vai e depois verificava se esse paciente ja possui ou não vinculo com aquele medico
+             * Em tela vai funcionar como se o atendente pesquisasse o paciente
+             * e selecionasse o medico q o paciente vai e depois verificava se
+             * esse paciente ja possui ou não vinculo com aquele medico
              */
             TypedQuery<Funcionario> q = em.createQuery("select f from Funcionario f where f.cpf = :cpf", Funcionario.class);
             q.setParameter("cpf", cpf);
@@ -94,17 +98,16 @@ public class FuncionarioDAO {
         return funcionario;
     }
 
-    
     public List<Funcionario> buscarPorAtivos(EntityManagerFactory factory, boolean ativo) {
         EntityManager em = null;
         List<Funcionario> funcionarios = null;
         try {
-            
+
             em = factory.createEntityManager();
 
             TypedQuery<Funcionario> q = em.createQuery("select f from Funcionario f where f.ativo is :ativo", Funcionario.class);
 
-            q.setParameter("ativo",ativo);
+            q.setParameter("ativo", ativo);
 
             funcionarios = q.getResultList();
 
@@ -119,5 +122,21 @@ public class FuncionarioDAO {
         return funcionarios;
     }
 
-    
+    public String criptografarSenha(EntityManagerFactory factory, String senha) {
+        EntityManager em = null;
+        em = factory.createEntityManager();
+        StoredProcedureQuery query = em
+                .createStoredProcedureQuery("criptografar_senha")
+                .registerStoredProcedureParameter("senha", String.class, ParameterMode.IN)
+                .registerStoredProcedureParameter("cript", String.class, ParameterMode.OUT)
+                .setParameter("senha", senha);
+
+        query.execute();
+
+        String cripttografia = (String) query
+                .getOutputParameterValue("cript");
+        System.out.println(cripttografia);
+        return cripttografia;
+    }
+
 }

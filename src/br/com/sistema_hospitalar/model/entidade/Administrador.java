@@ -32,6 +32,10 @@ public class Administrador extends Funcionario implements Serializable, IEntidad
     }
 
    
+
+   
+
+   
     
 
     

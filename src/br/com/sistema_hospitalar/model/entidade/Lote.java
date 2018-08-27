@@ -49,7 +49,7 @@ public class Lote implements Serializable,IEntidadeBase{
     private boolean generico;
     
     @Transient
-    private boolean insumoPego;
+    private boolean insumoPego = false;
     
     @ManyToOne
     @JoinColumn(name = "insumo_id", referencedColumnName = "id", nullable = false)

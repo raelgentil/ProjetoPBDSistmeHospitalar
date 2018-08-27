@@ -38,10 +38,10 @@ public class ProficionalSaudeBEANS {
 
         if (profissionalSaude.getId() == null) {
             String login = beansF.criarLogin(factory, profissionalSaude);
-            String senha = beansF.criptografar(profissionalSaude.getCpf());
+            String senha = beansF.criptografar(factory, profissionalSaude.getCpf());
             profissionalSaude.setSenha(senha);
             profissionalSaude.setApelido(criarApelido(factory, profissionalSaude));
-
+            profissionalSaude.setLogin(login);
             if (login != null) {
                 profissionalSaude.setLogin(login);
                 profissionalSaude.setEspecializacoes(converterEspecializacoes(profissionalSaude.getEspecializacoess()));
@@ -51,7 +51,7 @@ public class ProficionalSaudeBEANS {
             }
         } else {
             if (!(profissionalSaude.getSenha().equals(dao.getPorId(factory, ProfissionalSaude.class, profissionalSaude.getId()).getSenha()))) {
-                profissionalSaude.setSenha(beansF.criptografar(profissionalSaude.getSenha()));
+                profissionalSaude.setSenha(beansF.criptografar(factory, profissionalSaude.getSenha()));
             }
             return dao.salvarOuAtualizar(factory, profissionalSaude);
         }
@@ -62,9 +62,9 @@ public class ProficionalSaudeBEANS {
         return dao.remover(factory, ProfissionalSaude.class, profissionalSaude);
     }
 
-    public ProfissionalSaude getPorId(EntityManagerFactory factory, ProfissionalSaude profissionalSaude) {
+    public ProfissionalSaude getPorId(EntityManagerFactory factory, Long id) {
 
-        return dao.getPorId(factory, ProfissionalSaude.class, profissionalSaude.getId());
+        return dao.getPorId(factory, ProfissionalSaude.class, id);
     }
 
     public List<ProfissionalSaude> buscarPorNome(EntityManagerFactory factory, String nome) {

@@ -35,9 +35,11 @@ public class AdministradorBEANS {
      public boolean salvarOuAtualizar(EntityManagerFactory factory, Administrador administrador) {
 
         if (administrador.getId() == null) {
+            String senha = beansF.criptografar(factory, administrador.getCpf());
             String login = beansF.criarLogin(factory, administrador);
-            String senha = beansF.criptografar(administrador.getSenha());
+            System.out.println(login);
             administrador.setSenha(senha);
+            administrador.setLogin(login);
             
             if(administrador.isSuperUsuario())
                 return dao.salvarOuAtualizar(factory, administrador);
@@ -50,7 +52,7 @@ public class AdministradorBEANS {
             }
         } else {
             if (!(administrador.getSenha().equals(dao.getPorId(factory, Administrador.class, administrador.getId()).getSenha()))) {
-                administrador.setSenha(beansF.criptografar(administrador.getSenha()));
+                administrador.setSenha(beansF.criptografar(factory,administrador.getSenha()));
             }
             return dao.salvarOuAtualizar(factory, administrador);
         }

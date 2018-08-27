@@ -26,13 +26,12 @@ public class Reserva implements Serializable, IEntidadeBase{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private Lote lote;
+    @Column(name = "id_lote")
+    private Long idLote;
     
+    @Column(name = "liberado")
     private boolean liberado = true;
     
-    /**
-     * Esse atributo será usado pra saber quando cliente levou ou não o insumo e tb na hora de saber se adm liberou ou não o insumo pra
-     */
     @Transient
     private boolean pegou;
     
@@ -50,13 +49,6 @@ public class Reserva implements Serializable, IEntidadeBase{
         this.id = id;
     }
 
-    public Lote getLote() {
-        return lote;
-    }
-
-    public void setLote(Lote lote) {
-        this.lote = lote;
-    }
 
     public boolean isLiberado() {
         return liberado;

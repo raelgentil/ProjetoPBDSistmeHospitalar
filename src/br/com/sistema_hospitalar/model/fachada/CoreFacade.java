@@ -351,8 +351,8 @@ public class CoreFacade {
         return proficionalSaudeBEANS.remover(factory, profissionalSaude);
     }
 
-    public ProfissionalSaude profissionalSaudeBuscarPorId(ProfissionalSaude profissionalSaude) {
-        return proficionalSaudeBEANS.getPorId(factory, profissionalSaude);
+    public ProfissionalSaude profissionalSaudeBuscarPorId(Long id) {
+        return proficionalSaudeBEANS.getPorId(factory, id);
     }
 
     public List<ProfissionalSaude> profissionalSaudeBuscarPorNome(String nome) {

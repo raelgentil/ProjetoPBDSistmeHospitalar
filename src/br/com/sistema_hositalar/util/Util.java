@@ -167,10 +167,10 @@ public class Util {
            estados.add(new Estado("SE", "Sergipe"));
            estados.add(new Estado("TO", "Tocantins"));
            
-           for(Estado e: estadosBD)
-               for(Estado est: estados)
-                   if(e.getUf().equalsIgnoreCase(est.getUf()))
-                       estados.remove(est);
+//           for(Estado e: estadosBD)
+//               for(Estado est: estados)
+//                   if(e.getUf().equalsIgnoreCase(est.getUf()))
+//                       estados.remove(est);
            for(Estado e: estados)
                Controlador.FACHADA.estadoSalvarOuAtualizar(e);
            
