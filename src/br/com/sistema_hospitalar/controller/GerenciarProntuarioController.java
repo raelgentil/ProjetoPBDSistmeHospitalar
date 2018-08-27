@@ -78,8 +78,12 @@ public class GerenciarProntuarioController implements Initializable {
         });
         atenderBotao.setOnMouseClicked((event) -> {
             if(tabela.getSelectionModel().getSelectedItem() != null){
+                if(tabela.getSelectionModel().getSelectedItem().getMedico().getId() == Controlador.getUsuarioLogado().getId()){
                     //AtenderProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
                     Controlador.abrirTelaAux(Panes.atenderProntuario);
+                }else
+                    Mensagens.informacao("Somente o médico do prontuário pode atende-lo", "Operação Inválida");
+                
                 
             }else
                 Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
