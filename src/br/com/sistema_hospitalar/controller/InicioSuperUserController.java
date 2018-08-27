@@ -80,6 +80,8 @@ public class InicioSuperUserController implements Initializable {
             prontuarios.setDisable(true);
         else
             prontuarios.setDisable(false);
+        if(usuarioLogado instanceof ProfissionalSaude)
+            farmacia.setDisable(true);
         if((usuarioLogado instanceof Administrador)){
            if(((Administrador)usuarioLogado).isSuperUsuario())
             prontuarios.setDisable(false);
