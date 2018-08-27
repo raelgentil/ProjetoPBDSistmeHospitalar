@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -15,23 +15,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="br.com.sistema_hospitalar.controller.GerenciarProntuarioController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.sistema_hospitalar.controller.GerenciarProntuarioController">
    <children>
       <TableView fx:id="tabela" layoutX="202.0" layoutY="176.0" prefHeight="381.0" prefWidth="919.0">
          <columns>
-            <TableColumn fx:id="nome" prefWidth="593.0" style="-fx-alignment: CENTER;" text="Nome" />
-            <TableColumn fx:id="sexo" minWidth="0.0" prefWidth="56.0" style="-fx-alignment: CENTER;" text="Sexo" />
-            <TableColumn fx:id="cpf" prefWidth="268.0" style="-fx-alignment: CENTER;" text="CPF" />
+            <TableColumn fx:id="paciente" prefWidth="261.0000305175781" style="-fx-alignment: CENTER;" text="Paciente" />
+            <TableColumn fx:id="medico" minWidth="0.0" prefWidth="186.0" style="-fx-alignment: CENTER;" text="Médico" />
+            <TableColumn fx:id="codigo" prefWidth="147.0" style="-fx-alignment: CENTER;" text="Código MédicoxPaciente" />
+            <TableColumn fx:id="abertura" prefWidth="147.0" style="-fx-alignment: CENTER;" text="Data Abertura" />
+            <TableColumn fx:id="atendimento" prefWidth="175.0" style="-fx-alignment: CENTER;" text="Data Marcada p/ Atendimento" />
          </columns>
       </TableView>
       <TextField fx:id="pesquisa" layoutX="131.0" layoutY="83.0" prefHeight="25.0" prefWidth="503.0" promptText="Pesquise Pelo Código MédicoxPaciente" />
       <Label layoutX="53.0" layoutY="88.0" text="Pesquisar:" />
       <Label layoutX="53.0" layoutY="129.0" text="Filtros:" />
-      <RadioButton layoutX="106.0" layoutY="129.0" mnemonicParsing="false" selected="true" text="Todos" />
       <HBox layoutX="789.0" layoutY="594.0" prefHeight="70.0" prefWidth="542.0">
          <children>
-            <Button fx:id="cadastrarBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Atender" textFill="#1379a1">
+            <Button fx:id="atenderBotao" alignment="CENTER" graphicTextGap="20.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="168.0" text="Atender" textFill="#1379a1">
                <font>
                   <Font name="Times New Roman Bold" size="18.0" />
                </font>
@@ -105,5 +105,6 @@
             <Insets />
          </opaqueInsets>
       </HBox>
+      <CheckBox fx:id="medicBox" layoutX="95.0" layoutY="129.0" mnemonicParsing="false" text="Somente Meus Pacientes" />
    </children>
 </AnchorPane>

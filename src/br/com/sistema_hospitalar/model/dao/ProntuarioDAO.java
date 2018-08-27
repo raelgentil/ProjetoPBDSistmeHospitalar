@@ -52,8 +52,8 @@ public class ProntuarioDAO {
              
             em = factory.createEntityManager();
            
-            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.codMedicoPaciente = :codMedicoPaciente", Prontuario.class);
-            q.setParameter("codMedicoPaciente", codMedicoPaciente + "%");
+            TypedQuery<Prontuario> q = em.createQuery("select p from Prontuario p where p.codMedicoPaciente like :codMedicoPaciente", Prontuario.class);
+            q.setParameter("codMedicoPaciente", "%"+codMedicoPaciente + "%");
             prontuarios = q.getResultList();
 
         } catch (Exception e) {

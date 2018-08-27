@@ -114,15 +114,18 @@ public class VisualizarController implements Initializable {
         atualizar(opcao);
     }
     private void excluir(){
-        if(Mensagens.Pergunta("DESEJA CONTINUAR?", "Deseja realmente excluir", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES) && opcao!=null){
-            switch (opcao){
-                case paciente:{Controlador.FACHADA.pacienteRemover((Paciente)tabela.getSelectionModel().getSelectedItem());;break;}
-                case adm:{Controlador.FACHADA.administradorRemover((Administrador)tabela.getSelectionModel().getSelectedItem());;break;}
-                case ProfSaude:{Controlador.FACHADA.profissionalSaudeRemover((ProfissionalSaude)tabela.getSelectionModel().getSelectedItem());;break;}
-                case atendente:{Controlador.FACHADA.atendenteRemover((Atendente)tabela.getSelectionModel().getSelectedItem());;break;}
+        if(tabela.getSelectionModel().getSelectedItem() != null){
+            if(Mensagens.Pergunta("DESEJA CONTINUAR?", "Deseja realmente excluir", Mensagens.YES, Mensagens.NO).equals(Mensagens.YES) && opcao!=null){
+                switch (opcao){
+                    case paciente:{Controlador.FACHADA.pacienteRemover((Paciente)tabela.getSelectionModel().getSelectedItem());;break;}
+                    case adm:{Controlador.FACHADA.administradorRemover((Administrador)tabela.getSelectionModel().getSelectedItem());;break;}
+                    case ProfSaude:{Controlador.FACHADA.profissionalSaudeRemover((ProfissionalSaude)tabela.getSelectionModel().getSelectedItem());;break;}
+                    case atendente:{Controlador.FACHADA.atendenteRemover((Atendente)tabela.getSelectionModel().getSelectedItem());;break;}
+                }
+                
             }
-            
-        }
+        }else
+            Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
         atualizar(opcao);
     }
     
