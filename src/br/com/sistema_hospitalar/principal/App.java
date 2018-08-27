@@ -58,6 +58,7 @@ public class App {
         CoreFacade coreFacade = new CoreFacade();
 //        salvarProfissionalSaude(coreFacade);
 salvarinsumo(coreFacade);
+//coreFacade.funcionarioGetAResetarSenha();
 //        ResetSenhaDAO funcionarioResetSenhaDAO = new ResetSenhaDAO();
 //        List<ResetSenha> resetSenhas = funcionarioResetSenhaDAO.getFuncionariosAResetarSenha(factory);
 //        
@@ -85,6 +86,7 @@ salvarinsumo(coreFacade);
     public static void salvarinsumo(CoreFacade coreFacade){
         
         Insumo i = new Insumo();
+//        i.setId(1L);
         i.setDescricao("dipirona");
         i.setQuantidadeMinima(10);
         i.setValor(10);
@@ -102,7 +104,8 @@ salvarinsumo(coreFacade);
         l.setDataValidade(dataValidade);
         l.setGenerico(true);
         l.setInsumo(i);
-        l.setQuantidadeInsumo(10);
+        l.setQuantidadeInsumo(40);
+//        l.setId(1L);
 
         coreFacade.loteSalvarOuAtualizar(l);
 

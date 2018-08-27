@@ -41,7 +41,6 @@ public class LoteBEANS {
         }else{
            quantidadeAntigadeInsumo =  buscarPorId(factory, lote.getId()).getQuantidadeInsumo();
             salvou = dao.salvarOuAtualizar(factory, lote);
-            
         }
         if (salvou) {
             atualizarInsumo(factory, lote, quantidadeAntigadeInsumo);
@@ -75,7 +74,7 @@ public class LoteBEANS {
     private void atualizarInsumo(EntityManagerFactory factory, Lote  lote, int quantidadeAntigadeInsumo){
         
         Insumo insumo = insumoBEANS.getPorId(factory, lote.getInsumo().getId());
-            insumo.setQuantidadeTotal(((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo())- quantidadeAntigadeInsumo));
+            insumo.setQuantidadeTotal(((insumo.getQuantidadeTotal() + lote.getQuantidadeInsumo()) - quantidadeAntigadeInsumo));
             insumoBEANS.salvarOuAtualizar(factory, insumo);
     }
     
