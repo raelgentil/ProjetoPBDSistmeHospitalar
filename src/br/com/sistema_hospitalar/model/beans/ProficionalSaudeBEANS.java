@@ -70,7 +70,9 @@ public class ProficionalSaudeBEANS {
     public List<ProfissionalSaude> buscarPorNome(EntityManagerFactory factory, String nome) {
         List<ProfissionalSaude> profissionalSaudes = daoP.buscarPorNome(factory, nome);
         for (ProfissionalSaude profissionalSaude : profissionalSaudes) {
-            profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
+            if(profissionalSaude.getEspecializacoes()!=null)
+                if(!profissionalSaude.getEspecializacoes().isEmpty())
+                profissionalSaude.setEspecializacoess(carregarEspecializacoes(factory, profissionalSaude.getEspecializacoes()));
 
         }
         return profissionalSaudes;
