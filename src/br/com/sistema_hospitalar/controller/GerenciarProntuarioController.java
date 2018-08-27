@@ -89,6 +89,12 @@ public class GerenciarProntuarioController implements Initializable {
             }else
                 Mensagens.informacao("Selecione um Item", "Selecione um item da tabela para realizar essa operação");
         });
+        medicBox.setOnAction((event) -> {
+            atualizar();
+        });
+        pesquisa.setOnKeyReleased((event) -> {
+            atualizar();
+        });
         editarBotao.setOnMouseClicked((event) -> {
             if(tabela.getSelectionModel().getSelectedItem() != null){
                     //EditarProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
