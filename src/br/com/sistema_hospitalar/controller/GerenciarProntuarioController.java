@@ -13,6 +13,7 @@ import br.com.sistema_hospitalar.model.entidade.Prontuario;
 import java.net.URL;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -78,8 +79,8 @@ public class GerenciarProntuarioController implements Initializable {
         });
         atenderBotao.setOnMouseClicked((event) -> {
             if(tabela.getSelectionModel().getSelectedItem() != null){
-                if(tabela.getSelectionModel().getSelectedItem().getMedico().getId() == Controlador.getUsuarioLogado().getId()){
-                    //AtenderProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
+                if(Objects.equals(tabela.getSelectionModel().getSelectedItem().getMedico().getId(), Controlador.getUsuarioLogado().getId())){
+                    AtenderProntuarioController.get().setProntuario(tabela.getSelectionModel().getSelectedItem());
                     Controlador.abrirTelaAux(Panes.atenderProntuario);
                 }else
                     Mensagens.informacao("Somente o médico do prontuário pode atende-lo", "Operação Inválida");

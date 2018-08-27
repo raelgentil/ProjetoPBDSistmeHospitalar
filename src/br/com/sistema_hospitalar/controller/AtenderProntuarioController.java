@@ -87,7 +87,7 @@ public class AtenderProntuarioController implements Initializable {
         });
         adicionar.setOnMouseClicked((event) -> {
             if(insumo.getSelectionModel().getSelectedItem() != null){
-               tabela.getItems().add(insumo.getSelectionModel().getSelectedItem());
+               tabela.getItems().add(insumo.getItems().get(insumo.getSelectionModel().getSelectedIndex()));
             }
         });
         remover.setOnMouseClicked((event) -> {

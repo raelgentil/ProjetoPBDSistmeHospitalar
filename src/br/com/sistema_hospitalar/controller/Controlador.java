@@ -28,7 +28,7 @@ public class Controlador extends Application{
     
     private static Stage janela, janelaAUX;
     private static Scene login,principal, aux;
-    private static Pane principalPane,inicioSUPane, farmacia,visualizarInsumo,gerenciarProntuarios,cadastrarInsumo,cadastrarLote, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
+    private static Pane principalPane,inicioSUPane, farmacia,atenderProntuario,visualizarInsumo,gerenciarProntuarios,cadastrarInsumo,cadastrarLote, relatorios,resetSenha,adicionarEspecializacao,cadastrarEspecializacao,gerenciarFuncPane,agendar, visualizar, cadastrarPaciente,cadastrarFuncionario, cadastrarPaciente2;
     private static ArrayList<Pane> pilha;
     public  static CoreFacade FACHADA = new CoreFacade();
     private static Funcionario usuarioLogado;
@@ -60,6 +60,7 @@ public class Controlador extends Application{
         cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarInsumo.fxml"));
         cadastrarLote = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/cadastrarLote.fxml"));
         gerenciarProntuarios = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/gerenciarProntuario.fxml"));
+        atenderProntuario = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/atenderProntuario.fxml"));
 //        cadastrarInsumo = FXMLLoader.load(getClass().getResource("/br/com/sistema_hospitalar/view/agendar.fxml"));
         
         login = new Scene(loginPane);
@@ -95,6 +96,7 @@ public class Controlador extends Application{
             case cadastrarEsp:{painel = cadastrarEspecializacao;break;}
             case adicionarEsp:{painel = adicionarEspecializacao;AdcionarEspecializacaoController.get().atualizar();break;}
             case cadastrarLote:{painel = cadastrarLote;break;}
+            case atenderProntuario:{painel = atenderProntuario;AtenderProntuarioController.get().atualizar();break;}
             default:{Mensagens.erro("Erro ao carregar  tela","A tela solicitada não foi encontrada");break;}
         }
          if(painel != null){
