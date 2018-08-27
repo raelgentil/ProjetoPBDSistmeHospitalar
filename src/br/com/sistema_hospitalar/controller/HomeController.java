@@ -5,7 +5,11 @@
 */
 package br.com.sistema_hospitalar.controller;
 
+import br.com.sistema_hositalar.util.Mensagens;
+import br.com.sistema_hospitalar.model.entidade.Administrador;
+import br.com.sistema_hospitalar.model.entidade.Atendente;
 import br.com.sistema_hospitalar.model.entidade.Funcionario;
+import br.com.sistema_hospitalar.model.entidade.ProfissionalSaude;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -59,6 +63,27 @@ public class HomeController implements Initializable {
         });
         sairSessao.setOnMouseClicked((MouseEvent e)->{
             Controlador.Logout();
+        });
+        usuario.setOnMouseClicked((event) -> {
+            Funcionario f = Controlador.getUsuarioLogado();
+            String senha;
+            boolean valido = false;
+            do{
+                senha = Mensagens.inserirTexto("Insira Uma nova Senha", "Digite uma nova senha", "");
+                if(senha.length() > 6 && senha.length() < 11)
+                    valido = true;
+                else
+                    Mensagens.erro("Senha invalida", "Sua senha deve ter entre 6 a 11 caracteres alfanumericos!");
+            }while(!valido);
+            f.setSenha(senha);
+            if(f instanceof Administrador)
+                Controlador.FACHADA.administradorSalvarOuAtualizar((Administrador) f);
+            else if(f instanceof ProfissionalSaude)
+                Controlador.FACHADA.profissionalSaudeSalvarOuAtualizar((ProfissionalSaude) f);
+            else if(f instanceof Atendente)
+                Controlador.FACHADA.atendenteSalvarOuAtualizar((Atendente) f);
+            Controlador.setUsuarioLogado(f);
+            
         });
         
     }
